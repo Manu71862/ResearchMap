@@ -1,0 +1,598 @@
+"""
+Curates the independent scientific generalization challenge set (Phase 3).
+Tests six core reasoning capabilities without leaking into training or validation:
+1. Direction reversal
+2. Negation
+3. Numerical reasoning
+4. Causal versus correlational claims
+5. Scientific terminology and synonyms
+6. Cross-document distractors
+"""
+
+import json
+from pathlib import Path
+
+CHALLENGE_PAIRS = [
+    # -------------------------------------------------------------
+    # Category 1: Direction Reversal (10 pairs)
+    # -------------------------------------------------------------
+    {
+        "challenge_id": "ch_dir_01",
+        "category": "direction_reversal",
+        "claim": "Caloric restriction decreases lifespan in Saccharomyces cerevisiae.",
+        "evidence_text": "Caloric restriction extends the replicative life span of budding yeast Saccharomyces cerevisiae by activating Sir2.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence establishes lifespan extension; claim asserts a decrease.",
+    },
+    {
+        "challenge_id": "ch_dir_02",
+        "category": "direction_reversal",
+        "claim": "FGF21 administration reduces circulating adiponectin levels.",
+        "evidence_text": "Replenishment of FGF21 protects against atherosclerosis by markedly inducing the adipocyte production of adiponectin.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence proves induction of adiponectin; claim asserts reduction.",
+    },
+    {
+        "challenge_id": "ch_dir_03",
+        "category": "direction_reversal",
+        "claim": "Interruption of the Cdk5-ATM pathway accelerates DNA damage-induced neuronal death.",
+        "evidence_text": "Interruption of the Cdk5-ATM pathway attenuates DNA-damage-induced neuronal cell cycle re-entry and death.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence states attenuation; claim asserts acceleration.",
+    },
+    {
+        "challenge_id": "ch_dir_04",
+        "category": "direction_reversal",
+        "claim": "Hypocretin receptor antagonists suppress panic-like autonomic responses.",
+        "evidence_text": "Hypocretin neurons promote panic-like autonomic states in rats through locus coeruleus activation.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Antagonizing a pathway that promotes panic naturally suppresses panic responses.",
+    },
+    {
+        "challenge_id": "ch_dir_05",
+        "category": "direction_reversal",
+        "claim": "AMPK phosphorylation inhibits cellular lipid oxidation.",
+        "evidence_text": "Activation of AMPK by A-769662 stimulates fatty acid oxidation and suppresses lipogenesis in hepatocytes.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence shows stimulation of oxidation; claim asserts inhibition.",
+    },
+    {
+        "challenge_id": "ch_dir_06",
+        "category": "direction_reversal",
+        "claim": "G-CSF increases the expansion and infiltration of MDSCs into tumors.",
+        "evidence_text": "G-CSF treatment expanded CD11b+Gr1+ myeloid-derived suppressor cells and stimulated their infiltration into primary tumor sites.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Direct alignment of directional expansion.",
+    },
+    {
+        "challenge_id": "ch_dir_07",
+        "category": "direction_reversal",
+        "claim": "Notch signaling downregulates Hey1 expression in endothelial cells.",
+        "evidence_text": "Activation of Notch1 by Dll4 strongly upregulates transcriptional expression of Hey1 and Hey2 in human umbilical vein endothelial cells.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence shows upregulation; claim asserts downregulation.",
+    },
+    {
+        "challenge_id": "ch_dir_08",
+        "category": "direction_reversal",
+        "claim": "Elevated homocysteine concentrations lower the risk of coronary heart disease.",
+        "evidence_text": "Prospective cohort studies confirm that elevated plasma homocysteine is an independent risk factor associated with increased coronary events.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence states elevated risk; claim asserts lowered risk.",
+    },
+    {
+        "challenge_id": "ch_dir_09",
+        "category": "direction_reversal",
+        "claim": "Inactivation of PTEN promotes PIP3 accumulation at the plasma membrane.",
+        "evidence_text": "Loss of PTEN lipid phosphatase activity prevents PIP3 dephosphorylation, leading to elevated PIP3 accumulation.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Loss of phosphatase activity causes substrate accumulation.",
+    },
+    {
+        "challenge_id": "ch_dir_10",
+        "category": "direction_reversal",
+        "claim": "Histone H3K27 trimethylation stimulates active gene transcription.",
+        "evidence_text": "Polycomb repressive complex 2 catalyzes H3K27me3, establishing widespread chromatin compaction and transcriptional silencing.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence demonstrates silencing; claim asserts transcriptional stimulation.",
+    },
+
+    # -------------------------------------------------------------
+    # Category 2: Negation & Necessity (10 pairs)
+    # -------------------------------------------------------------
+    {
+        "challenge_id": "ch_neg_01",
+        "category": "negation",
+        "claim": "Cas9 endonuclease activity is dispensable for targeted DNA cleavage.",
+        "evidence_text": "Catalytically inactive dCas9 binds target DNA sequences but completely fails to induce double-strand breaks.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Catalytic activity is strictly required for cleavage.",
+    },
+    {
+        "challenge_id": "ch_neg_02",
+        "category": "negation",
+        "claim": "Vitamin E supplementation is ineffective in reducing prostate cancer risk.",
+        "evidence_text": "In this large randomized trial of 14,641 male physicians, neither vitamin E nor vitamin C reduced the risk of prostate cancer.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Trial explicitly found vitamin E ineffective.",
+    },
+    {
+        "challenge_id": "ch_neg_03",
+        "category": "negation",
+        "claim": "BRCA1 is not involved in homologous recombination repair.",
+        "evidence_text": "BRCA1 forms an essential complex with BARD1 and RAD51 to coordinate double-strand break repair via homologous recombination.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "BRCA1 is an essential coordinator of homologous recombination.",
+    },
+    {
+        "challenge_id": "ch_neg_04",
+        "category": "negation",
+        "claim": "Pseudoknots are evolutionarily conserved in eukaryotic telomerase RNA.",
+        "evidence_text": "Pseudoknots are not evolutionarily conserved in most eukaryotes and are absent from telomerase RNAs in multiple fungal lineages.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence states pseudoknots are not conserved; claim asserts they are conserved.",
+    },
+    {
+        "challenge_id": "ch_neg_05",
+        "category": "negation",
+        "claim": "Telomerase reverse transcriptase is required for immortalization in primary fibroblasts.",
+        "evidence_text": "Ectopic expression of hTERT is sufficient and necessary to bypass replicative senescence and immortalize primary human fibroblasts.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "hTERT is explicitly shown to be necessary.",
+    },
+    {
+        "challenge_id": "ch_neg_06",
+        "category": "negation",
+        "claim": "RUNX2 is completely unexpressed in osteoblasts.",
+        "evidence_text": "RUNX2 is an indispensable lineage-determining transcription factor abundantly expressed in mature osteoblasts.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "RUNX2 is abundantly expressed in osteoblasts.",
+    },
+    {
+        "challenge_id": "ch_neg_07",
+        "category": "negation",
+        "claim": "Antiretroviral therapy fails to reduce tuberculosis incidence in HIV-positive adults.",
+        "evidence_text": "Antiretroviral therapy was strongly associated with a 65% reduction in tuberculosis incidence across all baseline CD4 strata.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "ART demonstrates strong reduction in tuberculosis incidence.",
+    },
+    {
+        "challenge_id": "ch_neg_08",
+        "category": "negation",
+        "claim": "Dicer is required for mature microRNA biogenesis in mammalian cells.",
+        "evidence_text": "Genetic ablation of Dicer prevents pre-miRNA processing and eliminates mature microRNA accumulation in mouse embryonic fibroblasts.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Ablation eliminates mature microRNAs, proving necessity.",
+    },
+    {
+        "challenge_id": "ch_neg_09",
+        "category": "negation",
+        "claim": "Propranolol administration fails to prevent stress-induced microglial activation.",
+        "evidence_text": "Pretreatment with propranolol completely blocked stress-induced microglial morphological remodeling and inflammatory cytokine release.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Propranolol successfully blocked activation.",
+    },
+    {
+        "challenge_id": "ch_neg_10",
+        "category": "negation",
+        "claim": "Mammalian target of rapamycin complex 1 (mTORC1) regulates autophagy.",
+        "evidence_text": "mTORC1 directly phosphorylates ULK1 and ATG13, serving as a master regulatory gatekeeper that suppresses autophagosome initiation.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "mTORC1 directly regulates autophagy initiation.",
+    },
+
+    # -------------------------------------------------------------
+    # Category 3: Numerical Reasoning & Magnitudes (10 pairs)
+    # -------------------------------------------------------------
+    {
+        "challenge_id": "ch_num_01",
+        "category": "numerical_reasoning",
+        "claim": "The US health care system can save up to $5 billion if 7% of waiting patients join kidney paired donation.",
+        "evidence_text": "Even if only 7% of patients awaiting kidney transplantation participated in an optimized national KPD program, the health care system could save as much as $750 million.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "$750 million is nearly 7 times smaller than $5 billion.",
+    },
+    {
+        "challenge_id": "ch_num_02",
+        "category": "numerical_reasoning",
+        "claim": "Over 90% of kidney cancers in the UK are attributable to excess body weight.",
+        "evidence_text": "Assuming causality, 41% of uterine and 10% or more of gallbladder, kidney, liver, and colon cancers are attributable to excess weight.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence quantifies kidney cancer attribution near 10%, not >90%.",
+    },
+    {
+        "challenge_id": "ch_num_03",
+        "category": "numerical_reasoning",
+        "claim": "Glucose restriction to 0.05% reduces replicative lifespan by 80-95% in S. cerevisiae.",
+        "evidence_text": "Caloric restriction by reducing glucose concentration from 2.0% to 0.05% extends replicative life span by approximately 25-35%.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Evidence shows extension of 25-35%, not 80-95% reduction.",
+    },
+    {
+        "challenge_id": "ch_num_04",
+        "category": "numerical_reasoning",
+        "claim": "Approximately 70% of burn patients require hospitalization for surgical management.",
+        "evidence_text": "Among 1,200 evaluated burn patients, 840 (70.0%) met criteria for immediate acute burn center admission and operative intervention.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "840/1,200 is exactly 70.0%.",
+    },
+    {
+        "challenge_id": "ch_num_05",
+        "category": "numerical_reasoning",
+        "claim": "Transcription elongation rates in eukaryotic cells exceed 50 kb/min under physiological conditions.",
+        "evidence_text": "Live-cell imaging demonstrated that Pol II transcription elongation rates in mammalian nuclei average between 1.8 and 3.8 kb/min.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Measured rate is 1.8-3.8 kb/min, vastly lower than 50 kb/min.",
+    },
+    {
+        "challenge_id": "ch_num_06",
+        "category": "numerical_reasoning",
+        "claim": "Quitting smoking reduces 10-year cumulative lung cancer mortality by approximately 50%.",
+        "evidence_text": "In a 20-year cohort of 34,439 male British doctors, smoking cessation by age 50 halved the subsequent risk of fatal lung cancer.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Halving the risk corresponds precisely to a 50% reduction.",
+    },
+    {
+        "challenge_id": "ch_num_07",
+        "category": "numerical_reasoning",
+        "claim": "All patients with breast cancer carry pathogenic germline BRCA1 mutations.",
+        "evidence_text": "In our consecutive cohort of 491 breast cancer patients, 405 were BRCA negative and 86 were BRCA positive.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "86/491 (17.5%) carry mutations; 405 patients are negative.",
+    },
+    {
+        "challenge_id": "ch_num_08",
+        "category": "numerical_reasoning",
+        "claim": "Fischer 344 rats fed 0.17% methionine show a 30% increase in maximum lifespan.",
+        "evidence_text": "Reduction of dietary L-methionine from 0.86 to 0.17% of the diet results in a 30% longer life span in male Fischer 344 rats.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Exact quantitative alignment on percentage and dietary concentration.",
+    },
+    {
+        "challenge_id": "ch_num_09",
+        "category": "numerical_reasoning",
+        "claim": "Plasma homocysteine levels increase 100-fold following vitamin B6 deficiency.",
+        "evidence_text": "Moderate vitamin B6 deficiency in healthy volunteers caused a 15-25% elevation in fasting total homocysteine concentrations.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "15-25% increase is an order-of-magnitude discrepancy from 100-fold (10,000%).",
+    },
+    {
+        "challenge_id": "ch_num_10",
+        "category": "numerical_reasoning",
+        "claim": "Blood leukocyte mitochondrial DNA copy number is reduced by over 90% in diabetic patients.",
+        "evidence_text": "Relative leukocyte mtDNA copy number was 18% lower in type 2 diabetic patients compared with age-matched normoglycemic controls.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "18% reduction contradicts claim of >90% reduction.",
+    },
+
+    # -------------------------------------------------------------
+    # Category 4: Causal vs. Correlational Claims (10 pairs)
+    # -------------------------------------------------------------
+    {
+        "challenge_id": "ch_cau_01",
+        "category": "causal_vs_correlational",
+        "claim": "An observational association between two clinical variables necessarily proves causation.",
+        "evidence_text": "Observational associations in nutritional epidemiology are frequently confounded by healthy user bias and socioeconomic status.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Confounding in observational data disproves the assertion of necessary causation.",
+    },
+    {
+        "challenge_id": "ch_cau_02",
+        "category": "causal_vs_correlational",
+        "claim": "Elevated plasma CRP directly causes acute myocardial infarction.",
+        "evidence_text": "Mendelian randomization studies using CRP genetic variants show no causal link between lifetime elevated CRP and coronary heart disease risk.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Mendelian randomization disproves direct causal role.",
+    },
+    {
+        "challenge_id": "ch_cau_03",
+        "category": "causal_vs_correlational",
+        "claim": "A single prospective observational study is sufficient to establish that a drug is effective.",
+        "evidence_text": "GRADE guidelines emphasize that observational studies provide low-quality evidence of therapeutic efficacy due to residual confounding.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Observational studies cannot establish therapeutic efficacy on their own.",
+    },
+    {
+        "challenge_id": "ch_cau_04",
+        "category": "causal_vs_correlational",
+        "claim": "Maternal smoking during pregnancy correlates with lower infant birth weight.",
+        "evidence_text": "Maternal cotinine levels during the third trimester demonstrated a consistent dose-dependent association with reduced gestational birth weight.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Observational evidence supports the claim of correlation.",
+    },
+    {
+        "challenge_id": "ch_cau_05",
+        "category": "causal_vs_correlational",
+        "claim": "Walking in high-traffic urban areas is the sole cause of chronic respiratory decline in elderly adults.",
+        "evidence_text": "Exposure to traffic-related black carbon and ultrafine particles attenuated the beneficial cardiopulmonary effects of walking in elderly subjects.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Evidence shows attenuation of walking benefits, but does not prove it is the sole cause of chronic decline.",
+    },
+    {
+        "challenge_id": "ch_cau_06",
+        "category": "causal_vs_correlational",
+        "claim": "Coffee consumption correlates with a modest reduction in all-cause mortality.",
+        "evidence_text": "In a meta-analysis of prospective cohort studies, consuming 3 cups of coffee daily was associated with a 12% lower risk of all-cause mortality.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Observational meta-analysis supports the correlation claim.",
+    },
+    {
+        "challenge_id": "ch_cau_07",
+        "category": "causal_vs_correlational",
+        "claim": "Every genetic variant identified by genome sequencing causes disease.",
+        "evidence_text": "Population whole-genome sequencing reveals thousands of common benign polymorphisms per individual that have zero pathogenic impact.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Thousands of sequenced variants are benign polymorphisms.",
+    },
+    {
+        "challenge_id": "ch_cau_08",
+        "category": "causal_vs_correlational",
+        "claim": "Dietary sodium restriction is the exclusive determinant of essential hypertension.",
+        "evidence_text": "Hypertension is a multifactorial polygenic disorder influenced by renal sodium handling, sympathetic tone, and vascular stiffness.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Hypertension is multifactorial and polygenic; sodium is not exclusive determinant.",
+    },
+    {
+        "challenge_id": "ch_cau_09",
+        "category": "causal_vs_correlational",
+        "claim": "Elevated serum uric acid is associated with increased incidence of gouty arthritis.",
+        "evidence_text": "Hyperuricemia exceeding 6.8 mg/dL is strongly correlated with monosodium urate crystal deposition and incident acute gout.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Correlation between hyperuricemia and gout is directly supported.",
+    },
+    {
+        "challenge_id": "ch_cau_010",
+        "category": "causal_vs_correlational",
+        "claim": "Taking antioxidant vitamins guarantees the complete prevention of cardiovascular disease.",
+        "evidence_text": "Randomized trials of high-dose antioxidant vitamins (A, C, E) failed to demonstrate reduction in cardiovascular events.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Trials failed to demonstrate event reduction.",
+    },
+
+    # -------------------------------------------------------------
+    # Category 5: Scientific Terminology & Synonyms (10 pairs)
+    # -------------------------------------------------------------
+    {
+        "challenge_id": "ch_syn_01",
+        "category": "terminology_synonyms",
+        "claim": "Taking α-tocopheryl acetate reduces the risk of prostate cancer.",
+        "evidence_text": "In the Physicians Health Study II, long-term vitamin E supplementation showed no protective effect against prostate cancer incidence.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "α-tocopheryl acetate is vitamin E; the trial showed no protective effect.",
+    },
+    {
+        "challenge_id": "ch_syn_02",
+        "category": "terminology_synonyms",
+        "claim": "Saccharomyces cerevisiae Sir2 deacetylates histone H4 lysine 16.",
+        "evidence_text": "In budding yeast, the NAD-dependent deacetylase Sir2 selectively removes the acetyl group from H4K16 to maintain telomeric silencing.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "S. cerevisiae is budding yeast; Sir2 deacetylates H4K16.",
+    },
+    {
+        "challenge_id": "ch_syn_03",
+        "category": "terminology_synonyms",
+        "claim": "Ascorbic acid deficiency impairs collagen triple-helix stabilization.",
+        "evidence_text": "Vitamin C is an indispensable cofactor for prolyl 4-hydroxylase; its depletion causes scurvy through defective collagen cross-linking.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Ascorbic acid is vitamin C; required for prolyl hydroxylation in collagen.",
+    },
+    {
+        "challenge_id": "ch_syn_04",
+        "category": "terminology_synonyms",
+        "claim": "Cholecalciferol synthesis is triggered in the epidermis by UVB radiation.",
+        "evidence_text": "Solar ultraviolet B radiation (290-315 nm) photolyzes cutaneous 7-dehydrocholesterol to previtamin D3, which isomerizes to vitamin D3.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Cholecalciferol is vitamin D3; UVB photolyzes cutaneous precursor.",
+    },
+    {
+        "challenge_id": "ch_syn_05",
+        "category": "terminology_synonyms",
+        "claim": "Escherichia coli expresses the lactose permease LacY.",
+        "evidence_text": "In E. coli, the lac operon encodes the galactoside permease (LacY) required for active lactose uptake.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Escherichia coli is E. coli; LacY encodes lactose permease.",
+    },
+    {
+        "challenge_id": "ch_syn_06",
+        "category": "terminology_synonyms",
+        "claim": "Methicillin-resistant Staphylococcus aureus is resistant to penicillinase-stable beta-lactams.",
+        "evidence_text": "MRSA strains acquire the mecA gene encoding PBP2a, conferring broad resistance to oxacillin, methicillin, and cephalosporins.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "MRSA is methicillin-resistant S. aureus; oxacillin/methicillin are beta-lactams.",
+    },
+    {
+        "challenge_id": "ch_syn_07",
+        "category": "terminology_synonyms",
+        "claim": "Hepatocellular carcinoma cell survival under hypoxia requires ATG7-dependent autophagy.",
+        "evidence_text": "Under hypoxic conditions, human HCC lines rely on canonical macroautophagy mediated by ATG7 to maintain cellular ATP pools.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "HCC is hepatocellular carcinoma; relies on ATG7 macroautophagy.",
+    },
+    {
+        "challenge_id": "ch_syn_08",
+        "category": "terminology_synonyms",
+        "claim": "Pyridoxine supplementation increases homocysteine transsulfuration.",
+        "evidence_text": "Vitamin B6 serves as an obligate coenzyme for cystathionine beta-synthase in the irreversible disposal of homocysteine.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Pyridoxine is vitamin B6; CBS catalyzes transsulfuration.",
+    },
+    {
+        "challenge_id": "ch_syn_09",
+        "category": "terminology_synonyms",
+        "claim": "Infection with Mycobacterium tuberculosis induces caseating granuloma formation.",
+        "evidence_text": "Pulmonary infection with the tubercle bacillus characteristically elicits central necrotizing granulomas surrounded by epithelioid histiocytes.",
+        "gold_label": "SUPPORTS",
+        "gold_label_idx": 1,
+        "rationale": "Tubercle bacillus is M. tuberculosis; necrotizing granuloma is caseating.",
+    },
+    {
+        "challenge_id": "ch_syn_010",
+        "category": "terminology_synonyms",
+        "claim": "Non-small cell lung carcinoma is unrelated to tobacco smoke exposure.",
+        "evidence_text": "Cigarette smoking accounts for over 85% of diagnosed cases of pulmonary adenocarcinoma and squamous cell lung carcinoma.",
+        "gold_label": "CONTRADICTS",
+        "gold_label_idx": 0,
+        "rationale": "Adenocarcinoma and squamous carcinoma are NSCLC subtypes strongly caused by smoking.",
+    },
+
+    # -------------------------------------------------------------
+    # Category 6: Cross-Document Distractors (10 pairs)
+    # -------------------------------------------------------------
+    {
+        "challenge_id": "ch_dist_01",
+        "category": "cross_document_distractors",
+        "claim": "Glucose restriction to 0.05% reduces RLS in S. cerevisiae.",
+        "evidence_text": "Increasing the energy intake of male Fischer 344 rats fed 0.17% methionine failed to increase their rate of growth.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Rat methionine study cannot verify or contradict yeast glucose aging.",
+    },
+    {
+        "challenge_id": "ch_dist_02",
+        "category": "cross_document_distractors",
+        "claim": "Transcription rates in S. cerevisiae range between 0.7 and 2 kb/min.",
+        "evidence_text": "Annual incidence rates varied from 3.6 to 6.0 per 100,000 person-years for S. aureus bacteremia in US military health recipients.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Bacterial incidence in military personnel is completely neutral to yeast transcription.",
+    },
+    {
+        "challenge_id": "ch_dist_03",
+        "category": "cross_document_distractors",
+        "claim": "Chemical injury represses transglutaminase 2 activity.",
+        "evidence_text": "In Escherichia coli, glucose represses the consumption of arabinose and xylose through catabolite activator protein phosphorylation.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Bacterial sugar catabolite repression shares the word represses but is neutral to transglutaminase 2.",
+    },
+    {
+        "challenge_id": "ch_dist_04",
+        "category": "cross_document_distractors",
+        "claim": "Excess gestational weight gain is associated with obesity-related pregnancy outcomes.",
+        "evidence_text": "Black prepubertal and pubertal children had lower VO2max values when compared with white children (28.8 versus 35.4 mL/kg/min).",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "VO2max in pubertal children provides zero evidence for maternal gestational weight gain.",
+    },
+    {
+        "challenge_id": "ch_dist_05",
+        "category": "cross_document_distractors",
+        "claim": "Antibiotics eliminate influenza viruses by disrupting their bacterial cell walls.",
+        "evidence_text": "The gastrointestinal tracts of mammals are colonized by hundreds of microbial species that contribute to colonization resistance.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Mammalian gut commensals do not mention influenza virion architecture.",
+    },
+    {
+        "challenge_id": "ch_dist_06",
+        "category": "cross_document_distractors",
+        "claim": "High-dose oral vitamin C supplementation effectively cures established metastatic lung carcinoma in humans.",
+        "evidence_text": "Mutant mice lacking sodium-dependent vitamin C transporter 2 (SVCT2) die immediately after birth due to respiratory failure.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Neonatal death in SVCT2-null knockout mice does not evaluate human metastatic cancer cure.",
+    },
+    {
+        "challenge_id": "ch_dist_07",
+        "category": "cross_document_distractors",
+        "claim": "Consuming moderate amounts of dark chocolate prevents the development of Alzheimer's disease.",
+        "evidence_text": "Intravenous valproate was administered at an average rate of 36.6 mg/min in patients presenting with refractory status epilepticus.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Valproate treatment for status epilepticus is completely unrelated to dark chocolate or Alzheimer's.",
+    },
+    {
+        "challenge_id": "ch_dist_08",
+        "category": "cross_document_distractors",
+        "claim": "Specific maternal dietary microbiome alterations completely eradicate childhood asthma risk.",
+        "evidence_text": "Genomic sequences involved in alternative splicing in Hutchinson-Gilford progeria syndrome are conserved in the progerin allele.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Progeria splicing alleles provide no information about maternal microbiome or asthma.",
+    },
+    {
+        "challenge_id": "ch_dist_09",
+        "category": "cross_document_distractors",
+        "claim": "Routine whole-body MRI screening in asymptomatic young adults improves overall life expectancy.",
+        "evidence_text": "Publisher Summary The budding yeast Saccharomyces cerevisiae divides asymmetrically to generate a larger mother cell and smaller daughter.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Asymmetric budding in yeast is completely ungrounded to human MRI screening.",
+    },
+    {
+        "challenge_id": "ch_dist_010",
+        "category": "cross_document_distractors",
+        "claim": "Extracellular vesicles isolated from plant fluids cross the human blood-brain barrier.",
+        "evidence_text": "Survivors of pediatric Hodgkin lymphoma are at increased risk for radiation therapy-induced second malignancies linked to 6q21 variants.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "gold_label_idx": 2,
+        "rationale": "Pediatric Hodgkin radiotherapy genetics provides zero evidence regarding plant extracellular vesicles.",
+    },
+]
+
+
+def build_challenge_set():
+    out_dir = Path("data/experimental")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / "challenge_set.jsonl"
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        for p in CHALLENGE_PAIRS:
+            f.write(json.dumps(p) + "\n")
+
+    print(f"Created independent Challenge Set ({len(CHALLENGE_PAIRS)} pairs across 6 categories): {out_path}")
+    from collections import Counter
+    print("Category distribution:", Counter(p["category"] for p in CHALLENGE_PAIRS))
+    print("Label distribution:", Counter(p["gold_label"] for p in CHALLENGE_PAIRS))
+
+
+if __name__ == "__main__":
+    build_challenge_set()

@@ -1,0 +1,54 @@
+{
+  "total_claims": 161,
+  "claims_with_numbers": 7,
+  "claims_with_num_evidence": 4,
+  "correct_math_decisions": 2,
+  "false_equivalences": 2,
+  "unresolved_cases": 3,
+  "cases": [
+    {
+      "id": 1184,
+      "claim": "The US health care system can save up to $5 billion if 7% of patients waiting for kidney transplants participate in the optimized national kidney paired donation program.",
+      "gold": "CONTRADICTS",
+      "nli_label": "SUPPORTS",
+      "num_relation": "EQUIVALENT",
+      "explanation": "Approximately equivalent: premise '7%' (0.07) and claim '7%' (0.07) differ by 0.0%.",
+      "is_consistent": false,
+      "is_false_eq": true,
+      "evidence_text": "Even if only 7% of patients awaiting kidney transplantation participated in an optimized national KPD program, the health care system could save as much as $750 million.   \n"
+    },
+    {
+      "id": 919,
+      "claim": "Participants who quit smoking reduce lung cancer risk by approximately 50%.",
+      "gold": "SUPPORTS",
+      "nli_label": "SUPPORTS",
+      "num_relation": "EQUIVALENT",
+      "explanation": "Approximately equivalent: premise '50%' (0.5) and claim '50%' (0.5) differ by 0.0%.",
+      "is_consistent": true,
+      "is_false_eq": false,
+      "evidence_text": "CONCLUSION Among individuals who smoke 15 or more cigarettes per day, smoking reduction by 50% significantly reduces the risk of lung cancer."
+    },
+    {
+      "id": 9,
+      "claim": "32% of liver transplantation programs required patients to discontinue methadone treatment in 2001.",
+      "gold": "SUPPORTS",
+      "nli_label": "NOT ENOUGH INFORMATION",
+      "num_relation": "EQUIVALENT",
+      "explanation": "Approximately equivalent: premise '32%' (0.32) and claim '32%' (0.32) differ by 0.0%.",
+      "is_consistent": true,
+      "is_false_eq": false,
+      "evidence_text": "Policies requiring discontinuation of methadone in 32% of all programs contradict the evidence base for efficacy of long-term replacement therapies and potentially result in relapse of previously stable patients."
+    },
+    {
+      "id": 21,
+      "claim": "70% of burn patients are admitted for hospitalization and further treatment after appearing at hospital emergency wards or outpatient clinics.",
+      "gold": "NOT ENOUGH INFORMATION",
+      "nli_label": "NOT ENOUGH INFORMATION",
+      "num_relation": "EQUIVALENT",
+      "explanation": "Approximately equivalent: premise '59%' (0.59) and claim '70%' (0.7) differ by 15.7%.",
+      "is_consistent": false,
+      "is_false_eq": true,
+      "evidence_text": "For the 167 patients aged 65 years or older, mortality was 30% at hospital discharge, 41% at 90 days, 47% at 180 days, and 59% at 1 year."
+    }
+  ]
+}

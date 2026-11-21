@@ -1,0 +1,708 @@
+{
+  "timestamp": "2026-10-28 19:16:25",
+  "active_configuration": "Configuration C",
+  "parameters": {
+    "top_k_docs": 10,
+    "top_k_sentences": 4,
+    "doc_score_weight": 0.35,
+    "max_per_doc": 2,
+    "tokenizer": "raw_regex"
+  },
+  "test_results_n24": {
+    "overall_accuracy": 0.8333,
+    "answerable_accuracy": 0.9231,
+    "macro_f1": 0.8263,
+    "per_class": {
+      "SUPPORTS": {
+        "precision": 1.0,
+        "recall": 0.8889,
+        "f1": 0.9412,
+        "support": 9.0
+      },
+      "CONTRADICTS": {
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235,
+        "support": 10.0
+      },
+      "NOT ENOUGH INFORMATION": {
+        "precision": 0.5556,
+        "recall": 1.0,
+        "f1": 0.7143,
+        "support": 5.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        8,
+        0,
+        1
+      ],
+      [
+        0,
+        7,
+        3
+      ],
+      [
+        0,
+        0,
+        5
+      ]
+    ],
+    "doc_recall@5": 0.8462,
+    "doc_recall@10": 0.8462,
+    "sentence_evidence_recall": 0.7692,
+    "mean_latency_ms": 194.64
+  },
+  "val_results_n161": {
+    "overall_accuracy": 0.5404,
+    "answerable_accuracy": 0.5842,
+    "macro_f1": 0.524,
+    "per_class": {
+      "SUPPORTS": {
+        "precision": 0.6269,
+        "recall": 0.6364,
+        "f1": 0.6316,
+        "support": 66.0
+      },
+      "CONTRADICTS": {
+        "precision": 0.3953,
+        "recall": 0.4857,
+        "f1": 0.4359,
+        "support": 35.0
+      },
+      "NOT ENOUGH INFORMATION": {
+        "precision": 0.549,
+        "recall": 0.4667,
+        "f1": 0.5045,
+        "support": 60.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        42,
+        10,
+        14
+      ],
+      [
+        9,
+        17,
+        9
+      ],
+      [
+        16,
+        16,
+        28
+      ]
+    ],
+    "doc_recall@5": 0.8416,
+    "doc_recall@10": 0.8911,
+    "sentence_evidence_recall": 0.3663,
+    "mean_latency_ms": 195.95
+  },
+  "test_predictions": [
+    {
+      "claim_id": 1,
+      "claim": "CRISPR-Cas9 uses a guide RNA to target specific DNA sequences for editing.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9223603010177612,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        21561474,
+        7029990,
+        461550,
+        22029384,
+        2810997,
+        4462919,
+        13296399,
+        28904104,
+        5953485,
+        4418878
+      ],
+      "predicted_evidence_sentences": [
+        [
+          461550,
+          4
+        ]
+      ],
+      "latency_ms": 289.2056000418961
+    },
+    {
+      "claim_id": 2,
+      "claim": "Antibiotics eliminate influenza viruses by disrupting their bacterial cell walls.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9888906478881836,
+      "is_correct": false,
+      "retrieved_candidate_doc_ids": [
+        11026600,
+        24746892,
+        350542,
+        10068634,
+        1103795,
+        1234098,
+        4695107,
+        17779800,
+        6820680,
+        696006
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 179.26309996983036
+    },
+    {
+      "claim_id": 3,
+      "claim": "Every genetic variant identified by genome sequencing causes a disease.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9918348789215088,
+      "is_correct": false,
+      "retrieved_candidate_doc_ids": [
+        1544804,
+        18199839,
+        4632921,
+        4421746,
+        2722988,
+        12643937,
+        24725136,
+        4414547,
+        18038955,
+        19497526
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 182.19339998904616
+    },
+    {
+      "claim_id": 4,
+      "claim": "The hippocampus contributes to the formation of certain types of new memories.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9393825531005859,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        6123521,
+        28530299,
+        4345605,
+        18600579,
+        4462155,
+        10790846,
+        11992632,
+        23863576,
+        2973910,
+        24652030
+      ],
+      "predicted_evidence_sentences": [
+        [
+          6123521,
+          5
+        ]
+      ],
+      "latency_ms": 208.26639997540042
+    },
+    {
+      "claim_id": 5,
+      "claim": "All patients with breast cancer carry a BRCA1 mutation.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.6738505363464355,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        9394119,
+        3285322,
+        17088791,
+        1866911,
+        20886584,
+        22975806,
+        24144677,
+        22482024,
+        17163294,
+        2015126
+      ],
+      "predicted_evidence_sentences": [
+        [
+          3285322,
+          8
+        ]
+      ],
+      "latency_ms": 183.82360000396147
+    },
+    {
+      "claim_id": 6,
+      "claim": "A scientific study's association between two variables necessarily proves causation.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.8908496499061584,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        6387956,
+        4445629,
+        24918110,
+        18747744,
+        5145974,
+        39892135,
+        3083927,
+        25690564,
+        17693849,
+        37619697
+      ],
+      "predicted_evidence_sentences": [
+        [
+          6387956,
+          8
+        ]
+      ],
+      "latency_ms": 159.33399996720254
+    },
+    {
+      "claim_id": 7,
+      "claim": "Messenger RNA vaccines provide cells with instructions for producing a target antigen.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9929108023643494,
+      "is_correct": false,
+      "retrieved_candidate_doc_ids": [
+        13231899,
+        4467129,
+        9091863,
+        950306,
+        19255949,
+        5132358,
+        3174305,
+        236204,
+        15248287,
+        18275697
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 198.2226999825798
+    },
+    {
+      "claim_id": 8,
+      "claim": "All bacteria are harmful to humans.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.589459240436554,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        19958277,
+        2479538,
+        13771184,
+        4841908,
+        4465735,
+        41165286,
+        5921065,
+        21956124,
+        2211868,
+        52850476
+      ],
+      "predicted_evidence_sentences": [
+        [
+          13771184,
+          0
+        ]
+      ],
+      "latency_ms": 123.58430004678667
+    },
+    {
+      "claim_id": 9,
+      "claim": "DNA sequencing can identify genetic variants without proving that every identified variant causes disease.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.8579294681549072,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        4632921,
+        4414547,
+        23389795,
+        2739854,
+        4427060,
+        19497526,
+        1544804,
+        3672261,
+        2485101,
+        39481265
+      ],
+      "predicted_evidence_sentences": [
+        [
+          4414547,
+          2
+        ]
+      ],
+      "latency_ms": 269.7026000241749
+    },
+    {
+      "claim_id": 10,
+      "claim": "A single observational study always establishes that a treatment is effective.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9654994606971741,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        10749308,
+        140907540,
+        35861290,
+        9548440,
+        20725212,
+        4430962,
+        3493623,
+        2078658,
+        24770913,
+        8428837
+      ],
+      "predicted_evidence_sentences": [
+        [
+          140907540,
+          13
+        ]
+      ],
+      "latency_ms": 173.63839998142794
+    },
+    {
+      "claim_id": 11,
+      "claim": "Solar ultraviolet B radiation stimulates cutaneous synthesis of vitamin D precursors in the skin.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.6918843984603882,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        275294,
+        22843838,
+        4483571,
+        30720103,
+        23267371,
+        21553394,
+        25853741,
+        36960449,
+        3150030,
+        4462079
+      ],
+      "predicted_evidence_sentences": [
+        [
+          275294,
+          1
+        ]
+      ],
+      "latency_ms": 175.95219996292144
+    },
+    {
+      "claim_id": 12,
+      "claim": "Topical application of sunscreen enhances the cutaneous production of cholecalciferol.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9923993945121765,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        275294,
+        4483571,
+        9110810,
+        26461066,
+        14657344,
+        43378932,
+        496873,
+        37118634,
+        19005293,
+        167944455
+      ],
+      "predicted_evidence_sentences": [
+        [
+          275294,
+          3
+        ]
+      ],
+      "latency_ms": 182.3564000078477
+    },
+    {
+      "claim_id": 13,
+      "claim": "MicroRNA-375 inhibits autophagy in hepatocellular carcinoma cells under hypoxic conditions by suppressing ATG7.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9935362339019775,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        982650,
+        14874811,
+        33569870,
+        2543135,
+        19882228,
+        3701541,
+        6227220,
+        16882895,
+        11903247,
+        10450725
+      ],
+      "predicted_evidence_sentences": [
+        [
+          982650,
+          11
+        ]
+      ],
+      "latency_ms": 185.3656999883242
+    },
+    {
+      "claim_id": 14,
+      "claim": "MicroRNA-375 expression promotes the growth and viability of hepatocellular carcinoma cells under hypoxia.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9900438785552979,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        982650,
+        16882895,
+        26848994,
+        3710557,
+        515489,
+        8677721,
+        35993767,
+        14874811,
+        22521091,
+        25950264
+      ],
+      "predicted_evidence_sentences": [
+        [
+          982650,
+          11
+        ]
+      ],
+      "latency_ms": 176.70469998847693
+    },
+    {
+      "claim_id": 15,
+      "claim": "Propranolol administration prevents stress-induced microglial reactivity and macrophage trafficking to the brain.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9646500945091248,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        2436602,
+        17991818,
+        32101982,
+        16863359,
+        7221410,
+        40590358,
+        3943235,
+        15414628,
+        25677651,
+        5395426
+      ],
+      "predicted_evidence_sentences": [
+        [
+          2436602,
+          6
+        ]
+      ],
+      "latency_ms": 166.31679999409243
+    },
+    {
+      "claim_id": 16,
+      "claim": "The alternative lengthening of telomeres mechanism allows certain cancer cells to maintain telomeres in the absence of active telomerase.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9539090991020203,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        213017,
+        7915836,
+        4899981,
+        12156187,
+        18639989,
+        4319844,
+        18263406,
+        26118532,
+        4411655,
+        24351680
+      ],
+      "predicted_evidence_sentences": [
+        [
+          7915836,
+          1
+        ]
+      ],
+      "latency_ms": 220.70359997451305
+    },
+    {
+      "claim_id": 17,
+      "claim": "Active telomerase expression is strictly required for all human cancer cells to maintain telomere length.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9587209820747375,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        7915836,
+        1226452,
+        4411655,
+        28230867,
+        19255949,
+        4926049,
+        213017,
+        26374799,
+        18263406,
+        4899981
+      ],
+      "predicted_evidence_sentences": [
+        [
+          7915836,
+          1
+        ]
+      ],
+      "latency_ms": 192.60559999383986
+    },
+    {
+      "claim_id": 18,
+      "claim": "Antibiotic treatment can disrupt intestinal commensal microbiota and increase vulnerability to Clostridium difficile infection.",
+      "gold_label": "SUPPORTS",
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9706897735595703,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        4465735,
+        6372244,
+        2604063,
+        32454714,
+        14803797,
+        5922085,
+        12658073,
+        41120293,
+        15975146,
+        11921405
+      ],
+      "predicted_evidence_sentences": [
+        [
+          4465735,
+          1
+        ]
+      ],
+      "latency_ms": 185.19170000217855
+    },
+    {
+      "claim_id": 19,
+      "claim": "High-dose oral vitamin C supplementation effectively cures established metastatic lung carcinoma in humans.",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9475516080856323,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        13312471,
+        12009265,
+        23868856,
+        3034412,
+        23267371,
+        21553394,
+        49556906,
+        25950264,
+        1568684,
+        19799455
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 222.3809999995865
+    },
+    {
+      "claim_id": 20,
+      "claim": "Routine whole-body MRI screening in asymptomatic young adults improves overall life expectancy.",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9967288970947266,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        14823313,
+        74137632,
+        21232018,
+        13959707,
+        26341063,
+        22309946,
+        13445579,
+        8780599,
+        7813993,
+        4312169
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 185.82870002137497
+    },
+    {
+      "claim_id": 21,
+      "claim": "Consuming moderate amounts of dark chocolate prevents the development of Alzheimer's disease.",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9951673746109009,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        24652030,
+        4459491,
+        8780599,
+        5293024,
+        45336190,
+        24530130,
+        17438862,
+        37450671,
+        31347396,
+        4446814
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 178.50360000738874
+    },
+    {
+      "claim_id": 22,
+      "claim": "Extracellular vesicles isolated from plant fluids cross the human blood-brain barrier to reverse neurodegeneration.",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9629341959953308,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        7764903,
+        14692646,
+        3588621,
+        27602752,
+        14753395,
+        31154082,
+        15570691,
+        3761017,
+        4435369,
+        1905095
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 183.57120000291616
+    },
+    {
+      "claim_id": 23,
+      "claim": "Regular mindfulness meditation practice completely eliminates cerebral cortex atrophy during aging.",
+      "gold_label": "CONTRADICTS",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9976668357849121,
+      "is_correct": false,
+      "retrieved_candidate_doc_ids": [
+        17973630,
+        4679264,
+        10605189,
+        9796495,
+        5503194,
+        16939583,
+        24735908,
+        27022864,
+        8227227,
+        33796570
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 220.5351999728009
+    },
+    {
+      "claim_id": 24,
+      "claim": "Specific maternal dietary microbiome alterations during the first trimester can completely eradicate childhood asthma risk.",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.975961446762085,
+      "is_correct": true,
+      "retrieved_candidate_doc_ids": [
+        24269361,
+        33740844,
+        356218,
+        11360768,
+        20148808,
+        13714201,
+        22236223,
+        27129115,
+        6372244,
+        24594624
+      ],
+      "predicted_evidence_sentences": [],
+      "latency_ms": 228.1875000335276
+    }
+  ]
+}

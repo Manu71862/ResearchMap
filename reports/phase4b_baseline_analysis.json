@@ -1,0 +1,116 @@
+{
+  "val_internal": {
+    "split_name": "Internal Validation (val_internal.jsonl)",
+    "total_claims": 161,
+    "macro_f1": 0.5348389389794724,
+    "weighted_f1": 0.5485230606828908,
+    "per_class": {
+      "SUPPORTS": {
+        "precision": 0.639344262295082,
+        "recall": 0.5909090909090909,
+        "f1_score": 0.6141732283464567,
+        "support": 66.0
+      },
+      "CONTRADICTS": {
+        "precision": 0.4473684210526316,
+        "recall": 0.4857142857142857,
+        "f1_score": 0.4657534246575342,
+        "support": 35.0
+      },
+      "NOT ENOUGH INFORMATION": {
+        "precision": 0.5161290322580645,
+        "recall": 0.5333333333333333,
+        "f1_score": 0.5245901639344263,
+        "support": 60.0
+      }
+    },
+    "sentence_f1": 0.0,
+    "sentence_precision": 0.0,
+    "sentence_recall": 0.0,
+    "confusion_matrix": {
+      "labels": [
+        "SUPPORTS",
+        "CONTRADICTS",
+        "NOT ENOUGH INFORMATION"
+      ],
+      "matrix": [
+        [
+          39,
+          8,
+          19
+        ],
+        [
+          7,
+          17,
+          11
+        ],
+        [
+          15,
+          13,
+          32
+        ]
+      ]
+    },
+    "sup_to_nei_count": 19,
+    "nei_to_sup_count": 15,
+    "num_claims_count": 50,
+    "multi_sent_count": 16
+  },
+  "claims_dev": {
+    "split_name": "Official Dev (claims_dev.jsonl)",
+    "total_claims": 300,
+    "macro_f1": 0.626168559864212,
+    "weighted_f1": 0.6385406711058885,
+    "per_class": {
+      "SUPPORTS": {
+        "precision": 0.7155172413793104,
+        "recall": 0.6693548387096774,
+        "f1_score": 0.6916666666666667,
+        "support": 124.0
+      },
+      "CONTRADICTS": {
+        "precision": 0.527027027027027,
+        "recall": 0.609375,
+        "f1_score": 0.5652173913043478,
+        "support": 64.0
+      },
+      "NOT ENOUGH INFORMATION": {
+        "precision": 0.6272727272727273,
+        "recall": 0.6160714285714286,
+        "f1_score": 0.6216216216216216,
+        "support": 112.0
+      }
+    },
+    "sentence_f1": 0.0,
+    "sentence_precision": 0.0,
+    "sentence_recall": 0.0,
+    "confusion_matrix": {
+      "labels": [
+        "SUPPORTS",
+        "CONTRADICTS",
+        "NOT ENOUGH INFORMATION"
+      ],
+      "matrix": [
+        [
+          83,
+          14,
+          27
+        ],
+        [
+          11,
+          39,
+          14
+        ],
+        [
+          22,
+          21,
+          69
+        ]
+      ]
+    },
+    "sup_to_nei_count": 27,
+    "nei_to_sup_count": 22,
+    "num_claims_count": 84,
+    "multi_sent_count": 24
+  }
+}

@@ -1,0 +1,58 @@
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache & test artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Data and Models
+data/raw/*.tar.gz
+data/raw/*.zip
+data/raw/*.jsonl
+reports/*_predictions.jsonl
+data/experimental/
+models/*/
+!models/.gitkeep
+models/checkpoints/
+models/cache/
+experiments/cache/
+*.pt
+*.bin
+*.safetensors
+*.npy
+*.tar.gz
+*.zip
+*.tar
+
+# Environment configuration & Secrets
+.env
+.env.local
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+.eslintcache
+
+# OS generated
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*.tmp

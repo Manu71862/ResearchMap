@@ -1,0 +1,1467 @@
+{
+  "timestamp": "2026-11-21",
+  "model": "C:\\Users\\Balija Manohar\\Downloads\\ResearchMap\\models\\finetuned_nli",
+  "validation_benchmark_n161": {
+    "summary": {
+      "total_claims": 161,
+      "correct": 87,
+      "error_count": 74,
+      "accuracy": 0.5404,
+      "macro_f1": 0.524,
+      "per_class": {
+        "SUPPORTS": {
+          "precision": 0.6269,
+          "recall": 0.6364,
+          "f1": 0.6316,
+          "support": 66
+        },
+        "CONTRADICTS": {
+          "precision": 0.3953,
+          "recall": 0.4857,
+          "f1": 0.4359,
+          "support": 35
+        },
+        "NOT ENOUGH INFORMATION": {
+          "precision": 0.549,
+          "recall": 0.4667,
+          "f1": 0.5045,
+          "support": 60
+        }
+      },
+      "confusion_matrix": [
+        [
+          42,
+          10,
+          14
+        ],
+        [
+          9,
+          17,
+          9
+        ],
+        [
+          16,
+          16,
+          28
+        ]
+      ],
+      "error_category_distribution": {
+        "semantic_decoupling_retrieval_drift": 8,
+        "negation_polarity_reversal": 9,
+        "general_nli_semantic_reasoning_error": 47,
+        "numerical_magnitude_comparison": 4,
+        "directional_reversal": 3,
+        "temporal_population_scope_mismatch": 3
+      }
+    },
+    "errors": [
+      {
+        "claim_id": 472,
+        "claim": "Glucose restriction to 0.05% reduces RLS (replicative life span) by 20-40% in S. cerevisiae.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8391910791397095,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 1754001,
+        "doc_title": "Yeast sirtuins and the regulation of aging.",
+        "evidence_text": "S. cerevisiae has four additional sirtuins, Hst1, Hst2, Hst3, and Hst4.",
+        "probabilities": {
+          "SUPPORTS": 0.004017047118395567,
+          "CONTRADICTS": 0.0014511761255562305,
+          "NOT ENOUGH INFORMATION": 0.9945317506790161
+        }
+      },
+      {
+        "claim_id": 247,
+        "claim": "Chemical injury represses transglutaminase 2 activity.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.715251088142395,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 10669582,
+        "doc_title": "Tissue Transglutaminase Is an Integrin-Binding Adhesion Coreceptor for Fibronectin",
+        "evidence_text": "Adhesive function of tissue transglutaminase does not require its cross-linking activity but depends on its stable noncovalent association with integrins.",
+        "probabilities": {
+          "SUPPORTS": 0.05873551592230797,
+          "CONTRADICTS": 0.056361909955739975,
+          "NOT ENOUGH INFORMATION": 0.8849026560783386
+        }
+      },
+      {
+        "claim_id": 559,
+        "claim": "Immune responses in immune cells are geographically segregated.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9947283864021301,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 14692646,
+        "doc_title": "Regulation of immune responses by extracellular vesicles",
+        "evidence_text": "Extracellular vesicles are involved in numerous physiological processes, and vesicles from both non-immune and immune cells have important roles in immune regulation.",
+        "probabilities": {
+          "SUPPORTS": 0.014846298843622208,
+          "CONTRADICTS": 0.010111140087246895,
+          "NOT ENOUGH INFORMATION": 0.9750425815582275
+        }
+      },
+      {
+        "claim_id": 244,
+        "claim": "Certain immunomodulator-human dialyzable leukocyte extract (hDLE) peptides are recognized by toll-like receptors (TLRs) on macrophages and dendritic cells.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.8717933297157288,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 23273454,
+        "doc_title": "The physiological regulation of toll-like receptor expression and function in humans.",
+        "evidence_text": "Eleven mammalian toll-like receptors (TLRs 1-11) have been identified to date and are known to play a crucial role in the regulation of immune responses; however, the factors that regulate TLR expression and function in vivo are poorly understood.",
+        "probabilities": {
+          "SUPPORTS": 0.01823190227150917,
+          "CONTRADICTS": 0.0012171370908617973,
+          "NOT ENOUGH INFORMATION": 0.98055100440979
+        }
+      },
+      {
+        "claim_id": 537,
+        "claim": "Hypocretin neurones suppress panicprone state in rats.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9438666105270386,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 16056514,
+        "doc_title": "A KEY ROLE FOR OREXIN IN PANIC ANXIETY",
+        "evidence_text": "The dorsomedial-perifornical hypothalamus is enriched in neurons containing orexin (ORX, also known as hypocretin), which have a crucial role in arousal, vigilance and central autonomic mobilization, all of which are key components of panic.",
+        "probabilities": {
+          "SUPPORTS": 0.11904718726873398,
+          "CONTRADICTS": 0.4939485788345337,
+          "NOT ENOUGH INFORMATION": 0.3870043158531189
+        }
+      },
+      {
+        "claim_id": 1314,
+        "claim": "Transcription rates in S. cerevisiae range between 0.7 and 2 kb/min.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.7467151880264282,
+        "error_category": "numerical_magnitude_comparison",
+        "retrieved_doc_id": 14408200,
+        "doc_title": "Epidemiology of Staphylococcus aureus blood and skin and soft tissue infections in the US military health system, 2005-2010.",
+        "evidence_text": "Annual incidence rates varied from 3.6 to 6.0 per 100,000 person-years for S. aureus bacteremia and 122.7 to 168.9 per 100,000 person-years for S. aureus SSTIs.",
+        "probabilities": {
+          "SUPPORTS": 0.05568497255444527,
+          "CONTRADICTS": 0.7467151880264282,
+          "NOT ENOUGH INFORMATION": 0.19759979844093323
+        }
+      },
+      {
+        "claim_id": 1141,
+        "claim": "Taking 400mg of \u03b1-tocopheryl acetate in combination with vitamin C reduces the risk of prostate cancer.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9811699986457825,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 12009265,
+        "doc_title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial.",
+        "evidence_text": "CONCLUSIONS In this large, long-term trial of male physicians, neither vitamin E nor C supplementation reduced the risk of prostate or total cancer.",
+        "probabilities": {
+          "SUPPORTS": 0.05210190638899803,
+          "CONTRADICTS": 0.4568028450012207,
+          "NOT ENOUGH INFORMATION": 0.49109524488449097
+        }
+      },
+      {
+        "claim_id": 473,
+        "claim": "Glycan adaptation involves insertion-deletion events.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.7508502006530762,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 31304956,
+        "doc_title": "Cranial neural crest and the building of the vertebrate head",
+        "evidence_text": "Head development in vertebrates involves a complex series of molecular and morphogenetic events that generate a coordinated pattern of cartilages, bones and nerves, and result in species-specific craniofacial morphologies.",
+        "probabilities": {
+          "SUPPORTS": 0.08806605637073517,
+          "CONTRADICTS": 0.024341633543372154,
+          "NOT ENOUGH INFORMATION": 0.8875922560691833
+        }
+      },
+      {
+        "claim_id": 988,
+        "claim": "Pseudoknots are not evolutionarily conserved in most eukaryotes.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.7901864051818848,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 5271210,
+        "doc_title": "MicroRNAs: new tools for diagnosis, prognosis, and therapy in hepatocellular carcinoma?",
+        "evidence_text": "MicroRNAs (miRNAs) are evolutionarily conserved small noncoding RNAs involved in the regulation of gene expression and protein translation.",
+        "probabilities": {
+          "SUPPORTS": 0.019628925248980522,
+          "CONTRADICTS": 0.7901864051818848,
+          "NOT ENOUGH INFORMATION": 0.19018466770648956
+        }
+      },
+      {
+        "claim_id": 682,
+        "claim": "Lack of FGF21 in mice leads to reduced lifespan.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8098387122154236,
+        "error_category": "directional_reversal",
+        "retrieved_doc_id": 23397658,
+        "doc_title": "Fibroblast growth factor 21 as an emerging metabolic regulator: clinical perspectives.",
+        "evidence_text": "In mice, fasting leads to increased PPAR-\u03b1 mediated expression of FGF21 in the liver where it stimulates gluconeogenesis, fatty acid oxidation, and ketogenesis, as an adaptive response to fasting and starvation.",
+        "probabilities": {
+          "SUPPORTS": 0.0840618684887886,
+          "CONTRADICTS": 0.2635256052017212,
+          "NOT ENOUGH INFORMATION": 0.6524125337600708
+        }
+      },
+      {
+        "claim_id": 37,
+        "claim": "A deficiency of vitamin B6 decreases blood levels of homocysteine.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.5542026162147522,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 33409100,
+        "doc_title": "Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial.",
+        "evidence_text": "INTERVENTION Participants received a daily capsule containing 40 mg of folic acid, 100 mg of pyridoxine hydrochloride (vitamin B6), and 2 mg of cyanocobalamin (vitamin B12) or a placebo.   \n",
+        "probabilities": {
+          "SUPPORTS": 0.02052370272576809,
+          "CONTRADICTS": 0.00679419469088316,
+          "NOT ENOUGH INFORMATION": 0.9726821184158325
+        }
+      },
+      {
+        "claim_id": 253,
+        "claim": "Chinese individuals with TT homozygosity in the MTHFR gene are less vulnerable to strokes caused by low levels of folate intake.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.6046848297119141,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 42441846,
+        "doc_title": "Gene--nutrition interactions in coronary artery disease: correlation between the MTHFR C677T polymorphism and folate and homocysteine status in a Korean population.",
+        "evidence_text": "Methyltetrahydrofolate reductase (MTHFR) is a main regulatory enzyme in homocysteine metabolism; a common C677T mutation in the MTHFR gene results in decreased enzyme activity, and contributes to increased homocysteine levels and decreased folate levels.",
+        "probabilities": {
+          "SUPPORTS": 0.032393138855695724,
+          "CONTRADICTS": 0.023306095972657204,
+          "NOT ENOUGH INFORMATION": 0.9443007707595825
+        }
+      },
+      {
+        "claim_id": 1008,
+        "claim": "RUNX is not expressed in skin tissue.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.684892475605011,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 19485649,
+        "doc_title": "N- and E-cadherins in Xenopus are specifically required in the neural and non-neural ectoderm, respectively, for F-actin assembly and morphogenetic movements.",
+        "evidence_text": "Depletion of each of these cadherins is not rescued by the other, nor by the expression of C-cadherin, which is expressed in both tissues.",
+        "probabilities": {
+          "SUPPORTS": 0.05319304019212723,
+          "CONTRADICTS": 0.42884451150894165,
+          "NOT ENOUGH INFORMATION": 0.5179624557495117
+        }
+      },
+      {
+        "claim_id": 466,
+        "claim": "Genomic sequences involved in alternative splicing responsible for Hutchinson-Gilford progeria syndrome (HGPS) are abundant in the ''progerinonly'' allele of Lmna knock-in models.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9801367521286011,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 22544171,
+        "doc_title": "Reversal of the cellular phenotype in the premature aging disease Hutchinson-Gilford progeria syndrome",
+        "evidence_text": "Hutchinson-Gilford progeria syndrome (HGPS) is a childhood premature aging disease caused by a spontaneous point mutation in lamin A (encoded by LMNA), one of the major architectural elements of the mammalian cell nucleus.",
+        "probabilities": {
+          "SUPPORTS": 0.04107422009110451,
+          "CONTRADICTS": 0.00664427550509572,
+          "NOT ENOUGH INFORMATION": 0.9522815346717834
+        }
+      },
+      {
+        "claim_id": 601,
+        "claim": "Including pharmacists in rounding teams reduces the incidence of adverse drug events (ADEs).",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9966795444488525,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 42404093,
+        "doc_title": "Incidence of adverse drug events and potential adverse drug events. Implications for prevention. ADE Prevention Study Group.",
+        "evidence_text": "OBJECTIVES To assess incidence and preventability of adverse drug events (ADEs) and potential ADEs.",
+        "probabilities": {
+          "SUPPORTS": 0.0038206838071346283,
+          "CONTRADICTS": 0.0003384252486284822,
+          "NOT ENOUGH INFORMATION": 0.995840847492218
+        }
+      },
+      {
+        "claim_id": 1260,
+        "claim": "The relationship between a breast cancer patient's capacity to metabolize tamoxifen and treatment outcome is independent of the patient's genetic make-up.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9749705791473389,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 20187433,
+        "doc_title": "Involving family members in cancer care: focus group considerations of patients and oncological providers.",
+        "evidence_text": "Family members are an integral part of a patient's cancer care from the moment the diagnosis is delivered to the conclusion of treatment.",
+        "probabilities": {
+          "SUPPORTS": 0.027599234133958817,
+          "CONTRADICTS": 0.02056169882416725,
+          "NOT ENOUGH INFORMATION": 0.951839029788971
+        }
+      },
+      {
+        "claim_id": 1001,
+        "claim": "R2D2 stops miRNA production by increasing the selectivity of Dcr2 for long dsRNA.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.7292359471321106,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 23913146,
+        "doc_title": "Molecular mechanisms that funnel RNA precursors into endogenous small-interfering RNA and microRNA biogenesis pathways in Drosophila.",
+        "evidence_text": "The Dicer2-Loqs-PD complex processes esiRNA precursor hairpins with long stems, which results in the production of AGO2-associated small RNAs.",
+        "probabilities": {
+          "SUPPORTS": 0.017183056101202965,
+          "CONTRADICTS": 0.7292359471321106,
+          "NOT ENOUGH INFORMATION": 0.2535810172557831
+        }
+      },
+      {
+        "claim_id": 654,
+        "claim": "Intra-cerebroventricular infusion of amyloid-\u03b2 oligomers increases expression of fibronectin type-III domain-containing protein 5 mRNA in mice hippocampi.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.7311977744102478,
+        "error_category": "temporal_population_scope_mismatch",
+        "retrieved_doc_id": 57574395,
+        "doc_title": "Exercise-linked FNDC5/irisin rescues synaptic plasticity and memory defects in Alzheimer\u2019s models",
+        "evidence_text": "Irisin is an exercise-induced myokine released on cleavage of the membrane-bound precursor protein fibronectin type III domain-containing protein 5 (FNDC5), also expressed in the hippocampus.",
+        "probabilities": {
+          "SUPPORTS": 0.7311977744102478,
+          "CONTRADICTS": 0.023114636540412903,
+          "NOT ENOUGH INFORMATION": 0.24568761885166168
+        }
+      },
+      {
+        "claim_id": 926,
+        "claim": "Patients with common epithelial cancers  are more likely to have an emergency event as their first hospital admission if they live in resource-deprived areas.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.9168071150779724,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 16390264,
+        "doc_title": "Social variations in access to hospital care for patients with colorectal, breast, and lung cancer between 1999 and 2006: retrospective analysis of hospital episode statistics",
+        "evidence_text": "RESULTS Patients from deprived areas, older people, and women were more likely to be admitted as emergencies.",
+        "probabilities": {
+          "SUPPORTS": 0.029902633279561996,
+          "CONTRADICTS": 0.002793245716020465,
+          "NOT ENOUGH INFORMATION": 0.9673040509223938
+        }
+      },
+      {
+        "claim_id": 600,
+        "claim": "Including pharmacists in rounding teams does not alter the incidence of adverse drug events (ADEs).",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9962518811225891,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 42404093,
+        "doc_title": "Incidence of adverse drug events and potential adverse drug events. Implications for prevention. ADE Prevention Study Group.",
+        "evidence_text": "OBJECTIVES To assess incidence and preventability of adverse drug events (ADEs) and potential ADEs.",
+        "probabilities": {
+          "SUPPORTS": 0.001162586733698845,
+          "CONTRADICTS": 0.0025855102576315403,
+          "NOT ENOUGH INFORMATION": 0.9962518811225891
+        }
+      },
+      {
+        "claim_id": 1184,
+        "claim": "The US health care system can save up to $5 billion if 7% of patients waiting for kidney transplants participate in the optimized national kidney paired donation program.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.9685527086257935,
+        "error_category": "numerical_magnitude_comparison",
+        "retrieved_doc_id": 16737210,
+        "doc_title": "Kidney paired donation and optimizing the use of live donor organs.",
+        "evidence_text": "Even if only 7% of patients awaiting kidney transplantation participated in an optimized national KPD program, the health care system could save as much as $750 million.   \n",
+        "probabilities": {
+          "SUPPORTS": 0.9685527086257935,
+          "CONTRADICTS": 0.005570216104388237,
+          "NOT ENOUGH INFORMATION": 0.025877157226204872
+        }
+      },
+      {
+        "claim_id": 418,
+        "claim": "Fibroblast Growth Factor is a ligand which signals through receptor tyrosine kinases.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.9679670929908752,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 19752008,
+        "doc_title": "A specific inhibitor of phosphatidylinositol 3-kinase, 2-(4-morpholinyl)-8-phenyl-4H-1-benzopyran-4-one (LY294002).",
+        "evidence_text": "Phosphatidylinositol (PtdIns) 3-kinase is an enzyme implicated in growth factor signal transduction by associating with receptor and nonreceptor tyrosine kinases, including the platelet-derived growth factor receptor.",
+        "probabilities": {
+          "SUPPORTS": 0.8995690941810608,
+          "CONTRADICTS": 0.0369957871735096,
+          "NOT ENOUGH INFORMATION": 0.06343503296375275
+        }
+      },
+      {
+        "claim_id": 441,
+        "claim": "G-CSF increases the expansion and infiltration of MDSCs into tumors.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.9723067879676819,
+        "error_category": "directional_reversal",
+        "retrieved_doc_id": 25726838,
+        "doc_title": "IL-17 promotes tumor development through the induction of tumor promoting microenvironments at tumor sites and myeloid-derived suppressor cells.",
+        "evidence_text": "The IL-17R deficiency increased CD8 T cell infiltration, whereas it reduced the infiltration of myeloid-derived suppressor cells (MDSCs) in tumors.",
+        "probabilities": {
+          "SUPPORTS": 0.07253710180521011,
+          "CONTRADICTS": 0.5821747183799744,
+          "NOT ENOUGH INFORMATION": 0.34528809785842896
+        }
+      },
+      {
+        "claim_id": 168,
+        "claim": "Bariatric surgery reduces colorectal cancer.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.6762414574623108,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 5824985,
+        "doc_title": "Bariatric Surgery in the United Kingdom: A Cohort Study of Weight Loss and Clinical Outcomes in Routine Clinical Care.",
+        "evidence_text": "No association was detected between bariatric surgery and fractures, cancer, or stroke.",
+        "probabilities": {
+          "SUPPORTS": 0.025738747790455818,
+          "CONTRADICTS": 0.016698118299245834,
+          "NOT ENOUGH INFORMATION": 0.9575631022453308
+        }
+      },
+      {
+        "claim_id": 1373,
+        "claim": "Walking in traffic areas in London improves lung function in elderly adults.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.6932932138442993,
+        "error_category": "temporal_population_scope_mismatch",
+        "retrieved_doc_id": 21003930,
+        "doc_title": "Respiratory and cardiovascular responses to walking down a traffic-polluted road compared with walking in a traffic-free area in participants aged 60 years and older with chronic lung or heart disease and age-matched healthy controls: a randomised, crossover study",
+        "evidence_text": "We aimed to assess the effects on respiratory and cardiovascular responses of walking down a busy street with high levels of pollution compared with walking in a traffic-free area with lower pollution levels in older adults.   \n",
+        "probabilities": {
+          "SUPPORTS": 0.18571701645851135,
+          "CONTRADICTS": 0.44446995854377747,
+          "NOT ENOUGH INFORMATION": 0.369812935590744
+        }
+      },
+      {
+        "claim_id": 602,
+        "claim": "Increase of p62 in prostate tumor stroma results in defective autophagy.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.5985026955604553,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 26735905,
+        "doc_title": "Metabolic reprogramming of stromal fibroblasts through p62-mTORC1 signaling promotes inflammation and tumorigenesis.",
+        "evidence_text": "Thus, p62 is an anti-inflammatory tumor suppressor that acts through the modulation of metabolism in the tumor stroma.",
+        "probabilities": {
+          "SUPPORTS": 0.013917967677116394,
+          "CONTRADICTS": 0.0031760847195982933,
+          "NOT ENOUGH INFORMATION": 0.9829059839248657
+        }
+      },
+      {
+        "claim_id": 325,
+        "claim": "Deletion of ATM and Rad3 related protein is not predictive of acute tissue loss.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.786859393119812,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 12909503,
+        "doc_title": "Distinct roles for DNA-PK, ATM and ATR in RPA phosphorylation and checkpoint activation in response to replication stress",
+        "evidence_text": "DNA damage and perturbation of replication machinery causes replication stress, characterized by accumulation of single-stranded DNA bound by replication protein A (RPA), which triggers activation of ataxia telangiectasia and Rad3 related (ATR) and phosphorylation of the RPA32, subunit of RPA, leading to Chk1 activation and arrest.",
+        "probabilities": {
+          "SUPPORTS": 0.052430856972932816,
+          "CONTRADICTS": 0.0906890332698822,
+          "NOT ENOUGH INFORMATION": 0.8568801283836365
+        }
+      },
+      {
+        "claim_id": 1310,
+        "claim": "Traditional reviews are biased in their interpretations.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.5075291395187378,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 23206239,
+        "doc_title": "Advantages and pitfalls of fructosamine and glycated albumin in the diagnosis and treatment of diabetes.",
+        "evidence_text": "Nevertheless, these measures are not foolproof, and their clinical usefulness is biased by a number of clinical and analytical factors.",
+        "probabilities": {
+          "SUPPORTS": 0.3705754578113556,
+          "CONTRADICTS": 0.016411608085036278,
+          "NOT ENOUGH INFORMATION": 0.6130129098892212
+        }
+      },
+      {
+        "claim_id": 726,
+        "claim": "Ly6C hi monocytes have a higher inflammatory capacity than Ly6C lo monocytes.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9937700629234314,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 22406695,
+        "doc_title": "Origin and functions of tissue macrophages.",
+        "evidence_text": "Classical Ly6c(hi) monocytes patrol the extravascular space in resting organs, and Ly6c(lo) nonclassical monocytes patrol the vasculature.",
+        "probabilities": {
+          "SUPPORTS": 0.042439863085746765,
+          "CONTRADICTS": 0.02503385581076145,
+          "NOT ENOUGH INFORMATION": 0.9325262308120728
+        }
+      },
+      {
+        "claim_id": 1372,
+        "claim": "Walking in traffic areas in London did not improve lung function in elderly adults.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8958299160003662,
+        "error_category": "temporal_population_scope_mismatch",
+        "retrieved_doc_id": 16390264,
+        "doc_title": "Social variations in access to hospital care for patients with colorectal, breast, and lung cancer between 1999 and 2006: retrospective analysis of hospital episode statistics",
+        "evidence_text": "These findings did not improve with time.",
+        "probabilities": {
+          "SUPPORTS": 0.005949364975094795,
+          "CONTRADICTS": 0.0001641380222281441,
+          "NOT ENOUGH INFORMATION": 0.9938865303993225
+        }
+      },
+      {
+        "claim_id": 9,
+        "claim": "32% of liver transplantation programs required patients to discontinue methadone treatment in 2001.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9972178936004639,
+        "error_category": "numerical_magnitude_comparison",
+        "retrieved_doc_id": 44265107,
+        "doc_title": "Liver transplantation and opioid dependence.",
+        "evidence_text": "Policies requiring discontinuation of methadone in 32% of all programs contradict the evidence base for efficacy of long-term replacement therapies and potentially result in relapse of previously stable patients.",
+        "probabilities": {
+          "SUPPORTS": 0.3986172676086426,
+          "CONTRADICTS": 0.09380406886339188,
+          "NOT ENOUGH INFORMATION": 0.5075786113739014
+        }
+      },
+      {
+        "claim_id": 545,
+        "claim": "IFIT1 speeds viral replication by allowing for the proliferation of mis-capped viral RNAs.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8009698987007141,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 5137019,
+        "doc_title": "Suppressor of cytokine signaling 3 inhibits antiviral IFN-beta signaling to enhance HIV-1 replication in macrophages.",
+        "evidence_text": "This consequence of SOCS3 expression in vitro, supported by a correlation with increased viral load and onset of CNS disease in vivo, suggests that SOCS3 may allow HIV-1 to evade the protective innate immune response within the CNS, allowing the recurrence of viral replication and, ultimately, promoting progression toward HAD.",
+        "probabilities": {
+          "SUPPORTS": 0.44211292266845703,
+          "CONTRADICTS": 0.13096557557582855,
+          "NOT ENOUGH INFORMATION": 0.4269215166568756
+        }
+      },
+      {
+        "claim_id": 1134,
+        "claim": "TNFAIP3 is a glioblastoma tumor enhancer.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8832535743713379,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 33370,
+        "doc_title": "Targeting A20 Decreases Glioma Stem Cell Survival and Tumor Growth",
+        "evidence_text": "We determined that A20 (TNFAIP3), a regulator of cell survival and the NF-kappaB pathway, is overexpressed in GSCs relative to non-stem glioblastoma cells at both the mRNA and protein levels.",
+        "probabilities": {
+          "SUPPORTS": 0.060441404581069946,
+          "CONTRADICTS": 0.8832535743713379,
+          "NOT ENOUGH INFORMATION": 0.056305017322301865
+        }
+      },
+      {
+        "claim_id": 278,
+        "claim": "Commelina yellow mottle virus' (ComYMV) genome consists of 2140 baise pairs.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9983839988708496,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 14376683,
+        "doc_title": "Properties of Commelina yellow mottle virus's complete DNA sequence, genomic discontinuities and transcript suggest that it is a pararetrovirus.",
+        "evidence_text": "We have characterized the viral transcript and determined the complete sequence of the genome of Commelina mellow mottle virus (CoYMV), a member of this group.",
+        "probabilities": {
+          "SUPPORTS": 0.0010818205773830414,
+          "CONTRADICTS": 0.0005342045333236456,
+          "NOT ENOUGH INFORMATION": 0.9983839988708496
+        }
+      },
+      {
+        "claim_id": 262,
+        "claim": "Cis-acting lncRNAs control the expression of genes that are positioned in the vicinity of their transcription sites.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.6744509339332581,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 18924534,
+        "doc_title": "Functional insights into the role of nuclear-retained long noncoding RNAs in gene expression control in mammalian cells",
+        "evidence_text": "In this review, we will summarize the recently described roles of mammalian nrRNAs in controlling gene expression by influencing chromatin organization, transcription, pre-mRNA processing, nuclear organization, and their involvement in disease.",
+        "probabilities": {
+          "SUPPORTS": 0.6744509339332581,
+          "CONTRADICTS": 0.050374746322631836,
+          "NOT ENOUGH INFORMATION": 0.2751743793487549
+        }
+      },
+      {
+        "claim_id": 1394,
+        "claim": "miRNAs regulate a unique suite of mRNAs to maintain homeostasis in cells.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.7833610773086548,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 12582729,
+        "doc_title": "Flow-Dependent Regulation of Kruppel-Like Factor 2 Is Mediated by MicroRNA-92a.",
+        "evidence_text": "CONCLUSIONS Atheroprotective flow patterns decrease the level of miR-92a, which in turn increases KLF2 expression to maintain endothelial homeostasis.",
+        "probabilities": {
+          "SUPPORTS": 0.03221336379647255,
+          "CONTRADICTS": 0.0013494504382833838,
+          "NOT ENOUGH INFORMATION": 0.9664371609687805
+        }
+      },
+      {
+        "claim_id": 1254,
+        "claim": "The proliferative capacity of neural progenitors differs across species.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9916151762008667,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 9420732,
+        "doc_title": "Dscam and DSCAM: complex genes in simple animals, complex animals yet simple genes.",
+        "evidence_text": "This review covers the multiple functions of Dscam across different species highlighting its remarkable versatility as well as its conserved basic functions in neural development.",
+        "probabilities": {
+          "SUPPORTS": 0.014499363489449024,
+          "CONTRADICTS": 0.00582458358258009,
+          "NOT ENOUGH INFORMATION": 0.9796760082244873
+        }
+      },
+      {
+        "claim_id": 788,
+        "claim": "Microcin J25 inhibits nucleoside triphosphate (NTP) binding.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9903709292411804,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 4740447,
+        "doc_title": "Antibacterial peptide microcin J25 inhibits transcription by binding within and obstructing the RNA polymerase secondary channel.",
+        "evidence_text": "The antibacterial peptide microcin J25 (MccJ25) inhibits transcription by bacterial RNA polymerase (RNAP).",
+        "probabilities": {
+          "SUPPORTS": 0.05806220695376396,
+          "CONTRADICTS": 0.01182211097329855,
+          "NOT ENOUGH INFORMATION": 0.9301156401634216
+        }
+      },
+      {
+        "claim_id": 1074,
+        "claim": "Sequence conservation in gene regulatory regions between species is a high-accuracy predictor of conserved functionality.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.8002333641052246,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 3823862,
+        "doc_title": "Integrated maps in quail (Coturnix japonica) confirm the high degree of synteny conservation with chicken (Gallus gallus) despite 35 million years of divergence",
+        "evidence_text": "The alignment with the chicken chromosomes confirms the high conservation of gene order that was expected between the two species for macrochromosomes.",
+        "probabilities": {
+          "SUPPORTS": 0.36625245213508606,
+          "CONTRADICTS": 0.0027199231553822756,
+          "NOT ENOUGH INFORMATION": 0.6310275793075562
+        }
+      },
+      {
+        "claim_id": 214,
+        "claim": "CRP is positively correlated with postoperative mortality following Coronary Artery Bypass Graft (CABG) surgery.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.8275985717773438,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 40156901,
+        "doc_title": "Dose-dependent effect of statins on the incidence of acute kidney injury after cardiac surgery.",
+        "evidence_text": "METHODS We assessed whether statin treatment is associated with a lower incidence of postoperative AKI in 2,104 consecutive patients who underwent coronary artery bypass graft or valve surgery at the Minneapolis Veterans Administration Medical Center.",
+        "probabilities": {
+          "SUPPORTS": 0.032904595136642456,
+          "CONTRADICTS": 0.031065698713064194,
+          "NOT ENOUGH INFORMATION": 0.9360296726226807
+        }
+      },
+      {
+        "claim_id": 1353,
+        "claim": "Urbanization is an important risk factor related to the transmission of dengue fever.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.9543399214744568,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 18816720,
+        "doc_title": "Spatial and Temporal Clustering of Dengue Virus Transmission in Thai Villages",
+        "evidence_text": "BACKGROUND Transmission of dengue viruses (DENV), the leading cause of arboviral disease worldwide, is known to vary through time and space, likely owing to a combination of factors related to the human host, virus, mosquito vector, and environment.",
+        "probabilities": {
+          "SUPPORTS": 0.5257744193077087,
+          "CONTRADICTS": 0.02190602384507656,
+          "NOT ENOUGH INFORMATION": 0.45231956243515015
+        }
+      },
+      {
+        "claim_id": 105,
+        "claim": "Alteration of origin firing causes changes in termination zones of Okazaki fragments.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9887948036193848,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 36606083,
+        "doc_title": "Quantitative, genome-wide analysis of eukaryotic replication initiation and termination.",
+        "evidence_text": "Via the deep sequencing of Okazaki fragments, we comprehensively document replication fork directionality throughout the S. cerevisiae genome, which permits the systematic analysis of initiation, origin efficiency, fork progression, and termination.",
+        "probabilities": {
+          "SUPPORTS": 0.02497028559446335,
+          "CONTRADICTS": 0.004183053970336914,
+          "NOT ENOUGH INFORMATION": 0.9708465933799744
+        }
+      },
+      {
+        "claim_id": 1042,
+        "claim": "Repressing IL-18 has negative effects on atherosclerotic lesion composition and progression.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9964419007301331,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 17421851,
+        "doc_title": "Expression of interleukin-18 in human atherosclerotic plaques and relation to plaque instability.",
+        "evidence_text": "IL-18 receptor was also upregulated in plaque macrophages and endothelial cells, suggesting potential biological effects.",
+        "probabilities": {
+          "SUPPORTS": 0.0209521371871233,
+          "CONTRADICTS": 0.05052676424384117,
+          "NOT ENOUGH INFORMATION": 0.9285210967063904
+        }
+      },
+      {
+        "claim_id": 751,
+        "claim": "Major vault protein (MVP) leads to more aggressive tumors by regulating the sorting of tumor suppressive miR-193a into extracellular vesicles (EVs).",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.81688392162323,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 19800147,
+        "doc_title": "MVP-mediated exosomal sorting of miR-193a promotes colon cancer progression",
+        "evidence_text": "miR-193a interacts with major vault protein (MVP).",
+        "probabilities": {
+          "SUPPORTS": 0.013266985304653645,
+          "CONTRADICTS": 0.01461084745824337,
+          "NOT ENOUGH INFORMATION": 0.9721221327781677
+        }
+      },
+      {
+        "claim_id": 896,
+        "claim": "Overexpressing Cnp1 N-tail variants exacerbates the temperature-sensitive growth defect of scm3-139.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.9012293815612793,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 7717468,
+        "doc_title": "Loss of allergen 1 confers a hypervirulent phenotype that resembles mucoid switch variants of Cryptococcus neoformans.",
+        "evidence_text": "The mutant exhibited a modest defect in capsule induction compared to all of the other variants.",
+        "probabilities": {
+          "SUPPORTS": 0.011669108644127846,
+          "CONTRADICTS": 0.02111310139298439,
+          "NOT ENOUGH INFORMATION": 0.967217743396759
+        }
+      },
+      {
+        "claim_id": 182,
+        "claim": "Bone Marrow (BM) transplantation is used to treat acute myeloid leukemia (AML)",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.830607533454895,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 8385277,
+        "doc_title": "Myelodysplasia and leukemia of Fanconi anemia are associated with a specific pattern of genomic abnormalities that includes cryptic RUNX1/AML1 lesions.",
+        "evidence_text": "Fanconi anemia (FA) is a genetic condition associated with bone marrow (BM) failure, myelodysplasia (MDS), and acute myeloid leukemia (AML).",
+        "probabilities": {
+          "SUPPORTS": 0.830607533454895,
+          "CONTRADICTS": 0.056550897657871246,
+          "NOT ENOUGH INFORMATION": 0.11284158378839493
+        }
+      },
+      {
+        "claim_id": 378,
+        "claim": "Energy balance requires hypothalamic glutamate neurotransmission.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9903668165206909,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 14782049,
+        "doc_title": "In vivo effect of chronic hypoxia on the neurochemical profile of the developing rat hippocampus.",
+        "evidence_text": "Given the well-established link between excitatory neurotransmission and brain energy metabolism, we postulate that elevated glutamate, Glu/Gln ratio, and GABA indicate suppressed excitatory neurotransmission in an energy-limited environment.",
+        "probabilities": {
+          "SUPPORTS": 0.20954479277133942,
+          "CONTRADICTS": 0.07103012502193451,
+          "NOT ENOUGH INFORMATION": 0.7194250822067261
+        }
+      },
+      {
+        "claim_id": 670,
+        "claim": "Knockout proximal tubule-specific deletion of the BMP receptor Alk3 causes epithelial damage.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9693910479545593,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 5573975,
+        "doc_title": "Activin\u2013like kinase\u20133 activity is important for kidney regeneration and reversal of fibrosis",
+        "evidence_text": "A structure-function analysis of the BMP-Alk3-BMP receptor, type 2 (BMPR2) ligand-receptor complex, along with synthetic organic chemistry, led us to construct a library of small peptide agonists of BMP signaling that function through the Alk3 receptor.",
+        "probabilities": {
+          "SUPPORTS": 0.0190231055021286,
+          "CONTRADICTS": 0.011585837230086327,
+          "NOT ENOUGH INFORMATION": 0.9693910479545593
+        }
+      },
+      {
+        "claim_id": 1223,
+        "claim": "The innate immune response struggles to remove small numbers of parasites.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.5242748856544495,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 26474812,
+        "doc_title": "Age-structured red blood cell susceptibility and the dynamics of malaria infections.",
+        "evidence_text": "For all four species conditions exist under which the parasites may persist at low densities, or may clear, even in the absence of an immune response.",
+        "probabilities": {
+          "SUPPORTS": 0.5242748856544495,
+          "CONTRADICTS": 0.13771070539951324,
+          "NOT ENOUGH INFORMATION": 0.33801448345184326
+        }
+      },
+      {
+        "claim_id": 661,
+        "claim": "JMJD6 catalyzes the hydroxylation of C-terminal lysine and supresses transcriptional activity.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.6730054616928101,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 37204802,
+        "doc_title": "JMJD6 Promotes Colon Carcinogenesis through Negative Regulation of p53 by Hydroxylation",
+        "evidence_text": "We showed that JMJD6 antagonizes p53 acetylation, promotes the association of p53 with its negative regulator MDMX, and represses transcriptional activity of p53.",
+        "probabilities": {
+          "SUPPORTS": 0.22613441944122314,
+          "CONTRADICTS": 0.6730054616928101,
+          "NOT ENOUGH INFORMATION": 0.10086002200841904
+        }
+      },
+      {
+        "claim_id": 1375,
+        "claim": "Weighed food records (WFR) result in poor completion since they're costly to run and impose high participant burden.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.9030822515487671,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 36558211,
+        "doc_title": "High and low fat consumers, their macronutrient intake and body mass index: further analysis of the National Diet and Nutrition Survey of British Adults.",
+        "evidence_text": "Comparisons were made between groups defined as high and low fat consumers on the basis of 7-day weighed food records considered to be valid for energy intake.",
+        "probabilities": {
+          "SUPPORTS": 0.0035960066597908735,
+          "CONTRADICTS": 0.043000269681215286,
+          "NOT ENOUGH INFORMATION": 0.9534037709236145
+        }
+      },
+      {
+        "claim_id": 1065,
+        "claim": "Satellite cell dysfunction is a key factor in sarcopenia development.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.7777592539787292,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 20418809,
+        "doc_title": "Inducible depletion of satellite cells in adult, sedentary mice impairs muscle regenerative capacity without affecting sarcopenia",
+        "evidence_text": "A key determinant of geriatric frailty is sarcopenia, the age-associated loss of skeletal muscle mass and strength.",
+        "probabilities": {
+          "SUPPORTS": 0.018706627190113068,
+          "CONTRADICTS": 0.006921944208443165,
+          "NOT ENOUGH INFORMATION": 0.9743714332580566
+        }
+      },
+      {
+        "claim_id": 1026,
+        "claim": "Reduced phosphorylation of PP2A increases HDAC4 dephosphorylation by enhancing PP2A-HDAC4 interaction.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8561263680458069,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 3113630,
+        "doc_title": "Nuclear accumulation of HDAC4 in ATM deficiency promotes neurodegeneration in ataxia-telangiectasia",
+        "evidence_text": "In ATM deficiency, enhanced PP2A activity leads to HDAC4 dephosphorylation and the nuclear accumulation of HDAC4.",
+        "probabilities": {
+          "SUPPORTS": 0.061326365917921066,
+          "CONTRADICTS": 0.8530993461608887,
+          "NOT ENOUGH INFORMATION": 0.08557426929473877
+        }
+      },
+      {
+        "claim_id": 663,
+        "claim": "KLF4 is necessary for VSMCs to gain genetic characteristics of other cell types within atherosclerotic lesions.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9867749214172363,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 22080671,
+        "doc_title": "KLF4-dependent phenotypic modulation of smooth muscle cells has a key role in atherosclerotic plaque pathogenesis",
+        "evidence_text": "Here, using Myh11-CreERT2 ROSA floxed STOP eYFP Apoe\u2212/\u2212 mice to perform SMC lineage tracing, we find that traditional methods for detecting SMCs based on immunostaining for SMC markers fail to detect >80% of SMC-derived cells within advanced atherosclerotic lesions.",
+        "probabilities": {
+          "SUPPORTS": 0.056516095995903015,
+          "CONTRADICTS": 0.01819964498281479,
+          "NOT ENOUGH INFORMATION": 0.9252843260765076
+        }
+      },
+      {
+        "claim_id": 635,
+        "claim": "Inhibiting glucose-6-phospate dehydrogenase improves lipogenesis by deactivating LKB1-AMPK signaling.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.923219621181488,
+        "error_category": "numerical_magnitude_comparison",
+        "retrieved_doc_id": 1686997,
+        "doc_title": "6-phosphogluconate dehydrogenase links oxidative PPP, lipogenesis and tumor growth by inhibiting LKB1-AMPK signaling",
+        "evidence_text": "Ru-5-P and NADPH are thought to be precursors in RNA biosynthesis and lipogenesis, respectively; thus, our findings provide an additional link between the oxidative PPP and lipogenesis through Ru-5-P-dependent inhibition of LKB1-AMPK signalling.",
+        "probabilities": {
+          "SUPPORTS": 0.923219621181488,
+          "CONTRADICTS": 0.019041912630200386,
+          "NOT ENOUGH INFORMATION": 0.05773847922682762
+        }
+      },
+      {
+        "claim_id": 1327,
+        "claim": "Tuberculosis incidence occurs at higher rates in more sparsely populated areas in the UK.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9812761545181274,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 20610390,
+        "doc_title": "Exploring the epidemiological characteristics of cancers of unknown primary site in an Australian population: implications for research and clinical care.",
+        "evidence_text": "The odds of unspecified histological type, compared with the more common adenocarcinomas, were higher for males than females, non-metropolitan residents, low socio-economic areas, and for 1977--88 than subsequent diagnostic periods.",
+        "probabilities": {
+          "SUPPORTS": 0.2593730092048645,
+          "CONTRADICTS": 0.18778599798679352,
+          "NOT ENOUGH INFORMATION": 0.5528410077095032
+        }
+      },
+      {
+        "claim_id": 164,
+        "claim": "Bariatric surgery increases rates of colorectal cancer.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.6383444666862488,
+        "error_category": "directional_reversal",
+        "retrieved_doc_id": 18872233,
+        "doc_title": "Mental Health Conditions Among Patients Seeking and Undergoing Bariatric Surgery: A Meta-analysis.",
+        "evidence_text": "Moderate-quality evidence supports an association between bariatric surgery and lower rates of depression postoperatively.",
+        "probabilities": {
+          "SUPPORTS": 0.027735410258173943,
+          "CONTRADICTS": 0.2953526973724365,
+          "NOT ENOUGH INFORMATION": 0.6769118905067444
+        }
+      },
+      {
+        "claim_id": 717,
+        "claim": "Low nucleosome occupancy correlates with high methylation levels across species.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9866338968276978,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 22038539,
+        "doc_title": "Caloric restriction delays age-related methylation drift",
+        "evidence_text": "Here, we report that epigenetic drift is conserved across species and the rate of drift correlates with lifespan when comparing mice, rhesus monkeys, and humans.",
+        "probabilities": {
+          "SUPPORTS": 0.014432838186621666,
+          "CONTRADICTS": 0.007396747823804617,
+          "NOT ENOUGH INFORMATION": 0.9781704545021057
+        }
+      },
+      {
+        "claim_id": 964,
+        "claim": "Pre-mRNAs associated with spliceosomal components are more stable than unassociated splicing substrates.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9848852157592773,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 16929739,
+        "doc_title": "Corresponding Author:",
+        "evidence_text": "However, examination of the distribution of spliceosomal components indicates that not only was a spliceosome present in the eukaryotic ancestor but it also contained most of the key components found in today's eukaryotes.",
+        "probabilities": {
+          "SUPPORTS": 0.013033305294811726,
+          "CONTRADICTS": 0.0038865278474986553,
+          "NOT ENOUGH INFORMATION": 0.9830801486968994
+        }
+      },
+      {
+        "claim_id": 748,
+        "claim": "MafA ubiquitination increases the recruitment of coavtivator P/CAF by MafA.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.9135298132896423,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 11291348,
+        "doc_title": "GSK-3-mediated phosphorylation enhances Maf-transforming activity.",
+        "evidence_text": "We further demonstrate that P/CAF protects MafA from ubiquitination and degradation, suggesting that, upon the release of the coactivator complex, MafA becomes polyubiquitinated and degraded to allow the response to terminate.",
+        "probabilities": {
+          "SUPPORTS": 0.030488746240735054,
+          "CONTRADICTS": 0.8213843703269958,
+          "NOT ENOUGH INFORMATION": 0.14812691509723663
+        }
+      },
+      {
+        "claim_id": 812,
+        "claim": "Mutant mice lacking SVCT2 have severely reduced ascorbic acid levels in both brain and adrenals.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9831420183181763,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 19799455,
+        "doc_title": "Ascorbic-acid transporter Slc23a1 is essential for vitamin C transport into the brain and for perinatal survival",
+        "evidence_text": "Deficiency of the transporter is lethal in newborn mice, thereby revealing a previously unrecognized requirement for ascorbic acid in the perinatal period.",
+        "probabilities": {
+          "SUPPORTS": 0.013829913921654224,
+          "CONTRADICTS": 0.004536265507340431,
+          "NOT ENOUGH INFORMATION": 0.9816338419914246
+        }
+      },
+      {
+        "claim_id": 616,
+        "claim": "Increased mobility of retrotransposons does not lead to mutation and higher tumorigenesis rates.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8927091956138611,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 8892905,
+        "doc_title": "Increased in vivo amyloid-\u03b242 production, exchange, and loss in presenilin mutation carriers.",
+        "evidence_text": "CNS A\u03b242 to A\u03b240 production rates were 24% higher in mutation carriers compared to noncarriers, and this was independent of fibrillar amyloid deposits quantified by PET PIB imaging.",
+        "probabilities": {
+          "SUPPORTS": 0.02265448495745659,
+          "CONTRADICTS": 0.8927091956138611,
+          "NOT ENOUGH INFORMATION": 0.08463629335165024
+        }
+      },
+      {
+        "claim_id": 1114,
+        "claim": "Surfactin producing cells and exopolymer producing cells cooperate to generate \"Van Gogh\" bundles that have sliding abilities on specialized media.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9732089042663574,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 12824568,
+        "doc_title": "From Cell Differentiation to Cell Collectives: Bacillus subtilis Uses Division of Labor to Migrate",
+        "evidence_text": "The formation of van Gogh bundles depends critically on the synergistic interaction of surfactin-producing and matrix-producing cells.",
+        "probabilities": {
+          "SUPPORTS": 0.3299330472946167,
+          "CONTRADICTS": 0.001318890368565917,
+          "NOT ENOUGH INFORMATION": 0.668748140335083
+        }
+      },
+      {
+        "claim_id": 774,
+        "claim": "Mice defective for deoxyribonucleic acid (DNA) polymerase I (polI) fail to reveal increased sensitivity to ionizing radiation (IR).",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.8808673620223999,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 27635177,
+        "doc_title": "Association of DNA polymerase mu (pol mu) with Ku and ligase IV: role for pol mu in end-joining double-strand break repair.",
+        "evidence_text": "We show here that after exposure of cells to ionizing radiation (IR), levels of pol mu protein increase.",
+        "probabilities": {
+          "SUPPORTS": 0.024288449436426163,
+          "CONTRADICTS": 0.8808673620223999,
+          "NOT ENOUGH INFORMATION": 0.09484421461820602
+        }
+      },
+      {
+        "claim_id": 122,
+        "claim": "Antimicrobial agents are more effective due to the pressure of antimicrobial usage.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.7571282982826233,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 24157077,
+        "doc_title": "Cationic host defense (antimicrobial) peptides.",
+        "evidence_text": "In addition, the mechanisms of action are being unraveled, which support more effective implementation of derivatives of these endogenous peptides as therapeutic agents.",
+        "probabilities": {
+          "SUPPORTS": 0.4852997958660126,
+          "CONTRADICTS": 0.09163612127304077,
+          "NOT ENOUGH INFORMATION": 0.42306405305862427
+        }
+      },
+      {
+        "claim_id": 351,
+        "claim": "Distant CREs are important for transcriptional regulation.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.7024012207984924,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 21622715,
+        "doc_title": "Coupling cAMP signaling to transcription in the liver: pivotal role of CREB and CREM.",
+        "evidence_text": "Transcriptional factors binding to cAMP-responsive elements (CREs) in the promoters of various genes belong to the basic domain-leucine zipper superfamily and are composed of three genes in mammals, CREB, CREM, and ATF-1.",
+        "probabilities": {
+          "SUPPORTS": 0.4056985676288605,
+          "CONTRADICTS": 0.04003266617655754,
+          "NOT ENOUGH INFORMATION": 0.5542688369750977
+        }
+      },
+      {
+        "claim_id": 753,
+        "claim": "Malaria has a high vectorial capacity.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.8362703919410706,
+        "error_category": "semantic_decoupling_retrieval_drift",
+        "retrieved_doc_id": 14337960,
+        "doc_title": "How absolute is zero? An evaluation of historical and current definitions of malaria elimination",
+        "evidence_text": "Additionally, it is argued that a third state, called \"controlled non-endemic malaria,\" is required to describe the epidemiological condition in which endemic transmission has been interrupted, but malaria resulting from onwards transmission from imported infections continues to occur at a sufficiently high level that elimination has not been achieved.",
+        "probabilities": {
+          "SUPPORTS": 0.8362703919410706,
+          "CONTRADICTS": 0.03278300166130066,
+          "NOT ENOUGH INFORMATION": 0.1309465765953064
+        }
+      },
+      {
+        "claim_id": 414,
+        "claim": "Female carriers of the Apolipoprotein E4 (APOE4) allele have increased risk for Alzheimer's disease.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9761589169502258,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 4709641,
+        "doc_title": "Gain of toxic Apolipoprotein E4 effects in Human iPSC-Derived Neurons Is Ameliorated by a Small-Molecule Structure Corrector",
+        "evidence_text": "Using human neurons derived from induced pluripotent stem cells that expressed apolipoprotein E4 (ApoE4), a variant of the APOE gene product and the major genetic risk factor for AD, we demonstrated that ApoE4-expressing neurons had higher levels of tau phosphorylation, unrelated to their increased production of amyloid-\u03b2 (A\u03b2) peptides, and that they displayed GABAergic neuron degeneration.",
+        "probabilities": {
+          "SUPPORTS": 0.46913403272628784,
+          "CONTRADICTS": 0.2605024576187134,
+          "NOT ENOUGH INFORMATION": 0.27036356925964355
+        }
+      },
+      {
+        "claim_id": 64,
+        "claim": "ATM and Rad3 related protein have no role in sensing DNA damage.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.9541311860084534,
+        "error_category": "negation_polarity_reversal",
+        "retrieved_doc_id": 12909503,
+        "doc_title": "Distinct roles for DNA-PK, ATM and ATR in RPA phosphorylation and checkpoint activation in response to replication stress",
+        "evidence_text": "DNA damage and perturbation of replication machinery causes replication stress, characterized by accumulation of single-stranded DNA bound by replication protein A (RPA), which triggers activation of ataxia telangiectasia and Rad3 related (ATR) and phosphorylation of the RPA32, subunit of RPA, leading to Chk1 activation and arrest.",
+        "probabilities": {
+          "SUPPORTS": 0.006491962354630232,
+          "CONTRADICTS": 0.9541311860084534,
+          "NOT ENOUGH INFORMATION": 0.039376769214868546
+        }
+      },
+      {
+        "claim_id": 757,
+        "claim": "Many transmembrane receptors transmit signals by long-range conformational changes in the association of alpha-helices across the plasma membrane.",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.5931734442710876,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 17123657,
+        "doc_title": "Dynamic Helix Interactions in Transmembrane Signaling",
+        "evidence_text": "Studying how protein transmembrane domains transmit signals across membranes is beset by unique challenges.",
+        "probabilities": {
+          "SUPPORTS": 0.0070483386516571045,
+          "CONTRADICTS": 0.0009387402678839862,
+          "NOT ENOUGH INFORMATION": 0.9920129179954529
+        }
+      },
+      {
+        "claim_id": 861,
+        "claim": "Normal granulomas form in the presence of TNF in Zebrafish.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.7469433546066284,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 16066726,
+        "doc_title": "Tumor necrosis factor signaling mediates resistance to mycobacteria by inhibiting bacterial growth and macrophage death.",
+        "evidence_text": "Loss of TNF signaling causes progression of tuberculosis in humans, and the increased mortality of Mycobacterium tuberculosis-infected mice is associated with disorganized necrotic granulomas, although the precise roles of TNF signaling preceding this endpoint remain undefined.",
+        "probabilities": {
+          "SUPPORTS": 0.34063586592674255,
+          "CONTRADICTS": 0.36842602491378784,
+          "NOT ENOUGH INFORMATION": 0.2909380793571472
+        }
+      },
+      {
+        "claim_id": 1258,
+        "claim": "The recruitment of Wdr5 to its target loci depends on Kat8.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "CONTRADICTS",
+        "confidence": 0.9337472915649414,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 9393969,
+        "doc_title": "DAF-16/FOXO employs the chromatin remodeller SWI/SNF to promote stress resistance and longevity",
+        "evidence_text": "We show that specifically for gene activation, DAF-16/FOXO depends on SWI/SNF, facilitating SWI/SNF recruitment to target promoters, to activate transcription by presumed remodelling of local chromatin.",
+        "probabilities": {
+          "SUPPORTS": 0.04567531868815422,
+          "CONTRADICTS": 0.4392963945865631,
+          "NOT ENOUGH INFORMATION": 0.5150282382965088
+        }
+      },
+      {
+        "claim_id": 1101,
+        "claim": "Stiff substrates encourage mesodermal differentiation by degrading beta-catenin in an integrin-dependent manner.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.622631311416626,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 3874000,
+        "doc_title": "Tissue Mechanics Orchestrate Wnt-Dependent Human Embryonic Stem Cell Differentiation.",
+        "evidence_text": "By contrast, on a stiff hydrogel matrix, hESCs show elevated integrin-dependent GSK3 and Src activity that promotes \u03b2-catenin degradation and inhibits differentiation.",
+        "probabilities": {
+          "SUPPORTS": 0.43925201892852783,
+          "CONTRADICTS": 0.5357698798179626,
+          "NOT ENOUGH INFORMATION": 0.024978112429380417
+        }
+      },
+      {
+        "claim_id": 799,
+        "claim": "Moderate consumption of candy and chocolate reduces the risk of cardiovascular disease (CVD).",
+        "gold_label": "NOT ENOUGH INFORMATION",
+        "predicted_label": "SUPPORTS",
+        "confidence": 0.8373140096664429,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 5293024,
+        "doc_title": "Life is sweet: candy consumption and longevity.",
+        "evidence_text": "Candy has been blamed for various ills, including hyperactivity in children; however, clinical trials have not supported this.1  Candy\u2014sugar confectionery and chocolate\u2014is not a recent invention: the ancient Arabs, Chinese, and Egyptians candied fruits and nuts in honey, and the Aztecs made a chocolate drink from the bean of the cacao tree.",
+        "probabilities": {
+          "SUPPORTS": 0.028104696422815323,
+          "CONTRADICTS": 0.012553139589726925,
+          "NOT ENOUGH INFORMATION": 0.9593421816825867
+        }
+      }
+    ]
+  },
+  "diagnostic_benchmark_n24": {
+    "summary": {
+      "total_claims": 24,
+      "correct": 20,
+      "error_count": 4,
+      "accuracy": 0.8333,
+      "macro_f1": 0.8263,
+      "per_class": {
+        "SUPPORTS": {
+          "precision": 1.0,
+          "recall": 0.8889,
+          "f1": 0.9412,
+          "support": 9
+        },
+        "CONTRADICTS": {
+          "precision": 1.0,
+          "recall": 0.7,
+          "f1": 0.8235,
+          "support": 10
+        },
+        "NOT ENOUGH INFORMATION": {
+          "precision": 0.5556,
+          "recall": 1.0,
+          "f1": 0.7143,
+          "support": 5
+        }
+      },
+      "confusion_matrix": [
+        [
+          8,
+          0,
+          1
+        ],
+        [
+          0,
+          7,
+          3
+        ],
+        [
+          0,
+          0,
+          5
+        ]
+      ],
+      "error_category_distribution": {
+        "general_nli_semantic_reasoning_error": 4
+      }
+    },
+    "errors": [
+      {
+        "claim_id": 2,
+        "claim": "Antibiotics eliminate influenza viruses by disrupting their bacterial cell walls.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9888906478881836,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 24746892,
+        "doc_title": "Killing by bactericidal antibiotics does not depend on reactive oxygen species.",
+        "evidence_text": "Bactericidal antibiotics kill by modulating their respective targets.",
+        "probabilities": {
+          "SUPPORTS": 0.12723968923091888,
+          "CONTRADICTS": 0.01091381162405014,
+          "NOT ENOUGH INFORMATION": 0.8618465065956116
+        }
+      },
+      {
+        "claim_id": 3,
+        "claim": "Every genetic variant identified by genome sequencing causes a disease.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9918348789215088,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 18199839,
+        "doc_title": "Interleukin-6 receptor pathways in coronary heart disease: a collaborative meta-analysis of 82 studies",
+        "evidence_text": "For every copy of 358Ala inherited, risk of coronary heart disease was reduced by 3\u00b74% (1\u00b78-5\u00b70).",
+        "probabilities": {
+          "SUPPORTS": 0.11896172165870667,
+          "CONTRADICTS": 0.24423256516456604,
+          "NOT ENOUGH INFORMATION": 0.6368057131767273
+        }
+      },
+      {
+        "claim_id": 7,
+        "claim": "Messenger RNA vaccines provide cells with instructions for producing a target antigen.",
+        "gold_label": "SUPPORTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9929108023643494,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 950306,
+        "doc_title": "Molecular Basis for Target RNA Recognition and Cleavage by Human RISC",
+        "evidence_text": "We therefore provide mechanistic insights by revealing features of RISC and target RNAs that are crucial to achieve efficiency and specificity in RNA interference.",
+        "probabilities": {
+          "SUPPORTS": 0.048529647290706635,
+          "CONTRADICTS": 0.0034172770101577044,
+          "NOT ENOUGH INFORMATION": 0.9480531215667725
+        }
+      },
+      {
+        "claim_id": 23,
+        "claim": "Regular mindfulness meditation practice completely eliminates cerebral cortex atrophy during aging.",
+        "gold_label": "CONTRADICTS",
+        "predicted_label": "NOT ENOUGH INFORMATION",
+        "confidence": 0.9976668357849121,
+        "error_category": "general_nli_semantic_reasoning_error",
+        "retrieved_doc_id": 17973630,
+        "doc_title": "Mindfulness meditation and improvement in sleep quality and daytime impairment among older adults with sleep disturbances: a randomized clinical trial.",
+        "evidence_text": "OBJECTIVE To determine the efficacy of a mind-body medicine intervention, called mindfulness meditation, to promote sleep quality in older adults with moderate sleep disturbances.   \n",
+        "probabilities": {
+          "SUPPORTS": 0.004826475866138935,
+          "CONTRADICTS": 0.00911632925271988,
+          "NOT ENOUGH INFORMATION": 0.9860571622848511
+        }
+      }
+    ]
+  },
+  "base_model_vs_finetuned_dev300": {
+    "split": "SciFact Official Dev (claims_dev.jsonl)",
+    "total_claims": 300,
+    "base_model": {
+      "model_name": "cross-encoder/nli-deberta-v3-small",
+      "macro_f1": 0.47563854112194576,
+      "per_class": {
+        "SUPPORTS": {
+          "precision": 0.84,
+          "recall": 0.3387096774193548,
+          "f1_score": 0.4827586206896552,
+          "support": 124.0
+        },
+        "CONTRADICTS": {
+          "precision": 0.3412698412698413,
+          "recall": 0.671875,
+          "f1_score": 0.45263157894736844,
+          "support": 64.0
+        },
+        "NOT ENOUGH INFORMATION": {
+          "precision": 0.46774193548387094,
+          "recall": 0.5178571428571429,
+          "f1_score": 0.4915254237288136,
+          "support": 112.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          42,
+          36,
+          46
+        ],
+        [
+          1,
+          43,
+          20
+        ],
+        [
+          7,
+          47,
+          58
+        ]
+      ]
+    },
+    "finetuned_model": {
+      "model_name": "models/finetuned_nli",
+      "macro_f1": 0.626168559864212,
+      "per_class": {
+        "SUPPORTS": {
+          "precision": 0.7155172413793104,
+          "recall": 0.6693548387096774,
+          "f1_score": 0.6916666666666667,
+          "support": 124.0
+        },
+        "CONTRADICTS": {
+          "precision": 0.527027027027027,
+          "recall": 0.609375,
+          "f1_score": 0.5652173913043478,
+          "support": 64.0
+        },
+        "NOT ENOUGH INFORMATION": {
+          "precision": 0.6272727272727273,
+          "recall": 0.6160714285714286,
+          "f1_score": 0.6216216216216216,
+          "support": 112.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          83,
+          14,
+          27
+        ],
+        [
+          11,
+          39,
+          14
+        ],
+        [
+          22,
+          21,
+          69
+        ]
+      ]
+    }
+  },
+  "training_data_audit": {
+    "total_training_claims": 644,
+    "claim_level_distribution": {
+      "SUPPORTS": 265,
+      "CONTRADICTS": 138,
+      "NOT ENOUGH INFORMATION": 241
+    },
+    "total_training_pairs": 1439,
+    "pair_level_distribution": {
+      "SUPPORTS": 475,
+      "CONTRADICTS": 279,
+      "NOT ENOUGH INFORMATION": 685
+    },
+    "class_imbalance_ratio": "NEI (47.6%) : SUP (33.0%) : CON (19.4%)",
+    "distractor_sampling_method": "Single random non-gold sentence from cited abstract or sentence 0 of cited paper",
+    "missing_hard_negatives": [
+      "Semantic direction reversals (increases <-> decreases)",
+      "Numerical threshold manipulations (e.g. 50% <-> 10%,  <-> )",
+      "Causal assertion vs correlation reporting contrast",
+      "Cross-document topical distractor sentences"
+    ]
+  }
+}

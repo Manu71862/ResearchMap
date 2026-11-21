@@ -1,10 +1,10 @@
 # Phase 6A Research Report: Evidence Selection & NLI Classification Improvement
 
-**Project**: ResearchMap (`C:\Users\Balija Manohar\Downloads\ResearchMap`)  
-**Date**: November 21, 2026  
-**Status**: Experimental Benchmark & Investigation Completed  
-**Corpus Evaluated**: `data/experimental/corpus_expanded_10k.jsonl` (10,835 unique abstracts)  
-**Production Integrity**: **100% Unmodified** (Production code, active corpus, and model checkpoint 100% preserved)  
+**Project**: ResearchMap
+**Date**: November 21, 2026
+**Status**: Experimental Benchmark & Investigation Completed
+**Corpus Evaluated**: `data/experimental/corpus_expanded_10k.jsonl` (10,835 unique abstracts)
+**Production Integrity**: **100% Unmodified** (Production code, active corpus, and model checkpoint 100% preserved)
 **Regression Test Status**: **45/45 Passed** (in 25.38s)
 
 ---
@@ -49,7 +49,7 @@ We designed and evaluated five controlled evidence selection and aggregation arc
 
 ## 2. Pipeline Audit: How Evidence Reaches the Cross-Encoder
 
-To understand the mechanics of classification failure, we traced the execution path through [`backend/retrieval.py`](file:///C:/Users/Balija%20Manohar/Downloads/ResearchMap/backend/retrieval.py), [`backend/pipeline.py`](file:///C:/Users/Balija%20Manohar/Downloads/ResearchMap/backend/pipeline.py), and [`backend/entailment.py`](file:///C:/Users/Balija%20Manohar/Downloads/ResearchMap/backend/entailment.py):
+To understand the mechanics of classification failure, we traced the execution path through [`backend/retrieval.py`](../backend/retrieval.py), [`backend/pipeline.py`](../backend/pipeline.py), and [`backend/entailment.py`](../backend/entailment.py):
 
 ```
                         Input Claim Text
@@ -248,8 +248,8 @@ The hypothesis that providing more context would improve NLI decisions was direc
 ## 6. Special Investigation: Claim 24
 
 ### Problem Statement
-> **Claim 24**: *"Specific maternal dietary microbiome alterations during the first trimester can completely eradicate childhood asthma risk."*  
-> **Gold Label**: `NOT ENOUGH INFORMATION`  
+> **Claim 24**: *"Specific maternal dietary microbiome alterations during the first trimester can completely eradicate childhood asthma risk."*
+> **Gold Label**: `NOT ENOUGH INFORMATION`
 > **Diagnostic Finding**: Predicted as `CONTRADICTS` ($P \approx 0.93 - 0.94$) by Approaches B, C, D, and E.
 
 ### Ground Truth Determination: Does Available Evidence Contradict or Not Establish?
@@ -289,4 +289,3 @@ The available evidence **simply does not establish the claim**. It does not cont
    - BM25 Configuration C remains the verified production default. Do not deploy or replace BM25 automatically.
 2. **Staging Recommendation for Future Deployment**:
    - If adopting Hybrid Retrieval in staging, pair it with **Approach B sentence selection** ($\text{doc\_score\_weight} = 0.0$) rather than hybrid sentence weighting, maintaining sub-250ms query latency and avoiding document-prior distortion.
-

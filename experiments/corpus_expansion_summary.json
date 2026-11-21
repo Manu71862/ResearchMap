@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-11-20 19:55:56",
+  "original_corpus_path": "C:\\Users\\Balija Manohar\\Downloads\\ResearchMap\\data\\raw\\corpus.jsonl",
+  "original_corpus_sha256": "b8d6c89624cb2ed74dee8938effc4f5d8bd2086887880af8110d64be4ceade62",
+  "original_document_count": 5183,
+  "expanded_corpus_path": "C:\\Users\\Balija Manohar\\Downloads\\ResearchMap\\data\\experimental\\corpus_expanded_10k.jsonl",
+  "expanded_document_count": 10835,
+  "added_document_count": 5652,
+  "experimental_file_size_mb": 20.77,
+  "source_counts": {
+    "scifact_original": 5183,
+    "ncbi_pubmed": 5652
+  },
+  "topic_distribution": {
+    "original_scifact": 5183,
+    "curated_evaluation_seed": 9,
+    "virology_antivirals_and_antibiotics": 834,
+    "mrna_vaccines_and_immunology": 787,
+    "hippocampus_and_memory": 797,
+    "cortical_atrophy_and_aging": 786,
+    "scientific_methodology_and_causality": 849,
+    "human_microbiome_and_health": 797,
+    "genomics_and_variant_interpretation": 793
+  },
+  "rejection_statistics": {
+    "missing_abstract": 1,
+    "too_short_abstract": 5,
+    "duplicate_pmid": 0,
+    "duplicate_title": 29,
+    "duplicate_abstract": 3,
+    "empty_title": 0
+  },
+  "id_collisions_handled": 0,
+  "seed_pmids_included": [
+    29326426,
+    33301246,
+    10861325,
+    24548606,
+    25741868,
+    18797453,
+    25653628,
+    21497279,
+    30644349
+  ],
+  "licensing_and_provenance": {
+    "primary_source": "NCBI PubMed E-utilities / National Library of Medicine",
+    "terms": "Public domain bibliographic data provided under NLM Open Access Terms of Service",
+    "abstract_only": true,
+    "full_text_downloaded": false,
+    "metadata_fields_preserved": [
+      "doc_id",
+      "title",
+      "abstract",
+      "structured",
+      "source",
+      "pmid",
+      "publication_year",
+      "journal",
+      "topic_category"
+    ]
+  }
+}

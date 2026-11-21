@@ -1,0 +1,94 @@
+{
+  "timestamp": "2026-10-28T16:35:56.849600",
+  "split_name": "SciFact Official Dev (claims_dev.jsonl)",
+  "total_claims": 300,
+  "split_statistics": {
+    "total_claims": 300,
+    "with_evidence": 188,
+    "without_evidence_nei": 112,
+    "label_distribution": {
+      "SUPPORTS": 124,
+      "CONTRADICTS": 64,
+      "NOT ENOUGH INFORMATION": 112
+    },
+    "label_percentages": {
+      "SUPPORTS": 41.333333333333336,
+      "CONTRADICTS": 21.333333333333336,
+      "NOT ENOUGH INFORMATION": 37.333333333333336
+    }
+  },
+  "bm25_top_k_docs": 5,
+  "bm25_top_k_sentences": 3,
+  "nli_model_name": "models/finetuned_nli",
+  "device": "cpu",
+  "platform": "nt Windows 11",
+  "python_version": "3.13.1",
+  "torch_version": "2.14.1+cpu",
+  "transformers_version": "5.20.2",
+  "sklearn_version": "1.9.1",
+  "random_seed": 42,
+  "claim_verification": {
+    "macro_f1": 0.626168559864212,
+    "weighted_f1": 0.6385406711058885,
+    "per_class": {
+      "SUPPORTS": {
+        "precision": 0.7155172413793104,
+        "recall": 0.6693548387096774,
+        "f1_score": 0.6916666666666667,
+        "support": 124.0
+      },
+      "CONTRADICTS": {
+        "precision": 0.527027027027027,
+        "recall": 0.609375,
+        "f1_score": 0.5652173913043478,
+        "support": 64.0
+      },
+      "NOT ENOUGH INFORMATION": {
+        "precision": 0.6272727272727273,
+        "recall": 0.6160714285714286,
+        "f1_score": 0.6216216216216216,
+        "support": 112.0
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "SUPPORTS",
+        "CONTRADICTS",
+        "NOT ENOUGH INFORMATION"
+      ],
+      "matrix": [
+        [
+          83,
+          14,
+          27
+        ],
+        [
+          11,
+          39,
+          14
+        ],
+        [
+          22,
+          21,
+          69
+        ]
+      ]
+    }
+  },
+  "retrieval": {
+    "eligible_claims_with_evidence": 188,
+    "doc_recall@5": 0.8776595744680851,
+    "doc_strict_recall@5": 0.8404255319148937,
+    "doc_recall@10": 0.925531914893617,
+    "doc_strict_recall@10": 0.8936170212765957
+  },
+  "sentence_evidence": {
+    "claims_with_gold_evidence_sentences": 188,
+    "true_positives": 81,
+    "false_positives": 109,
+    "false_negatives": 285,
+    "sentence_evidence_precision": 0.4263157894736842,
+    "sentence_evidence_recall": 0.22131147540983606,
+    "sentence_evidence_f1": 0.2913669064748201
+  }
+}

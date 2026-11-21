@@ -1,0 +1,2926 @@
+{
+  "metadata": {
+    "total_claims": 24,
+    "claims_answerable_from_corpus": 13,
+    "claims_with_gold_evidence_docs": 13,
+    "nli_model_checkpoint": "C:\\Users\\Balija Manohar\\Downloads\\ResearchMap\\models\\finetuned_nli",
+    "corpus_size": 5183,
+    "device": "cpu",
+    "avg_latency_ms": 153.47,
+    "min_latency_ms": 112.83,
+    "max_latency_ms": 225.68
+  },
+  "performance_metrics": {
+    "overall_accuracy": 0.7917,
+    "answerable_corpus_accuracy": 0.8462,
+    "macro_f1": 0.7884,
+    "weighted_f1": 0.8102,
+    "per_class": {
+      "SUPPORTS": {
+        "precision": 1.0,
+        "recall": 0.7777777777777778,
+        "f1_score": 0.875,
+        "support": 9.0
+      },
+      "CONTRADICTS": {
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1_score": 0.8235294117647058,
+        "support": 10.0
+      },
+      "NOT ENOUGH INFORMATION": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6666666666666666,
+        "support": 5.0
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "SUPPORTS",
+        "CONTRADICTS",
+        "NOT ENOUGH INFORMATION"
+      ],
+      "matrix": [
+        [
+          7,
+          0,
+          2
+        ],
+        [
+          0,
+          7,
+          3
+        ],
+        [
+          0,
+          0,
+          5
+        ]
+      ]
+    },
+    "retrieval": {
+      "doc_retrieval_recall@5": 0.7692,
+      "sentence_retrieval_recall": 0.4615,
+      "gold_doc_count": 13,
+      "gold_doc_hits": 10,
+      "gold_sentence_hits": 6
+    },
+    "failure_categories": {
+      "Claim outside the dataset's subject coverage": 3,
+      "Relevant paper not retrieved": 2
+    }
+  },
+  "predictions": [
+    {
+      "claim_id": 1,
+      "claim": "CRISPR-Cas9 uses a guide RNA to target specific DNA sequences for editing.",
+      "domain": "Genetics / Molecular Biology",
+      "claim_type": "straightforward",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": 461550,
+      "gold_sentence_indices": [
+        1,
+        2
+      ],
+      "gold_evidence_sentences": [
+        "The type II prokaryotic CRISPR (clustered regularly interspaced short palindromic repeats)/Cas adaptive immune system has been shown to facilitate RNA-guided site-specific DNA cleavage.",
+        "We engineered two different type II CRISPR/Cas systems and demonstrate that Cas9 nucleases can be directed by short RNAs to induce precise cleavage at endogenous genomic loci in human and mouse cells."
+      ],
+      "verification_source": "Cong et al., Science 2013 (PMID 23287718); Jinek et al., Science 2012 (PMID 22745249); Indexed Corpus Doc 461550",
+      "answerable_from_corpus": true,
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9223602414131165,
+      "probabilities": {
+        "SUPPORTS": 0.9223602414131165,
+        "CONTRADICTS": 0.006713622249662876,
+        "NOT ENOUGH INFORMATION": 0.07092615216970444
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": false,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        21561474,
+        7029990,
+        461550,
+        22029384,
+        2810997
+      ],
+      "predicted_evidence_doc_ids": [
+        461550
+      ],
+      "predicted_evidence_sentences": [
+        [
+          461550,
+          4
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 461550,
+          "sentence_idx": 4,
+          "text": "Lastly, multiple guide sequences can be encoded into a single CRISPR array to enable simultaneous editing of several sites within the mammalian genome, demonstrating easy programmability and wide applicability of the RNA-guided nuclease technology.",
+          "title": "Multiplex genome engineering using CRISPR/Cas systems.",
+          "bm25_score": 6.49105709543535,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.9223602414131165,
+          "probabilities": {
+            "SUPPORTS": 0.9223602414131165,
+            "CONTRADICTS": 0.006713622249662876,
+            "NOT ENOUGH INFORMATION": 0.07092615216970444
+          }
+        },
+        {
+          "doc_id": 7029990,
+          "sentence_idx": 2,
+          "text": "ADAR edits also non-coding sequences of target RNAs, such as introns and 3'-untranslated regions, which may affect splicing, translation, and mRNA stability.",
+          "title": "Stress-induced apoptosis associated with null mutation of ADAR1 RNA editing deaminase gene.",
+          "bm25_score": 5.284600570814998,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.7855874300003052,
+          "probabilities": {
+            "SUPPORTS": 0.1392650306224823,
+            "CONTRADICTS": 0.07514755427837372,
+            "NOT ENOUGH INFORMATION": 0.7855874300003052
+          }
+        },
+        {
+          "doc_id": 2810997,
+          "sentence_idx": 0,
+          "text": "The Clustered Regularly Interspaced Short Palindromic Repeats (CRISPR)/Cas9 system has been widely used for nuclear DNA editing to generate mutations or correct specific disease alleles.",
+          "title": "Efficient Mitochondrial Genome Editing by CRISPR/Cas9",
+          "bm25_score": 5.014910221434066,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.5733204483985901,
+          "probabilities": {
+            "SUPPORTS": 0.5733204483985901,
+            "CONTRADICTS": 0.046714164316654205,
+            "NOT ENOUGH INFORMATION": 0.3799653947353363
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 21561474,
+          "title": "Increasing the efficiency of precise genome editing with CRISPR-Cas9 by inhibition of nonhomologous end joining",
+          "bm25_score": 0.0,
+          "abstract_preview": "Methods to introduce targeted double-strand breaks (DSBs) into DNA enable precise genome editing by increasing the rate at which externally supplied DNA fragments are incorporated into the genome through homologous recombination. The efficiency of these methods is limited by nonh..."
+        },
+        {
+          "doc_id": 7029990,
+          "title": "Stress-induced apoptosis associated with null mutation of ADAR1 RNA editing deaminase gene.",
+          "bm25_score": 5.284600570814998,
+          "abstract_preview": "One type of RNA editing involves the conversion of adenosine residues into inosine in double-stranded RNA through the action of adenosine deaminases acting on RNA (ADAR). A-to-I RNA editing of the coding sequence could result in synthesis of proteins not directly encoded in the g..."
+        },
+        {
+          "doc_id": 461550,
+          "title": "Multiplex genome engineering using CRISPR/Cas systems.",
+          "bm25_score": 6.49105709543535,
+          "abstract_preview": "Functional elucidation of causal genetic variants and elements requires precise genome editing technologies. The type II prokaryotic CRISPR (clustered regularly interspaced short palindromic repeats)/Cas adaptive immune system has been shown to facilitate RNA-guided site-specific..."
+        },
+        {
+          "doc_id": 22029384,
+          "title": "RNA editing in brain controls a determinant of ion flow in glutamate-gated channels.",
+          "bm25_score": 0.0,
+          "abstract_preview": "L-glutamate, the principal excitatory transmitter in the brain, gates ion channels mediating fast neurotransmission. Subunit components of two related classes of glutamate receptor channels have been characterized by cDNA cloning and shown to carry either an arginine or a glutami..."
+        },
+        {
+          "doc_id": 2810997,
+          "title": "Efficient Mitochondrial Genome Editing by CRISPR/Cas9",
+          "bm25_score": 5.014910221434066,
+          "abstract_preview": "The Clustered Regularly Interspaced Short Palindromic Repeats (CRISPR)/Cas9 system has been widely used for nuclear DNA editing to generate mutations or correct specific disease alleles. Despite its flexible application, it has not been determined if CRISPR/Cas9, originally ident..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 225.68,
+      "error": null
+    },
+    {
+      "claim_id": 2,
+      "claim": "Antibiotics eliminate influenza viruses by disrupting their bacterial cell walls.",
+      "domain": "Microbiology / Virology / Medicine",
+      "claim_type": "straightforward_false",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "CDC Influenza Clinical Guidance (2024); Murray et al., Medical Microbiology 9th Ed (Influenza is an enveloped orthomyxovirus lacking peptidoglycan cell walls; antibacterial agents have zero efficacy against influenza virions)",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9586888551712036,
+      "probabilities": {
+        "SUPPORTS": 0.12723968923091888,
+        "CONTRADICTS": 0.01091381162405014,
+        "NOT ENOUGH INFORMATION": 0.8618465065956116
+      },
+      "is_correct": false,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": "Claim outside the dataset's subject coverage",
+      "retrieved_candidate_doc_ids": [
+        11026600,
+        24746892,
+        350542,
+        10068634,
+        1103795
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 24746892,
+          "sentence_idx": 0,
+          "text": "Bactericidal antibiotics kill by modulating their respective targets.",
+          "title": "Killing by bactericidal antibiotics does not depend on reactive oxygen species.",
+          "bm25_score": 6.625751408860836,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.8618465065956116,
+          "probabilities": {
+            "SUPPORTS": 0.12723968923091888,
+            "CONTRADICTS": 0.01091381162405014,
+            "NOT ENOUGH INFORMATION": 0.8618465065956116
+          }
+        },
+        {
+          "doc_id": 24746892,
+          "sentence_idx": 5,
+          "text": "This suggests that ROS do not play a role in killing of bacterial pathogens by antibiotics.",
+          "title": "Killing by bactericidal antibiotics does not depend on reactive oxygen species.",
+          "bm25_score": 4.025098086788712,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9586888551712036,
+          "probabilities": {
+            "SUPPORTS": 0.02901184745132923,
+            "CONTRADICTS": 0.012299316935241222,
+            "NOT ENOUGH INFORMATION": 0.9586888551712036
+          }
+        },
+        {
+          "doc_id": 350542,
+          "sentence_idx": 3,
+          "text": "To study the mechanism(s) involved in their synergism, we detected hydroxyl radical formation using 3'-(p-hydroxyphenyl) fluorescein, measured the NAD(+)/NADH ratio by NAD(+) cycling assay, observed change in bacterial viability with the hydroxyl radical scavenger thiourea, and investigated cytoplasmic membrane damage using propidium iodide.",
+          "title": "Antimicrobial peptide pleurocidin synergizes with antibiotics through hydroxyl radical formation and membrane damage, and exerts antibiofilm activity.",
+          "bm25_score": 3.939813305041965,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.802618145942688,
+          "probabilities": {
+            "SUPPORTS": 0.12858347594738007,
+            "CONTRADICTS": 0.06879831105470657,
+            "NOT ENOUGH INFORMATION": 0.802618145942688
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 11026600,
+          "title": "Unifying Viral Genetics and Human Transportation Data to Predict the Global Transmission Dynamics of Human Influenza H3N2",
+          "bm25_score": 0.0,
+          "abstract_preview": "Information on global human movement patterns is central to spatial epidemiological models used to predict the behavior of influenza and other infectious diseases. Yet it remains difficult to test which modes of dispersal drive pathogen spread at various geographic scales using s..."
+        },
+        {
+          "doc_id": 24746892,
+          "title": "Killing by bactericidal antibiotics does not depend on reactive oxygen species.",
+          "bm25_score": 6.625751408860836,
+          "abstract_preview": "Bactericidal antibiotics kill by modulating their respective targets. This traditional view has been challenged by studies that propose an alternative, unified mechanism of killing, whereby toxic reactive oxygen species (ROS) are produced in the presence of antibiotics. We found ..."
+        },
+        {
+          "doc_id": 350542,
+          "title": "Antimicrobial peptide pleurocidin synergizes with antibiotics through hydroxyl radical formation and membrane damage, and exerts antibiofilm activity.",
+          "bm25_score": 3.939813305041965,
+          "abstract_preview": "BACKGROUND Pleurocidin, a 25-mer antimicrobial peptide (AMP), is known to exert bactericidal activity. However, the synergistic activity and mechanism(s) of pleurocidin in combination with conventional antibiotics, and the antibiofilm effect of the peptide are poorly understood. ..."
+        },
+        {
+          "doc_id": 10068634,
+          "title": "Preparing the outbreak assistance laboratory network in the Netherlands for the detection of the influenza virus A(H1N1) variant.",
+          "bm25_score": 0.0,
+          "abstract_preview": "BACKGROUND Late April 2009, human infection with variant influenza virus A(H1N1)v emerged in the Northern Americas posing a threat that this virus may become the next pandemic influenza virus.   \n OBJECTIVES To prepare laboratories for surge capacity for molecular diagnosis of pa..."
+        },
+        {
+          "doc_id": 1103795,
+          "title": "A Common Mechanism of Cellular Death Induced by Bactericidal Antibiotics",
+          "bm25_score": 0.0,
+          "abstract_preview": "Antibiotic mode-of-action classification is based upon drug-target interaction and whether the resultant inhibition of cellular function is lethal to bacteria. Here we show that the three major classes of bactericidal antibiotics, regardless of drug-target interaction, stimulate ..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 191.63,
+      "error": null
+    },
+    {
+      "claim_id": 3,
+      "claim": "Every genetic variant identified by genome sequencing causes a disease.",
+      "domain": "Genetics / Genomics",
+      "claim_type": "overly_broad",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": 17088791,
+      "gold_sentence_indices": [
+        3,
+        10
+      ],
+      "gold_evidence_sentences": [
+        "There are several common polymorphisms in the BRCA1 gene which generate amino acid substitutions.",
+        "Common variants in BRCA1 are not associated with a substantial increase in breast or ovarian cancer risk."
+      ],
+      "verification_source": "1000 Genomes Project Consortium, Nature 2015 (PMID 26432245); ACMG Guidelines 2015; Indexed Corpus Doc 17088791",
+      "answerable_from_corpus": true,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9910373687744141,
+      "probabilities": {
+        "SUPPORTS": 0.003445645095780492,
+        "CONTRADICTS": 0.005517008248716593,
+        "NOT ENOUGH INFORMATION": 0.9910373687744141
+      },
+      "is_correct": false,
+      "doc_retrieved_gold": false,
+      "sentence_retrieved_gold": false,
+      "failure_category": "Relevant paper not retrieved",
+      "retrieved_candidate_doc_ids": [
+        1544804,
+        18199839,
+        4632921,
+        4421746,
+        2722988
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 4632921,
+          "sentence_idx": 2,
+          "text": "We also identified copy-number variant (CNV) eQTLs, including some that appear to affect gene expression by altering the copy number of intergenic regulatory regions.",
+          "title": "Large-Scale Profiling Reveals the Influence of Genetic Variation on Gene Expression in Human Induced Pluripotent Stem Cells.",
+          "bm25_score": 6.508697073993767,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9910373687744141,
+          "probabilities": {
+            "SUPPORTS": 0.003445645095780492,
+            "CONTRADICTS": 0.005517008248716593,
+            "NOT ENOUGH INFORMATION": 0.9910373687744141
+          }
+        },
+        {
+          "doc_id": 18199839,
+          "sentence_idx": 9,
+          "text": "For every copy of 358Ala inherited, risk of coronary heart disease was reduced by 3·4% (1·8-5·0).",
+          "title": "Interleukin-6 receptor pathways in coronary heart disease: a collaborative meta-analysis of 82 studies",
+          "bm25_score": 5.717139289580938,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.6368056535720825,
+          "probabilities": {
+            "SUPPORTS": 0.11896171420812607,
+            "CONTRADICTS": 0.24423256516456604,
+            "NOT ENOUGH INFORMATION": 0.6368056535720825
+          }
+        },
+        {
+          "doc_id": 18199839,
+          "sentence_idx": 2,
+          "text": "To assess whether this pathway is causally relevant to coronary heart disease, we studied a functional genetic variant known to affect IL6R signalling.   \n",
+          "title": "Interleukin-6 receptor pathways in coronary heart disease: a collaborative meta-analysis of 82 studies",
+          "bm25_score": 5.686486778916144,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9887224435806274,
+          "probabilities": {
+            "SUPPORTS": 0.003292736131697893,
+            "CONTRADICTS": 0.007984865456819534,
+            "NOT ENOUGH INFORMATION": 0.9887224435806274
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 1544804,
+          "title": "Improved variant discovery through local re-alignment of short-read next-generation sequencing data using SRMA",
+          "bm25_score": 0.0,
+          "abstract_preview": "A primary component of next-generation sequencing analysis is to align short reads to a reference genome, with each read aligned independently. However, reads that observe the same non-reference DNA sequence are highly correlated and can be used to better model the true variation..."
+        },
+        {
+          "doc_id": 18199839,
+          "title": "Interleukin-6 receptor pathways in coronary heart disease: a collaborative meta-analysis of 82 studies",
+          "bm25_score": 5.717139289580938,
+          "abstract_preview": "BACKGROUND Persistent inflammation has been proposed to contribute to various stages in the pathogenesis of cardiovascular disease. Interleukin-6 receptor (IL6R) signalling propagates downstream inflammation cascades. To assess whether this pathway is causally relevant to coronar..."
+        },
+        {
+          "doc_id": 4632921,
+          "title": "Large-Scale Profiling Reveals the Influence of Genetic Variation on Gene Expression in Human Induced Pluripotent Stem Cells.",
+          "bm25_score": 6.508697073993767,
+          "abstract_preview": "In this study, we used whole-genome sequencing and gene expression profiling of 215 human induced pluripotent stem cell (iPSC) lines from different donors to identify genetic variants associated with RNA expression for 5,746 genes. We were able to predict causal variants for thes..."
+        },
+        {
+          "doc_id": 4421746,
+          "title": "Genome-wide genetic analysis of polyploidy in yeast",
+          "bm25_score": 0.0,
+          "abstract_preview": "Polyploidy, increased sets of chromosomes, occurs during development, cellular stress, disease and evolution. Despite its prevalence, little is known about the physiological alterations that accompany polyploidy. We previously described ‘ploidy-specific lethality’, where a gene d..."
+        },
+        {
+          "doc_id": 2722988,
+          "title": "The Mammalian Epigenome",
+          "bm25_score": 0.0,
+          "abstract_preview": "Chemical modifications to DNA and histone proteins form a complex regulatory network that modulates chromatin structure and genome function. The epigenome refers to the complete description of these potentially heritable changes across the genome. The composition of the epigenome..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 133.35,
+      "error": null
+    },
+    {
+      "claim_id": 4,
+      "claim": "The hippocampus contributes to the formation of certain types of new memories.",
+      "domain": "Neuroscience",
+      "claim_type": "difficult_retrieval_unindexed",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Scoville & Milner, JNNP 1957 (PMID 13406589); Squire et al., Annu Rev Neurosci 2004; Kandel et al., Principles of Neural Science 5th Ed",
+      "answerable_from_corpus": false,
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.7511433362960815,
+      "probabilities": {
+        "SUPPORTS": 0.7511433362960815,
+        "CONTRADICTS": 0.02534937672317028,
+        "NOT ENOUGH INFORMATION": 0.22350728511810303
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        6123521,
+        28530299,
+        4345605,
+        18600579,
+        4462155
+      ],
+      "predicted_evidence_doc_ids": [
+        28530299
+      ],
+      "predicted_evidence_sentences": [
+        [
+          28530299,
+          4
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 4345605,
+          "sentence_idx": 4,
+          "text": "In contrast to the prevalent view, which supports a role for these genes in the formation and function of excitatory synapses between pyramidal cells, we found that ErbB4 expression in the mouse neocortex and hippocampus is largely confined to certain classes of interneurons.",
+          "title": "Control of cortical GABA circuitry development by Nrg1 and ErbB4 signalling",
+          "bm25_score": 9.889903118016795,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.885074257850647,
+          "probabilities": {
+            "SUPPORTS": 0.10555664449930191,
+            "CONTRADICTS": 0.009369127452373505,
+            "NOT ENOUGH INFORMATION": 0.885074257850647
+          }
+        },
+        {
+          "doc_id": 28530299,
+          "sentence_idx": 4,
+          "text": "We present a scheme of the neurogenesis cascade in the adult hippocampus that includes a proposed \"disposable stem cell\" model and accounts for the disappearance of hippocampal neural stem cells, the appearance of new astrocytes, and the age-related decline in the production of new neurons.",
+          "title": "Division-coupled astrocytic differentiation and age-related depletion of neural stem cells in the adult hippocampus.",
+          "bm25_score": 8.353331717317051,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.7511433362960815,
+          "probabilities": {
+            "SUPPORTS": 0.7511433362960815,
+            "CONTRADICTS": 0.02534937672317028,
+            "NOT ENOUGH INFORMATION": 0.22350728511810303
+          }
+        },
+        {
+          "doc_id": 28530299,
+          "sentence_idx": 0,
+          "text": "Production of new neurons in the adult hippocampus decreases with age; this decline may underlie age-related cognitive impairment.",
+          "title": "Division-coupled astrocytic differentiation and age-related depletion of neural stem cells in the adult hippocampus.",
+          "bm25_score": 7.386091281425724,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.7382523417472839,
+          "probabilities": {
+            "SUPPORTS": 0.24692130088806152,
+            "CONTRADICTS": 0.01482633501291275,
+            "NOT ENOUGH INFORMATION": 0.7382523417472839
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 6123521,
+          "title": "Structural plasticity of the adult brain: how animal models help us understand brain changes in depression and systemic disorders related to depression",
+          "bm25_score": 0.0,
+          "abstract_preview": "The brain interprets experiences and translates them into behavioral and physiological responses. Stressful events are those which are threatening or, at the very least, unexpected and surprising, and the physiological and behavioral responses are intended to promote adaptation v..."
+        },
+        {
+          "doc_id": 28530299,
+          "title": "Division-coupled astrocytic differentiation and age-related depletion of neural stem cells in the adult hippocampus.",
+          "bm25_score": 8.353331717317051,
+          "abstract_preview": "Production of new neurons in the adult hippocampus decreases with age; this decline may underlie age-related cognitive impairment. Here we show that continuous depletion of the neural stem cell pool, as a consequence of their division, may contribute to the age-related decrease i..."
+        },
+        {
+          "doc_id": 4345605,
+          "title": "Control of cortical GABA circuitry development by Nrg1 and ErbB4 signalling",
+          "bm25_score": 9.889903118016795,
+          "abstract_preview": "Schizophrenia is a complex disorder that interferes with the function of several brain systems required for cognition and normal social behaviour. Although the most notable clinical aspects of the disease only become apparent during late adolescence or early adulthood, many lines..."
+        },
+        {
+          "doc_id": 18600579,
+          "title": "Development of a novel mouse glioma model using lentiviral vectors",
+          "bm25_score": 0.0,
+          "abstract_preview": "We report the development of a new method to induce glioblastoma multiforme in adult immunocompetent mice by injecting Cre-loxP–controlled lentiviral vectors expressing oncogenes. Cell type- or region-specific expression of activated forms of the oncoproteins Harvey-Ras and AKT i..."
+        },
+        {
+          "doc_id": 4462155,
+          "title": "A temporal shift in the circuits mediating retrieval of fear memory",
+          "bm25_score": 0.0,
+          "abstract_preview": "Fear memories allow animals to avoid danger, thereby increasing their chances of survival. Fear memories can be retrieved long after learning, but little is known about how retrieval circuits change with time. Here we show that the dorsal midline thalamus of rats is required for ..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 155.55,
+      "error": null
+    },
+    {
+      "claim_id": 5,
+      "claim": "All patients with breast cancer carry a BRCA1 mutation.",
+      "domain": "Oncology / Medicine / Genetics",
+      "claim_type": "overly_broad",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": 3285322,
+      "gold_sentence_indices": [
+        5
+      ],
+      "gold_evidence_sentences": [
+        "RESULTS Of the 491 patients with identified breast cancers, 391 patients were BRCA negative, and 86 patients were BRCA positive."
+      ],
+      "verification_source": "Gonzalez-Angulo et al., J Clin Oncol 2011 (PMID 21300931); Couch et al., JAMA 2017; Indexed Corpus Doc 3285322",
+      "answerable_from_corpus": true,
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.6738505363464355,
+      "probabilities": {
+        "SUPPORTS": 0.09544040262699127,
+        "CONTRADICTS": 0.6738505363464355,
+        "NOT ENOUGH INFORMATION": 0.23070913553237915
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": false,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        9394119,
+        3285322,
+        17088791,
+        1866911,
+        20886584
+      ],
+      "predicted_evidence_doc_ids": [
+        3285322
+      ],
+      "predicted_evidence_sentences": [
+        [
+          3285322,
+          8
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 3285322,
+          "sentence_idx": 8,
+          "text": "Of the triple-negative cancer patients, BRCA2 mutation carriers were older when diagnosed than BRCA1 mutation carriers and noncarriers (P < .01).   \n",
+          "title": "Clinical and pathologic characteristics of patients with BRCA-positive and BRCA-negative breast cancer.",
+          "bm25_score": 4.578869256372204,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.6738505363464355,
+          "probabilities": {
+            "SUPPORTS": 0.09544040262699127,
+            "CONTRADICTS": 0.6738505363464355,
+            "NOT ENOUGH INFORMATION": 0.23070913553237915
+          }
+        },
+        {
+          "doc_id": 17088791,
+          "sentence_idx": 1,
+          "text": "However, these mutations are uncommon in the population and they probably account for only a few percent of all breast cancer incidence.",
+          "title": "Common BRCA1 variants and susceptibility to breast and ovarian cancer in the general population.",
+          "bm25_score": 5.369266823365275,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.985149621963501,
+          "probabilities": {
+            "SUPPORTS": 0.006195982452481985,
+            "CONTRADICTS": 0.00865437276661396,
+            "NOT ENOUGH INFORMATION": 0.985149621963501
+          }
+        },
+        {
+          "doc_id": 9394119,
+          "sentence_idx": 2,
+          "text": "DESIGN, SETTING, AND PARTICIPANTS Observational study of women who were ascertained between 1937 and 2011 (median, 1999) and found to carry disease-associated BRCA1 or BRCA2 mutations.",
+          "title": "Association of type and location of BRCA1 and BRCA2 mutations with risk of breast and ovarian cancer.",
+          "bm25_score": 3.826531810816845,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9054036140441895,
+          "probabilities": {
+            "SUPPORTS": 0.07545799762010574,
+            "CONTRADICTS": 0.019138433039188385,
+            "NOT ENOUGH INFORMATION": 0.9054036140441895
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 9394119,
+          "title": "Association of type and location of BRCA1 and BRCA2 mutations with risk of breast and ovarian cancer.",
+          "bm25_score": 3.826531810816845,
+          "abstract_preview": "IMPORTANCE Limited information about the relationship between specific mutations in BRCA1 or BRCA2 (BRCA1/2) and cancer risk exists.   \n OBJECTIVE To identify mutation-specific cancer risks for carriers of BRCA1/2.   \n DESIGN, SETTING, AND PARTICIPANTS Observational study of wome..."
+        },
+        {
+          "doc_id": 3285322,
+          "title": "Clinical and pathologic characteristics of patients with BRCA-positive and BRCA-negative breast cancer.",
+          "bm25_score": 4.578869256372204,
+          "abstract_preview": "PURPOSE Mutations in the BRCA1 and BRCA2 genes confer greater risk of developing breast cancer. We determined whether tumor pathologic features and clinical features differ in patients with and without BRCA mutations.   \n PATIENTS AND METHODS Tumor pathologic features and clinica..."
+        },
+        {
+          "doc_id": 17088791,
+          "title": "Common BRCA1 variants and susceptibility to breast and ovarian cancer in the general population.",
+          "bm25_score": 5.369266823365275,
+          "abstract_preview": "Most multiple case families of young onset breast cancer and ovarian cancer are thought to be due to highly penetrant mutations in the predisposing genes BRCA1 and BRCA2. However, these mutations are uncommon in the population and they probably account for only a few percent of a..."
+        },
+        {
+          "doc_id": 1866911,
+          "title": "Aberrant luminal progenitors as the candidate target population for basal tumor development in BRCA1 mutation carriers",
+          "bm25_score": 0.0,
+          "abstract_preview": "Basal-like breast cancers arising in women carrying mutations in the BRCA1 gene, encoding the tumor suppressor protein BRCA1, are thought to develop from the mammary stem cell. To explore early cellular changes that occur in BRCA1 mutation carriers, we have prospectively isolated..."
+        },
+        {
+          "doc_id": 20886584,
+          "title": "Genetic predictors of taxane-induced neurotoxicity in a SWOG phase III intergroup adjuvant breast cancer treatment trial (S0221)",
+          "bm25_score": 0.0,
+          "abstract_preview": "Taxanes have resulted in improved survival for breast cancer patients, but often cause neurological toxicities. Identification of biomarkers related to toxicities could be important for dictating treatment regimen. We evaluated single nucleotide polymorphisms (SNPs) in the Fancon..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 122.65,
+      "error": null
+    },
+    {
+      "claim_id": 6,
+      "claim": "A scientific study's association between two variables necessarily proves causation.",
+      "domain": "Scientific Methodology / Biostatistics",
+      "claim_type": "epistemological_false",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Bradford Hill Criteria, Proc R Soc Med 1965; Pearl, Causality: Models, Reasoning, and Inference (Cambridge University Press, 2009)",
+      "answerable_from_corpus": false,
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.8908496499061584,
+      "probabilities": {
+        "SUPPORTS": 0.01568705216050148,
+        "CONTRADICTS": 0.8908496499061584,
+        "NOT ENOUGH INFORMATION": 0.09346326440572739
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        6387956,
+        4445629,
+        24918110,
+        18747744,
+        5145974
+      ],
+      "predicted_evidence_doc_ids": [
+        6387956
+      ],
+      "predicted_evidence_sentences": [
+        [
+          6387956,
+          8
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 6387956,
+          "sentence_idx": 8,
+          "text": "After adjustment for confounding variables, there was a non-linear association between IQ score and psychosis-like symptoms, such that only those with below average IQ score had an increased risk of reporting such symptoms.   \n",
+          "title": "IQ and non-clinical psychotic symptoms in 12-year-olds: results  from the ALSPAC birth cohort",
+          "bm25_score": 5.076486725894977,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.8908496499061584,
+          "probabilities": {
+            "SUPPORTS": 0.01568705216050148,
+            "CONTRADICTS": 0.8908496499061584,
+            "NOT ENOUGH INFORMATION": 0.09346326440572739
+          }
+        },
+        {
+          "doc_id": 24918110,
+          "sentence_idx": 5,
+          "text": "The association among exercise capacity, BMI, other clinical variables, and all-cause mortality was assessed by Cox proportional hazards.",
+          "title": "Exercise capacity and body mass as predictors of mortality among male veterans with type 2 diabetes.",
+          "bm25_score": 4.695064600210634,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9596156477928162,
+          "probabilities": {
+            "SUPPORTS": 0.017706528306007385,
+            "CONTRADICTS": 0.022677823901176453,
+            "NOT ENOUGH INFORMATION": 0.9596156477928162
+          }
+        },
+        {
+          "doc_id": 24918110,
+          "sentence_idx": 1,
+          "text": "RESEARCH DESIGN AND METHODS After excluding two underweight patients (BMI <18.5 kg/m2), the study population comprised 831 consecutive patients with type 2 diabetes (mean age 61 +/-",
+          "title": "Exercise capacity and body mass as predictors of mortality among male veterans with type 2 diabetes.",
+          "bm25_score": 4.306513151881703,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9365675449371338,
+          "probabilities": {
+            "SUPPORTS": 0.04038913547992706,
+            "CONTRADICTS": 0.023043327033519745,
+            "NOT ENOUGH INFORMATION": 0.9365675449371338
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 6387956,
+          "title": "IQ and non-clinical psychotic symptoms in 12-year-olds: results  from the ALSPAC birth cohort",
+          "bm25_score": 5.076486725894977,
+          "abstract_preview": "BACKGROUND Non-clinical psychotic symptoms appear common in children, but it is possible that a proportion of reported symptoms result from misinterpretation. There is a well-established association between pre-morbid low IQ score and schizophrenia. Psychosis-like symptoms in chi..."
+        },
+        {
+          "doc_id": 4445629,
+          "title": "Plasma Corin as a Predictor of Cardiovascular Events in Patients With Chronic Heart Failure.",
+          "bm25_score": 0.0,
+          "abstract_preview": "OBJECTIVES The aim of this study was to determine the prognostic value of plasma corin in patients with chronic heart failure (CHF).   \n BACKGROUND In recent years, accumulating evidence has indicated that corin plays a critical role in regulating blood pressure and cardiac funct..."
+        },
+        {
+          "doc_id": 24918110,
+          "title": "Exercise capacity and body mass as predictors of mortality among male veterans with type 2 diabetes.",
+          "bm25_score": 4.695064600210634,
+          "abstract_preview": "OBJECTIVE To demonstrate the relation of exercise capacity and BMI to mortality in a population of male veterans with type 2 diabetes.    RESEARCH DESIGN AND METHODS After excluding two underweight patients (BMI <18.5 kg/m2), the study population comprised 831 consecutive patient..."
+        },
+        {
+          "doc_id": 18747744,
+          "title": "Redefining the Genetic Hierarchies Controlling Skeletal Myogenesis: Pax-3 and Myf-5 Act Upstream of MyoD",
+          "bm25_score": 0.0,
+          "abstract_preview": "We analyzed Pax-3 (splotch), Myf-5 (targeted with nlacZ), and splotch/Myf-5 homozygous mutant mice to investigate the roles that these genes play in programming skeletal myogenesis. In splotch and Myf-5 homozygous embryos, myogenic progenitor cell perturbations and early muscle d..."
+        },
+        {
+          "doc_id": 5145974,
+          "title": "Urinary bisphenol A concentrations and early reproductive health outcomes among women undergoing IVF.",
+          "bm25_score": 0.0,
+          "abstract_preview": "STUDY QUESTION In women undergoing IVF, are urinary bisphenol A (BPA) concentrations associated with ovarian response and early reproductive outcomes, including oocyte maturation and fertilization, Day 3 embryo quality and blastocyst formation?    SUMMARY ANSWER Higher urinary BP..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 135.73,
+      "error": null
+    },
+    {
+      "claim_id": 7,
+      "claim": "Messenger RNA vaccines provide cells with instructions for producing a target antigen.",
+      "domain": "Immunology / Molecular Biology / Medicine",
+      "claim_type": "nuanced_unindexed",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Pardi et al., Nat Rev Drug Discov 2018 (PMID 29326432); Polack et al., NEJM 2020 (PMID 33301246); Kariko et al., Mol Ther 2008",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9929108023643494,
+      "probabilities": {
+        "SUPPORTS": 0.004510240163654089,
+        "CONTRADICTS": 0.0025789844803512096,
+        "NOT ENOUGH INFORMATION": 0.9929108023643494
+      },
+      "is_correct": false,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": "Claim outside the dataset's subject coverage",
+      "retrieved_candidate_doc_ids": [
+        13231899,
+        4467129,
+        9091863,
+        950306,
+        19255949
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 13231899,
+          "sentence_idx": 0,
+          "text": "Vaccines are largely ineffective for patients with established cancer, as advanced disease requires potent and sustained activation of CD8(+) cytotoxic T lymphocytes (CTLs) to kill tumor cells and clear the disease.",
+          "title": "In situ regulation of DC subsets and T cells mediates tumor regression in mice.",
+          "bm25_score": 5.540718261902441,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9929108023643494,
+          "probabilities": {
+            "SUPPORTS": 0.004510240163654089,
+            "CONTRADICTS": 0.0025789844803512096,
+            "NOT ENOUGH INFORMATION": 0.9929108023643494
+          }
+        },
+        {
+          "doc_id": 9091863,
+          "sentence_idx": 4,
+          "text": "This coincides with a marked reduction in the level of cognate cellular messenger RNAs.",
+          "title": "An RNA-directed nuclease mediates post-transcriptional gene silencing in Drosophila cells.",
+          "bm25_score": 5.012325781206402,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9850456118583679,
+          "probabilities": {
+            "SUPPORTS": 0.012880944646894932,
+            "CONTRADICTS": 0.0020734143909066916,
+            "NOT ENOUGH INFORMATION": 0.9850456118583679
+          }
+        },
+        {
+          "doc_id": 13231899,
+          "sentence_idx": 7,
+          "text": "These results indicate that a critical pattern of DC subsets correlates with the evolution of therapeutic antitumor responses and provide a template for future vaccine design.",
+          "title": "In situ regulation of DC subsets and T cells mediates tumor regression in mice.",
+          "bm25_score": 4.597322353910645,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9656508564949036,
+          "probabilities": {
+            "SUPPORTS": 0.032095398753881454,
+            "CONTRADICTS": 0.002253802726045251,
+            "NOT ENOUGH INFORMATION": 0.9656508564949036
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 13231899,
+          "title": "In situ regulation of DC subsets and T cells mediates tumor regression in mice.",
+          "bm25_score": 5.540718261902441,
+          "abstract_preview": "Vaccines are largely ineffective for patients with established cancer, as advanced disease requires potent and sustained activation of CD8(+) cytotoxic T lymphocytes (CTLs) to kill tumor cells and clear the disease. Recent studies have found that subsets of dendritic cells (DCs) ..."
+        },
+        {
+          "doc_id": 4467129,
+          "title": "Multiple mechanisms disrupt the let-7 microRNA family in neuroblastoma",
+          "bm25_score": 0.0,
+          "abstract_preview": "Poor prognosis in neuroblastoma is associated with genetic amplification of MYCN. MYCN is itself a target of let-7, a tumour suppressor family of microRNAs implicated in numerous cancers. LIN28B, an inhibitor of let-7 biogenesis, is overexpressed in neuroblastoma and has been rep..."
+        },
+        {
+          "doc_id": 9091863,
+          "title": "An RNA-directed nuclease mediates post-transcriptional gene silencing in Drosophila cells.",
+          "bm25_score": 5.012325781206402,
+          "abstract_preview": "In a diverse group of organisms that includes Caenorhabditis elegans, Drosophila, planaria, hydra, trypanosomes, fungi and plants, the introduction of double-stranded RNAs inhibits gene expression in a sequence-specific manner. These responses, called RNA interference or post-tra..."
+        },
+        {
+          "doc_id": 950306,
+          "title": "Molecular Basis for Target RNA Recognition and Cleavage by Human RISC",
+          "bm25_score": 0.0,
+          "abstract_preview": "The RNA-Induced Silencing Complex (RISC) is a ribonucleoprotein particle composed of a single-stranded short interfering RNA (siRNA) and an endonucleolytically active Argonaute protein, capable of cleaving mRNAs complementary to the siRNA. The mechanism by which RISC cleaves a ta..."
+        },
+        {
+          "doc_id": 19255949,
+          "title": "Poly(A)-specific ribonuclease (PARN) mediates 3′-end maturation of the telomerase RNA component",
+          "bm25_score": 0.0,
+          "abstract_preview": "Mutations in the PARN gene (encoding poly(A)-specific ribonuclease) cause telomere diseases including familial idiopathic pulmonary fibrosis (IPF) and dyskeratosis congenita, but how PARN deficiency impairs telomere maintenance is unclear. Here, using somatic cells and induced pl..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 124.11,
+      "error": null
+    },
+    {
+      "claim_id": 8,
+      "claim": "All bacteria are harmful to humans.",
+      "domain": "Microbiology",
+      "claim_type": "overly_broad",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": 4465735,
+      "gold_sentence_indices": [
+        0
+      ],
+      "gold_evidence_sentences": [
+        "The gastrointestinal tracts of mammals are colonized by hundreds of microbial species that contribute to health, including colonization resistance against intestinal pathogens."
+      ],
+      "verification_source": "Buffie et al., Nature 2015 (PMID 25337874); Human Microbiome Project Consortium, Nature 2012; Indexed Corpus Doc 4465735",
+      "answerable_from_corpus": true,
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.589459240436554,
+      "probabilities": {
+        "SUPPORTS": 0.006386485416442156,
+        "CONTRADICTS": 0.589459240436554,
+        "NOT ENOUGH INFORMATION": 0.40415430068969727
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": false,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        19958277,
+        2479538,
+        13771184,
+        4841908,
+        4465735
+      ],
+      "predicted_evidence_doc_ids": [
+        13771184
+      ],
+      "predicted_evidence_sentences": [
+        [
+          13771184,
+          0
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 13771184,
+          "sentence_idx": 0,
+          "text": "RecQ helicases are an important family of genome surveillance proteins conserved from bacteria to humans.",
+          "title": "Human RecQ helicases in DNA repair, recombination, and replication.",
+          "bm25_score": 4.921311678853577,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.589459240436554,
+          "probabilities": {
+            "SUPPORTS": 0.006386485416442156,
+            "CONTRADICTS": 0.589459240436554,
+            "NOT ENOUGH INFORMATION": 0.40415430068969727
+          }
+        },
+        {
+          "doc_id": 4465735,
+          "sentence_idx": 5,
+          "text": "Mathematical modelling augmented by analyses of the microbiota of hospitalized patients identifies resistance-associated bacteria common to mice and humans.",
+          "title": "Precision microbiome reconstitution restores bile acid mediated resistance to Clostridium difficile",
+          "bm25_score": 3.97898350743052,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.8311360478401184,
+          "probabilities": {
+            "SUPPORTS": 0.04850577190518379,
+            "CONTRADICTS": 0.12035815417766571,
+            "NOT ENOUGH INFORMATION": 0.8311360478401184
+          }
+        },
+        {
+          "doc_id": 19958277,
+          "sentence_idx": 1,
+          "text": "Germline mutations in three of the five known family members in humans give rise to debilitating disorders that are characterized by, amongst other things, a predisposition to the development of cancer.",
+          "title": "RecQ helicases: caretakers of the genome",
+          "bm25_score": 3.056321669644583,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9380770921707153,
+          "probabilities": {
+            "SUPPORTS": 0.031307682394981384,
+            "CONTRADICTS": 0.030615292489528656,
+            "NOT ENOUGH INFORMATION": 0.9380770921707153
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 19958277,
+          "title": "RecQ helicases: caretakers of the genome",
+          "bm25_score": 3.056321669644583,
+          "abstract_preview": "RecQ helicases are highly conserved from bacteria to man. Germline mutations in three of the five known family members in humans give rise to debilitating disorders that are characterized by, amongst other things, a predisposition to the development of cancer. One of these disord..."
+        },
+        {
+          "doc_id": 2479538,
+          "title": "Leaderless genes in bacteria: clue to the evolution of translation initiation mechanisms in prokaryotes",
+          "bm25_score": 0.0,
+          "abstract_preview": "BACKGROUND Shine-Dalgarno (SD) signal has long been viewed as the dominant translation initiation signal in prokaryotes. Recently, leaderless genes, which lack 5'-untranslated regions (5'-UTR) on their mRNAs, have been shown abundant in archaea. However, current large-scale in si..."
+        },
+        {
+          "doc_id": 13771184,
+          "title": "Human RecQ helicases in DNA repair, recombination, and replication.",
+          "bm25_score": 4.921311678853577,
+          "abstract_preview": "RecQ helicases are an important family of genome surveillance proteins conserved from bacteria to humans. Each of the five human RecQ helicases plays critical roles in genome maintenance and stability, and the RecQ protein family members are often referred to as guardians of the ..."
+        },
+        {
+          "doc_id": 4841908,
+          "title": "Distinct Metabolomic Signatures Are Associated with Longevity in Humans",
+          "bm25_score": 0.0,
+          "abstract_preview": "Alterations in metabolism influence lifespan in experimental models, but data in humans are lacking. Here we use liquid chromatography/mass spectrometry to quantify 217 plasma metabolites and examine their relation to longevity in a large cohort of men and women followed for up t..."
+        },
+        {
+          "doc_id": 4465735,
+          "title": "Precision microbiome reconstitution restores bile acid mediated resistance to Clostridium difficile",
+          "bm25_score": 3.97898350743052,
+          "abstract_preview": "The gastrointestinal tracts of mammals are colonized by hundreds of microbial species that contribute to health, including colonization resistance against intestinal pathogens. Many antibiotics destroy intestinal microbial communities and increase susceptibility to intestinal pat..."
+        }
+      ],
+      "warning": "Verdict determined with borderline confidence (58.9%). Evidence should be inspected manually.",
+      "explanation": null,
+      "latency_ms": 112.83,
+      "error": null
+    },
+    {
+      "claim_id": 9,
+      "claim": "DNA sequencing can identify genetic variants without proving that every identified variant causes disease.",
+      "domain": "Genetics / Scientific Methodology",
+      "claim_type": "nuanced",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": 17088791,
+      "gold_sentence_indices": [
+        3,
+        10
+      ],
+      "gold_evidence_sentences": [
+        "There are several common polymorphisms in the BRCA1 gene which generate amino acid substitutions.",
+        "Common variants in BRCA1 are not associated with a substantial increase in breast or ovarian cancer risk."
+      ],
+      "verification_source": "Biesecker & Green, NEJM 2014 (PMID 24941179); Richards et al., ACMG Standards, Genet Med 2015 (PMID 25741868); Indexed Corpus Doc 17088791",
+      "answerable_from_corpus": true,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9564866423606873,
+      "probabilities": {
+        "SUPPORTS": 0.041363056749105453,
+        "CONTRADICTS": 0.002150335581973195,
+        "NOT ENOUGH INFORMATION": 0.9564866423606873
+      },
+      "is_correct": false,
+      "doc_retrieved_gold": false,
+      "sentence_retrieved_gold": false,
+      "failure_category": "Relevant paper not retrieved",
+      "retrieved_candidate_doc_ids": [
+        4632921,
+        4414547,
+        23389795,
+        2739854,
+        4427060
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 4632921,
+          "sentence_idx": 2,
+          "text": "We also identified copy-number variant (CNV) eQTLs, including some that appear to affect gene expression by altering the copy number of intergenic regulatory regions.",
+          "title": "Large-Scale Profiling Reveals the Influence of Genetic Variation on Gene Expression in Human Induced Pluripotent Stem Cells.",
+          "bm25_score": 4.388536158479144,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9564866423606873,
+          "probabilities": {
+            "SUPPORTS": 0.041363056749105453,
+            "CONTRADICTS": 0.002150335581973195,
+            "NOT ENOUGH INFORMATION": 0.9564866423606873
+          }
+        },
+        {
+          "doc_id": 4632921,
+          "sentence_idx": 0,
+          "text": "In this study, we used whole-genome sequencing and gene expression profiling of 215 human induced pluripotent stem cell (iPSC) lines from different donors to identify genetic variants associated with RNA expression for 5,746 genes.",
+          "title": "Large-Scale Profiling Reveals the Influence of Genetic Variation on Gene Expression in Human Induced Pluripotent Stem Cells.",
+          "bm25_score": 4.273160215333197,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9086232781410217,
+          "probabilities": {
+            "SUPPORTS": 0.08520256727933884,
+            "CONTRADICTS": 0.006174134556204081,
+            "NOT ENOUGH INFORMATION": 0.9086232781410217
+          }
+        },
+        {
+          "doc_id": 4414547,
+          "sentence_idx": 4,
+          "text": "Notably, all of the identified PPM1D PTVs were mosaic in lymphocyte DNA and clustered within a 370-base-pair region in the final exon of the gene, carboxy-terminal to the phosphatase catalytic domain.",
+          "title": "Mosaic PPM1D mutations are associated with predisposition to breast and ovarian cancer",
+          "bm25_score": 4.639774486044594,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.8978105187416077,
+          "probabilities": {
+            "SUPPORTS": 0.08538311719894409,
+            "CONTRADICTS": 0.016806425526738167,
+            "NOT ENOUGH INFORMATION": 0.8978105187416077
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 4632921,
+          "title": "Large-Scale Profiling Reveals the Influence of Genetic Variation on Gene Expression in Human Induced Pluripotent Stem Cells.",
+          "bm25_score": 4.388536158479144,
+          "abstract_preview": "In this study, we used whole-genome sequencing and gene expression profiling of 215 human induced pluripotent stem cell (iPSC) lines from different donors to identify genetic variants associated with RNA expression for 5,746 genes. We were able to predict causal variants for thes..."
+        },
+        {
+          "doc_id": 4414547,
+          "title": "Mosaic PPM1D mutations are associated with predisposition to breast and ovarian cancer",
+          "bm25_score": 4.639774486044594,
+          "abstract_preview": "Improved sequencing technologies offer unprecedented opportunities for investigating the role of rare genetic variation in common disease. However, there are considerable challenges with respect to study design, data analysis and replication. Using pooled next-generation sequenci..."
+        },
+        {
+          "doc_id": 23389795,
+          "title": "Common and rare variants in multifactorial susceptibility to common diseases",
+          "bm25_score": 0.0,
+          "abstract_preview": "Here, we give a historical overview of the search for genetic variants that influence the susceptibility of an individual to a chronic disease, from RA Fisher's seminal work to the current excitement of whole-genome association studies (WGAS). We then discuss the concepts behind ..."
+        },
+        {
+          "doc_id": 2739854,
+          "title": "Rare and common variants: twenty arguments",
+          "bm25_score": 0.0,
+          "abstract_preview": "Genome-wide association studies have greatly improved our understanding of the genetic basis of disease risk. The fact that they tend not to identify more than a fraction of the specific causal loci has led to divergence of opinion over whether most of the variance is hidden as n..."
+        },
+        {
+          "doc_id": 4427060,
+          "title": "Association of NOD2 leucine-rich repeat variants with susceptibility to Crohn's disease.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Crohn's disease and ulcerative colitis, the two main types of chronic inflammatory bowel disease, are multifactorial conditions of unknown aetiology. A susceptibility locus for Crohn's disease has been mapped to chromosome 16. Here we have used a positional-cloning strategy, base..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 146.8,
+      "error": null
+    },
+    {
+      "claim_id": 10,
+      "claim": "A single observational study always establishes that a treatment is effective.",
+      "domain": "Scientific Methodology / Clinical Trials",
+      "claim_type": "overly_broad",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Concato et al., NEJM 2000 (PMID 10861081); Guyatt et al., GRADE Guidelines, J Clin Epidemiol 2011; Grimes & Schulz, Lancet 2002",
+      "answerable_from_corpus": false,
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9654994606971741,
+      "probabilities": {
+        "SUPPORTS": 0.0004098698263987899,
+        "CONTRADICTS": 0.9654994606971741,
+        "NOT ENOUGH INFORMATION": 0.03409064933657646
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        10749308,
+        140907540,
+        35861290,
+        9548440,
+        20725212
+      ],
+      "predicted_evidence_doc_ids": [
+        140907540
+      ],
+      "predicted_evidence_sentences": [
+        [
+          140907540,
+          13
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 10749308,
+          "sentence_idx": 38,
+          "text": "In contrast, a study that successfully shows equivalencethat is, little difference between a new drug and known active treatmentdoes not by itself demonstrate that the new treatment is effective.",
+          "title": "Placebo-Controlled Trials and Active-Control Trials in the Evaluation of New Treatments. Part 1: Ethical and Scientific Issues",
+          "bm25_score": 5.321376776566469,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.9552258253097534,
+          "probabilities": {
+            "SUPPORTS": 0.017683178186416626,
+            "CONTRADICTS": 0.9552258253097534,
+            "NOT ENOUGH INFORMATION": 0.027090977877378464
+          }
+        },
+        {
+          "doc_id": 140907540,
+          "sentence_idx": 3,
+          "text": "Descriptive, observational and randomized controlled studies have different formulas to calculate sample size.",
+          "title": "Sample size calculation in epidemiological studies",
+          "bm25_score": 5.264357630758406,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9622648358345032,
+          "probabilities": {
+            "SUPPORTS": 0.00041611999040469527,
+            "CONTRADICTS": 0.03731902688741684,
+            "NOT ENOUGH INFORMATION": 0.9622648358345032
+          }
+        },
+        {
+          "doc_id": 140907540,
+          "sentence_idx": 13,
+          "text": "Consultation with a statisti-cian is worthwhilein addressing many issues of study de-sign, but a statisticianis not always readily available.",
+          "title": "Sample size calculation in epidemiological studies",
+          "bm25_score": 5.149653180200868,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.9654994606971741,
+          "probabilities": {
+            "SUPPORTS": 0.0004098698263987899,
+            "CONTRADICTS": 0.9654994606971741,
+            "NOT ENOUGH INFORMATION": 0.03409064933657646
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 10749308,
+          "title": "Placebo-Controlled Trials and Active-Control Trials in the Evaluation of New Treatments. Part 1: Ethical and Scientific Issues",
+          "bm25_score": 5.321376776566469,
+          "abstract_preview": "Placebo-controlled trials are used extensively in the development of new pharmaceuticals. They are sometimes challenged as unethical in settings in which patients could be treated with an existing therapy (1-7). The issues of when placebo controls are ethically acceptable and whe..."
+        },
+        {
+          "doc_id": 140907540,
+          "title": "Sample size calculation in epidemiological studies",
+          "bm25_score": 5.264357630758406,
+          "abstract_preview": "Summary Sample-size determination is often an important step in planning an epidemiological study. There are several approaches to determining sample size. It depends on the type of the study. Descriptive, observational and randomized controlled studies have different formulas to..."
+        },
+        {
+          "doc_id": 35861290,
+          "title": "Using the yeast gene deletion collection to customize gene expression.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Substitute Teacher Despite the relative ease of genome manipulation in S. cerevisiae, researchers are always looking to learn still more convenient and rapid methods for substituting yeast promoters. Replacing a gene's native promoter with a heterolo-gous promoter of choice allow..."
+        },
+        {
+          "doc_id": 9548440,
+          "title": "Human aneuploidy: mechanisms and new insights into an age-old problem",
+          "bm25_score": 0.0,
+          "abstract_preview": "Trisomic and monosomic (aneuploid) embryos account for at least 10% of human pregnancies and, for women nearing the end of their reproductive lifespan, the incidence may exceed 50%. The errors that lead to aneuploidy almost always occur in the oocyte but, despite intensive invest..."
+        },
+        {
+          "doc_id": 20725212,
+          "title": "Chaperoning 5S RNA assembly.",
+          "bm25_score": 0.0,
+          "abstract_preview": "In eukaryotes, three of the four ribosomal RNAs (rRNAs)—the 5.8S, 18S, and 25S/28S rRNAs—are processed from a single pre-rRNA transcript and assembled into ribosomes. The fourth rRNA, the 5S rRNA, is transcribed by RNA polymerase III and is assembled into the 5S ribonucleoprotein..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 133.19,
+      "error": null
+    },
+    {
+      "claim_id": 11,
+      "claim": "Solar ultraviolet B radiation stimulates cutaneous synthesis of vitamin D precursors in the skin.",
+      "domain": "Dermatology / Physiology / Biochemistry",
+      "claim_type": "straightforward",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": 275294,
+      "gold_sentence_indices": [
+        1
+      ],
+      "gold_evidence_sentences": [
+        "During exposure to sunlight, the solar ultraviolet B photons (290-315 nm) penetrate into the skin where they cause the photolysis of 7-dehydrocholesterol to precholecalciferol."
+      ],
+      "verification_source": "Holick, Am J Clin Nutr 1994 (PMID 8129377); Holick, NEJM 2007 (PMID 17634462); Indexed Corpus Doc 275294",
+      "answerable_from_corpus": true,
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.6918843984603882,
+      "probabilities": {
+        "SUPPORTS": 0.6918843984603882,
+        "CONTRADICTS": 0.09580674767494202,
+        "NOT ENOUGH INFORMATION": 0.2123088240623474
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": true,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        275294,
+        22843838,
+        4483571,
+        30720103,
+        23267371
+      ],
+      "predicted_evidence_doc_ids": [
+        275294
+      ],
+      "predicted_evidence_sentences": [
+        [
+          275294,
+          1
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 275294,
+          "sentence_idx": 1,
+          "text": "During exposure to sunlight, the solar ultraviolet B photons (290-315 nm) penetrate into the skin where they cause the photolysis of 7-dehydrocholesterol to precholecalciferol.",
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 11.36538917444283,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.6918843984603882,
+          "probabilities": {
+            "SUPPORTS": 0.6918843984603882,
+            "CONTRADICTS": 0.09580674767494202,
+            "NOT ENOUGH INFORMATION": 0.2123088240623474
+          }
+        },
+        {
+          "doc_id": 275294,
+          "sentence_idx": 4,
+          "text": "Latitude, season, and time of day as well as ozone pollution in the atmosphere influence the number of solar ultraviolet B photons that reach the earth's surface, and thereby, alter the cutaneous production of cholecalciferol.",
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 10.531678288370937,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.7941939234733582,
+          "probabilities": {
+            "SUPPORTS": 0.09443384408950806,
+            "CONTRADICTS": 0.11137227714061737,
+            "NOT ENOUGH INFORMATION": 0.7941939234733582
+          }
+        },
+        {
+          "doc_id": 275294,
+          "sentence_idx": 6,
+          "text": "Because windowpane glass absorbs ultraviolet B radiation, exposure of sunlight through glass windows will not result in any production of cholecalciferol.",
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 9.887689092711367,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9450429081916809,
+          "probabilities": {
+            "SUPPORTS": 0.026004880666732788,
+            "CONTRADICTS": 0.028952237218618393,
+            "NOT ENOUGH INFORMATION": 0.9450429081916809
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 275294,
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 11.36538917444283,
+          "abstract_preview": "All vertebrates, including humans, obtain most of their daily vitamin D requirement from casual exposure to sunlight. During exposure to sunlight, the solar ultraviolet B photons (290-315 nm) penetrate into the skin where they cause the photolysis of 7-dehydrocholesterol to prech..."
+        },
+        {
+          "doc_id": 22843838,
+          "title": "[Vitamin D and latitude as environmental factors in multiple sclerosis].",
+          "bm25_score": 0.0,
+          "abstract_preview": "Multiple sclerosis (MS) shows a multifold increase in prevalence with an increase in latitudes, both north and south of the equator. One of the potential factors related to the difference of the prevalence is vitamin D, because the strength of ambient ultraviolet light, which is ..."
+        },
+        {
+          "doc_id": 4483571,
+          "title": "Human serum 25-hydroxycholecalciferol response to extended oral dosing with cholecalciferol.",
+          "bm25_score": 0.0,
+          "abstract_preview": "BACKGROUND The cholecalciferol inputs required to achieve or maintain any given serum 25-hydroxycholecalciferol concentration are not known, particularly within ranges comparable to the probable physiologic supply of the vitamin.   \n OBJECTIVES The objectives were to establish th..."
+        },
+        {
+          "doc_id": 30720103,
+          "title": "Vitamin D status: measurement, interpretation, and clinical application.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Vitamin D, the sunshine vitamin, is now recognized not only for its importance in promoting bone health in children and adults but also for other health benefits, including reducing the risk of chronic diseases such as autoimmune diseases, common cancer, and cardiovascular diseas..."
+        },
+        {
+          "doc_id": 23267371,
+          "title": "Vitamin D: The \"sunshine\" vitamin.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Vitamin D insufficiency affects almost 50% of the population worldwide. An estimated 1 billion people worldwide, across all ethnicities and age groups, have a vitamin D deficiency (VDD). This pandemic of hypovitaminosis D can mainly be attributed to lifestyle (for example, reduce..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 158.13,
+      "error": null
+    },
+    {
+      "claim_id": 12,
+      "claim": "Topical application of sunscreen enhances the cutaneous production of cholecalciferol.",
+      "domain": "Dermatology / Pharmacology",
+      "claim_type": "straightforward_false",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": 275294,
+      "gold_sentence_indices": [
+        3
+      ],
+      "gold_evidence_sentences": [
+        "An increase in skin pigmentation, aging, and the topical application of a sunscreen diminishes the cutaneous production of cholecalciferol."
+      ],
+      "verification_source": "Holick, Am J Clin Nutr 1994 (PMID 8129377); Indexed Corpus Doc 275294",
+      "answerable_from_corpus": true,
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9923993945121765,
+      "probabilities": {
+        "SUPPORTS": 0.004633990116417408,
+        "CONTRADICTS": 0.9923993945121765,
+        "NOT ENOUGH INFORMATION": 0.0029666901100426912
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": true,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        275294,
+        4483571,
+        9110810,
+        26461066,
+        14657344
+      ],
+      "predicted_evidence_doc_ids": [
+        275294
+      ],
+      "predicted_evidence_sentences": [
+        [
+          275294,
+          3
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 275294,
+          "sentence_idx": 3,
+          "text": "An increase in skin pigmentation, aging, and the topical application of a sunscreen diminishes the cutaneous production of cholecalciferol.",
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 20.12906964801201,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.9923993945121765,
+          "probabilities": {
+            "SUPPORTS": 0.004633990116417408,
+            "CONTRADICTS": 0.9923993945121765,
+            "NOT ENOUGH INFORMATION": 0.0029666901100426912
+          }
+        },
+        {
+          "doc_id": 275294,
+          "sentence_idx": 4,
+          "text": "Latitude, season, and time of day as well as ozone pollution in the atmosphere influence the number of solar ultraviolet B photons that reach the earth's surface, and thereby, alter the cutaneous production of cholecalciferol.",
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 8.035698996053975,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9910725951194763,
+          "probabilities": {
+            "SUPPORTS": 0.0032517004292458296,
+            "CONTRADICTS": 0.005675675813108683,
+            "NOT ENOUGH INFORMATION": 0.9910725951194763
+          }
+        },
+        {
+          "doc_id": 275294,
+          "sentence_idx": 6,
+          "text": "Because windowpane glass absorbs ultraviolet B radiation, exposure of sunlight through glass windows will not result in any production of cholecalciferol.",
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 6.170169857264224,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.6236352324485779,
+          "probabilities": {
+            "SUPPORTS": 0.017660237848758698,
+            "CONTRADICTS": 0.6236352324485779,
+            "NOT ENOUGH INFORMATION": 0.3587045669555664
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 275294,
+          "title": "Environmental factors that influence the cutaneous production of vitamin D",
+          "bm25_score": 20.12906964801201,
+          "abstract_preview": "All vertebrates, including humans, obtain most of their daily vitamin D requirement from casual exposure to sunlight. During exposure to sunlight, the solar ultraviolet B photons (290-315 nm) penetrate into the skin where they cause the photolysis of 7-dehydrocholesterol to prech..."
+        },
+        {
+          "doc_id": 4483571,
+          "title": "Human serum 25-hydroxycholecalciferol response to extended oral dosing with cholecalciferol.",
+          "bm25_score": 0.0,
+          "abstract_preview": "BACKGROUND The cholecalciferol inputs required to achieve or maintain any given serum 25-hydroxycholecalciferol concentration are not known, particularly within ranges comparable to the probable physiologic supply of the vitamin.   \n OBJECTIVES The objectives were to establish th..."
+        },
+        {
+          "doc_id": 9110810,
+          "title": "Insecticide impregnated curtains to control domestic transmission of cutaneous leishmaniasis in Venezuela: cluster randomised trial.",
+          "bm25_score": 0.0,
+          "abstract_preview": "OBJECTIVE To measure the impact on transmission of leishmaniasis of curtains impregnated with insecticide.   \n DESIGN Cluster randomised controlled trial: household interview survey, observational study of people's behaviour, entomological study with light trap captures of sandfl..."
+        },
+        {
+          "doc_id": 26461066,
+          "title": "[Pharmacokinetics and biotransformation of the antimycotic drug ciclopiroxolamine in animals and man after topical and systemic administration].",
+          "bm25_score": 0.0,
+          "abstract_preview": "1. Following the dermal application of the carbon-14 labelled broad spectrum antimycotic 6-cyclohexyl-1-hydroxy-4-methyl-2(1H)-pyridone, 2-aminoethanol salt (ciclopiroxolamine, Hoe 296, Batrafen) in the form of a 1% aqueous cream to healthy human dorsal skin (penetration time: 6 ..."
+        },
+        {
+          "doc_id": 14657344,
+          "title": "CD8 Cells of Patients with Diffuse Cutaneous Leishmaniasis Display Functional Exhaustion: The Latter Is Reversed, In Vitro, by TLR2 Agonists",
+          "bm25_score": 0.0,
+          "abstract_preview": "Leishmania mexicana (Lm) causes localized (LCL) and diffuse (DCL) cutaneous leishmaniasis. DCL patients have a poor cellular immune response leading to chronicity. It has been proposed that CD8 T lymphocytes (CD8) play a crucial role in infection clearance, although the role of C..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 143.01,
+      "error": null
+    },
+    {
+      "claim_id": 13,
+      "claim": "MicroRNA-375 inhibits autophagy in hepatocellular carcinoma cells under hypoxic conditions by suppressing ATG7.",
+      "domain": "Oncology / Cell Biology",
+      "claim_type": "nuanced",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": 982650,
+      "gold_sentence_indices": [
+        7,
+        11
+      ],
+      "gold_evidence_sentences": [
+        "The ability of miR-375 to inhibit autophagy was independent of its ability to regulate 3'-phosphoinositide-dependent protein kinase-1-AKT-mammalian target of rapamycin signaling, but instead involved suppression of ATG7, an autophagy-associated gene.",
+        "CONCLUSIONS miR-375 inhibits autophagy by reducing expression of ATG7 and impairs viability of HCC cells under hypoxic conditions in culture and in mice."
+      ],
+      "verification_source": "Chang et al., Gastroenterology 2012 (PMID 22683935); Indexed Corpus Doc 982650",
+      "answerable_from_corpus": true,
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9935362339019775,
+      "probabilities": {
+        "SUPPORTS": 0.9935362339019775,
+        "CONTRADICTS": 0.0023068583104759455,
+        "NOT ENOUGH INFORMATION": 0.00415693549439311
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": true,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        982650,
+        14874811,
+        33569870,
+        2543135,
+        19882228
+      ],
+      "predicted_evidence_doc_ids": [
+        982650
+      ],
+      "predicted_evidence_sentences": [
+        [
+          982650,
+          11
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 982650,
+          "sentence_idx": 1,
+          "text": "We investigated the roles of microRNAs (miRNAs) in regulating autophagy of hepatocellular carcinoma (HCC) cells under hypoxic conditions.   \n",
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 12.286613286468096,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9873884320259094,
+          "probabilities": {
+            "SUPPORTS": 0.01085362583398819,
+            "CONTRADICTS": 0.0017579210689291358,
+            "NOT ENOUGH INFORMATION": 0.9873884320259094
+          }
+        },
+        {
+          "doc_id": 982650,
+          "sentence_idx": 11,
+          "text": "CONCLUSIONS miR-375 inhibits autophagy by reducing expression of ATG7 and impairs viability of HCC cells under hypoxic conditions in culture and in mice.",
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 9.86117488704197,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.9935362339019775,
+          "probabilities": {
+            "SUPPORTS": 0.9935362339019775,
+            "CONTRADICTS": 0.0023068583104759455,
+            "NOT ENOUGH INFORMATION": 0.00415693549439311
+          }
+        },
+        {
+          "doc_id": 982650,
+          "sentence_idx": 6,
+          "text": "RESULTS miR-375 was down-regulated in HCC cells and tissues; it inhibited autophagy under hypoxic conditions by suppressing the conversion of LC3I to LC3II and thereby autophagic flux.",
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 7.770179994397305,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.9496274590492249,
+          "probabilities": {
+            "SUPPORTS": 0.9496274590492249,
+            "CONTRADICTS": 0.01595313660800457,
+            "NOT ENOUGH INFORMATION": 0.034419428557157516
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 982650,
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 12.286613286468096,
+          "abstract_preview": "BACKGROUND & AIMS Tumor cells survive hypoxic conditions by inducing autophagy. We investigated the roles of microRNAs (miRNAs) in regulating autophagy of hepatocellular carcinoma (HCC) cells under hypoxic conditions.   \n METHODS We used gain- and loss-of-function methods to eval..."
+        },
+        {
+          "doc_id": 14874811,
+          "title": "Hypoxia-induced energy stress regulates mRNA translation and cell growth.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Oxygen (O2) deprivation, or hypoxia, has profound effects on cell metabolism and growth. Cells can adapt to low O2 in part through activation of hypoxia-inducible factor (HIF). We report here that hypoxia inhibits mRNA translation by suppressing multiple key regulators, including..."
+        },
+        {
+          "doc_id": 33569870,
+          "title": "Intact endothelial autophagy is required to maintain vascular lipid homeostasis.",
+          "bm25_score": 0.0,
+          "abstract_preview": "The physiological role of autophagic flux within the vascular endothelial layer remains poorly understood. Here, we show that in primary endothelial cells, oxidized and native LDL stimulates autophagosome formation. Moreover, by both confocal and electron microscopy, excess nativ..."
+        },
+        {
+          "doc_id": 2543135,
+          "title": "Autophagic programmed cell death by selective catalase degradation.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Autophagy plays a central role in regulating important cellular functions such as cell survival during starvation and control of infectious pathogens. Recently, it has been shown that autophagy can induce cells to die; however, the mechanism of the autophagic cell death program i..."
+        },
+        {
+          "doc_id": 19882228,
+          "title": "Hypoxia — a key regulatory factor in tumour growth",
+          "bm25_score": 0.0,
+          "abstract_preview": "Cells undergo a variety of biological responses when placed in hypoxic conditions, including activation of signalling pathways that regulate proliferation, angiogenesis and death. Cancer cells have adapted these pathways, allowing tumours to survive and even grow under hypoxic co..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 152.97,
+      "error": null
+    },
+    {
+      "claim_id": 14,
+      "claim": "MicroRNA-375 expression promotes the growth and viability of hepatocellular carcinoma cells under hypoxia.",
+      "domain": "Oncology / Cell Biology",
+      "claim_type": "nuanced",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": 982650,
+      "gold_sentence_indices": [
+        9,
+        11
+      ],
+      "gold_evidence_sentences": [
+        "Up-regulating miR-375 or down-regulating ATG7 inhibited mitochondrial autophagy of HCC cells, reduced the elimination of damaged mitochondria under hypoxia, increased release of mitochondrial apoptotic proteins, and reduced viability of HCC cells.",
+        "CONCLUSIONS miR-375 inhibits autophagy by reducing expression of ATG7 and impairs viability of HCC cells under hypoxic conditions in culture and in mice."
+      ],
+      "verification_source": "Chang et al., Gastroenterology 2012 (PMID 22683935); Indexed Corpus Doc 982650",
+      "answerable_from_corpus": true,
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9900438785552979,
+      "probabilities": {
+        "SUPPORTS": 0.005812878254801035,
+        "CONTRADICTS": 0.9900438785552979,
+        "NOT ENOUGH INFORMATION": 0.004143258091062307
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": true,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        982650,
+        16882895,
+        26848994,
+        3710557,
+        515489
+      ],
+      "predicted_evidence_doc_ids": [
+        982650
+      ],
+      "predicted_evidence_sentences": [
+        [
+          982650,
+          11
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 982650,
+          "sentence_idx": 9,
+          "text": "Up-regulating miR-375 or down-regulating ATG7 inhibited mitochondrial autophagy of HCC cells, reduced the elimination of damaged mitochondria under hypoxia, increased release of mitochondrial apoptotic proteins, and reduced viability of HCC cells.",
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 10.636623043645482,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.9792979955673218,
+          "probabilities": {
+            "SUPPORTS": 0.013535884208977222,
+            "CONTRADICTS": 0.9792979955673218,
+            "NOT ENOUGH INFORMATION": 0.007166001945734024
+          }
+        },
+        {
+          "doc_id": 982650,
+          "sentence_idx": 1,
+          "text": "We investigated the roles of microRNAs (miRNAs) in regulating autophagy of hepatocellular carcinoma (HCC) cells under hypoxic conditions.   \n",
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 9.216442256645347,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9535644054412842,
+          "probabilities": {
+            "SUPPORTS": 0.028562836349010468,
+            "CONTRADICTS": 0.017872722819447517,
+            "NOT ENOUGH INFORMATION": 0.9535644054412842
+          }
+        },
+        {
+          "doc_id": 982650,
+          "sentence_idx": 11,
+          "text": "CONCLUSIONS miR-375 inhibits autophagy by reducing expression of ATG7 and impairs viability of HCC cells under hypoxic conditions in culture and in mice.",
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 9.157184921140448,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.9900438785552979,
+          "probabilities": {
+            "SUPPORTS": 0.005812878254801035,
+            "CONTRADICTS": 0.9900438785552979,
+            "NOT ENOUGH INFORMATION": 0.004143258091062307
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 982650,
+          "title": "miR-375 inhibits autophagy and reduces viability of hepatocellular carcinoma cells under hypoxic conditions.",
+          "bm25_score": 10.636623043645482,
+          "abstract_preview": "BACKGROUND & AIMS Tumor cells survive hypoxic conditions by inducing autophagy. We investigated the roles of microRNAs (miRNAs) in regulating autophagy of hepatocellular carcinoma (HCC) cells under hypoxic conditions.   \n METHODS We used gain- and loss-of-function methods to eval..."
+        },
+        {
+          "doc_id": 16882895,
+          "title": "microRNA-29a suppresses cell proliferation by targeting SPARC in hepatocellular carcinoma.",
+          "bm25_score": 0.0,
+          "abstract_preview": "In the present study, we constructed a lentivirus vector encoding the miR-29a             precursor and established two stably infected cell lines, PLC-29a and 97L-29a.              The overexpression of miR-29a was confirmed by TaqMan RT-PCR and significantly             suppres..."
+        },
+        {
+          "doc_id": 26848994,
+          "title": "LncRNA HANR Promotes Tumorigenesis and Increase of Chemoresistance in Hepatocellular Carcinoma",
+          "bm25_score": 0.0,
+          "abstract_preview": "Background/Aims: Hepatocellular carcinoma (HCC) is the fifth most common cancer in the world and the third leading cause of cancer-related death. Critical roles for long non-coding RNAs (lncRNAs) have recently been demonstrated for a variety of cancers, including hepatocellular c..."
+        },
+        {
+          "doc_id": 3710557,
+          "title": "β-Catenin Signaling and Roles in Liver Homeostasis, Injury, and Tumorigenesis.",
+          "bm25_score": 0.0,
+          "abstract_preview": "β-catenin (encoded by CTNNB1) is a subunit of the cell surface cadherin protein complex that acts as an intracellular signal transducer in the WNT signaling pathway; alterations in its activity have been associated with the development of hepatocellular carcinoma and other liver ..."
+        },
+        {
+          "doc_id": 515489,
+          "title": "Oncofetal long noncoding RNA PVT1 promotes proliferation and stem cell-like property of hepatocellular carcinoma cells by stabilizing NOP2.",
+          "bm25_score": 0.0,
+          "abstract_preview": "UNLABELLED Many protein-coding oncofetal genes are highly expressed in murine and human fetal liver and silenced in adult liver. The protein products of these hepatic oncofetal genes have been used as clinical markers for the recurrence of hepatocellular carcinoma (HCC) and as th..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 143.44,
+      "error": null
+    },
+    {
+      "claim_id": 15,
+      "claim": "Propranolol administration prevents stress-induced microglial reactivity and macrophage trafficking to the brain.",
+      "domain": "Neuroscience / Neuroimmunology",
+      "claim_type": "nuanced",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": 2436602,
+      "gold_sentence_indices": [
+        6
+      ],
+      "gold_evidence_sentences": [
+        "The stress-dependent changes in microglia and macrophages were prevented by propranolol, a β-adrenergic receptor antagonist."
+      ],
+      "verification_source": "Wohleb et al., J Neurosci 2011 (PMID 22171033); Indexed Corpus Doc 2436602",
+      "answerable_from_corpus": true,
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9646500945091248,
+      "probabilities": {
+        "SUPPORTS": 0.9646500945091248,
+        "CONTRADICTS": 0.0009128398960456252,
+        "NOT ENOUGH INFORMATION": 0.034437019377946854
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": true,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        2436602,
+        17991818,
+        32101982,
+        16863359,
+        7221410
+      ],
+      "predicted_evidence_doc_ids": [
+        2436602
+      ],
+      "predicted_evidence_sentences": [
+        [
+          2436602,
+          6
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 2436602,
+          "sentence_idx": 6,
+          "text": "The stress-dependent changes in microglia and macrophages were prevented by propranolol, a β-adrenergic receptor antagonist.",
+          "title": "β-Adrenergic receptor antagonism prevents anxiety-like behavior and microglial reactivity induced by repeated social defeat.",
+          "bm25_score": 5.641445052653104,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.9646500945091248,
+          "probabilities": {
+            "SUPPORTS": 0.9646500945091248,
+            "CONTRADICTS": 0.0009128398960456252,
+            "NOT ENOUGH INFORMATION": 0.034437019377946854
+          }
+        },
+        {
+          "doc_id": 17991818,
+          "sentence_idx": 0,
+          "text": "Some authors claim that microglia originate from the neuroepithelium, although most now believe that microglial cells are of mesodermal origin, and probably belong to the monocyte/macrophage cell line.",
+          "title": "THE ORIGIN AND DIFFERENTIATION OF MICROGLIAL CELLS DURING DEVELOPMENT",
+          "bm25_score": 6.616954613298621,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9923219084739685,
+          "probabilities": {
+            "SUPPORTS": 0.005494617857038975,
+            "CONTRADICTS": 0.0021835099905729294,
+            "NOT ENOUGH INFORMATION": 0.9923219084739685
+          }
+        },
+        {
+          "doc_id": 2436602,
+          "sentence_idx": 9,
+          "text": "These findings indicate that repeated social defeat-induced anxiety-like behavior and enhanced reactivity of microglia was dependent on activation of β-adrenergic and IL-1 receptors.",
+          "title": "β-Adrenergic receptor antagonism prevents anxiety-like behavior and microglial reactivity induced by repeated social defeat.",
+          "bm25_score": 3.7950203544831473,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.7460684180259705,
+          "probabilities": {
+            "SUPPORTS": 0.034918300807476044,
+            "CONTRADICTS": 0.7460684180259705,
+            "NOT ENOUGH INFORMATION": 0.2190132886171341
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 2436602,
+          "title": "β-Adrenergic receptor antagonism prevents anxiety-like behavior and microglial reactivity induced by repeated social defeat.",
+          "bm25_score": 5.641445052653104,
+          "abstract_preview": "Psychosocial stress is associated with altered immune function and development of psychological disorders including anxiety and depression. Here we show that repeated social defeat in mice increased c-Fos staining in brain regions associated with fear and threat appraisal and pro..."
+        },
+        {
+          "doc_id": 17991818,
+          "title": "THE ORIGIN AND DIFFERENTIATION OF MICROGLIAL CELLS DURING DEVELOPMENT",
+          "bm25_score": 6.616954613298621,
+          "abstract_preview": "Some authors claim that microglia originate from the neuroepithelium, although most now believe that microglial cells are of mesodermal origin, and probably belong to the monocyte/macrophage cell line. These cells must enter the developing central nervous system (CNS) from the bl..."
+        },
+        {
+          "doc_id": 32101982,
+          "title": "Krüppel-like factor 2 (KLF2) regulates B-cell reactivity, subset differentiation, and trafficking molecule expression.",
+          "bm25_score": 0.0,
+          "abstract_preview": "The transcription factor Krüppel-like factor 2 (KLF2) is critical for normal trafficking of T lymphocytes, but its role in B cells is unclear. We report that B cell-specific KLF2 deficiency leads to decreased expression of the trafficking molecules CD62L and β7-integrin, yet expr..."
+        },
+        {
+          "doc_id": 16863359,
+          "title": "Inflammasome-induced IL-1β secretion in microglia is characterized by delayed kinetics and is only partially dependent on inflammatory caspases.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Inflammasomes are multiprotein complexes that link pathogen recognition and cellular stress to the processing of the proinflammatory cytokine interleukin-1β (IL-1β). Whereas inflammasome-mediated activation is heavily studied in hematopoietic macrophages and dendritic cells, much..."
+        },
+        {
+          "doc_id": 7221410,
+          "title": "Alzheimer’s Disease Risk Gene CD33 Inhibits Microglial Uptake of Amyloid Beta",
+          "bm25_score": 0.0,
+          "abstract_preview": "The transmembrane protein CD33 is a sialic acid-binding immunoglobulin-like lectin that regulates innate immunity but has no known functions in the brain. We have previously shown that the CD33 gene is a risk factor for Alzheimer's disease (AD). Here, we observed increased expres..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 143.9,
+      "error": null
+    },
+    {
+      "claim_id": 16,
+      "claim": "The alternative lengthening of telomeres mechanism allows certain cancer cells to maintain telomeres in the absence of active telomerase.",
+      "domain": "Molecular Biology / Oncology",
+      "claim_type": "nuanced",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": 213017,
+      "gold_sentence_indices": [
+        0
+      ],
+      "gold_evidence_sentences": [
+        "The alternative lengthening of telomeres (ALT) mechanism allows cancer cells to escape senescence and apoptosis in the absence of active telomerase."
+      ],
+      "verification_source": "Osterwald et al., Mol Cell Biol 2015 (PMID 26344565); Bryan et al., Nat Med 1997; Indexed Corpus Doc 213017",
+      "answerable_from_corpus": true,
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.9539090991020203,
+      "probabilities": {
+        "SUPPORTS": 0.9539090991020203,
+        "CONTRADICTS": 0.008315002545714378,
+        "NOT ENOUGH INFORMATION": 0.037775810807943344
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": true,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        213017,
+        7915836,
+        4899981,
+        12156187,
+        18639989
+      ],
+      "predicted_evidence_doc_ids": [
+        7915836
+      ],
+      "predicted_evidence_sentences": [
+        [
+          7915836,
+          1
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 213017,
+          "sentence_idx": 0,
+          "text": "The alternative lengthening of telomeres (ALT) mechanism allows cancer cells to escape senescence and apoptosis in the absence of active telomerase.",
+          "title": "PML induces compaction, TRF2 depletion and DNA damage signaling at telomeres and promotes their alternative lengthening.",
+          "bm25_score": 25.297762311083577,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.7659856677055359,
+          "probabilities": {
+            "SUPPORTS": 0.7659856677055359,
+            "CONTRADICTS": 0.09530983865261078,
+            "NOT ENOUGH INFORMATION": 0.13870449364185333
+          }
+        },
+        {
+          "doc_id": 7915836,
+          "sentence_idx": 1,
+          "text": "Some cancer cells cannot activate telomerase and use telomere homologous recombination (HR) to elongate telomeres, a mechanism termed alternative lengthening of telomeres (ALT).",
+          "title": "The SMC5/6 complex maintains telomere length in ALT cancer cells through SUMOylation of telomere-binding proteins",
+          "bm25_score": 12.51494853121979,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.9539090991020203,
+          "probabilities": {
+            "SUPPORTS": 0.9539090991020203,
+            "CONTRADICTS": 0.008315002545714378,
+            "NOT ENOUGH INFORMATION": 0.037775810807943344
+          }
+        },
+        {
+          "doc_id": 18639989,
+          "sentence_idx": 10,
+          "text": "In the absence of Swi1, telomere shortening is accompanied with an increased recruitment of Rad52 recombinase and more frequent amplification of telomere/subtelomeres, reminiscent of tumor cells that utilize the alternative lengthening of telomeres pathway (ALT) to maintain telomeres.",
+          "title": "Swi1Timeless Prevents Repeat Instability at Fission Yeast Telomeres",
+          "bm25_score": 13.331636244207289,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.9459308981895447,
+          "probabilities": {
+            "SUPPORTS": 0.9459308981895447,
+            "CONTRADICTS": 0.013877972960472107,
+            "NOT ENOUGH INFORMATION": 0.04019119217991829
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 213017,
+          "title": "PML induces compaction, TRF2 depletion and DNA damage signaling at telomeres and promotes their alternative lengthening.",
+          "bm25_score": 25.297762311083577,
+          "abstract_preview": "The alternative lengthening of telomeres (ALT) mechanism allows cancer cells to escape senescence and apoptosis in the absence of active telomerase. A characteristic feature of this pathway is the assembly of ALT-associated promyelocytic leukemia (PML) nuclear bodies (APBs) at te..."
+        },
+        {
+          "doc_id": 7915836,
+          "title": "The SMC5/6 complex maintains telomere length in ALT cancer cells through SUMOylation of telomere-binding proteins",
+          "bm25_score": 12.51494853121979,
+          "abstract_preview": "Most cancer cells activate telomerase to elongate telomeres and achieve unlimited replicative potential. Some cancer cells cannot activate telomerase and use telomere homologous recombination (HR) to elongate telomeres, a mechanism termed alternative lengthening of telomeres (ALT..."
+        },
+        {
+          "doc_id": 4899981,
+          "title": "Human cancer cells utilize mitotic DNA synthesis to resist replication stress at telomeres regardless of their telomere maintenance mechanism",
+          "bm25_score": 0.0,
+          "abstract_preview": "Telomeres resemble common fragile sites (CFSs) in that they are difficult-to-replicate and exhibit fragility in mitosis in response to DNA replication stress. At CFSs, this fragility is associated with a delay in the completion of DNA replication until early mitosis, whereupon ce..."
+        },
+        {
+          "doc_id": 12156187,
+          "title": "Rapid induction of Alternative Lengthening of Telomeres by depletion of the histone chaperone ASF1",
+          "bm25_score": 0.0,
+          "abstract_preview": "The mechanism of activation of the alternative lengthening of telomeres (ALT) pathway of mammalian chromosome-end maintenance has been unclear. We have now discovered that co-depletion of the histone chaperones ASF1a and ASF1b in human cells induced all hallmarks of ALT in both p..."
+        },
+        {
+          "doc_id": 18639989,
+          "title": "Swi1Timeless Prevents Repeat Instability at Fission Yeast Telomeres",
+          "bm25_score": 13.331636244207289,
+          "abstract_preview": "Genomic instability associated with DNA replication stress is linked to cancer and genetic pathologies in humans. If not properly regulated, replication stress, such as fork stalling and collapse, can be induced at natural replication impediments present throughout the genome. Th..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 174.57,
+      "error": null
+    },
+    {
+      "claim_id": 17,
+      "claim": "Active telomerase expression is strictly required for all human cancer cells to maintain telomere length.",
+      "domain": "Molecular Biology / Oncology",
+      "claim_type": "overly_broad",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": 213017,
+      "gold_sentence_indices": [
+        0
+      ],
+      "gold_evidence_sentences": [
+        "The alternative lengthening of telomeres (ALT) mechanism allows cancer cells to escape senescence and apoptosis in the absence of active telomerase."
+      ],
+      "verification_source": "Osterwald et al., Mol Cell Biol 2015 (PMID 26344565); Dunham et al., Nat Genet 2000; Indexed Corpus Doc 213017",
+      "answerable_from_corpus": true,
+      "predicted_label": "CONTRADICTS",
+      "confidence": 0.9587209820747375,
+      "probabilities": {
+        "SUPPORTS": 0.002732018241658807,
+        "CONTRADICTS": 0.9587209820747375,
+        "NOT ENOUGH INFORMATION": 0.03854698687791824
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": false,
+      "sentence_retrieved_gold": false,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        7915836,
+        1226452,
+        4411655,
+        28230867,
+        19255949
+      ],
+      "predicted_evidence_doc_ids": [
+        7915836
+      ],
+      "predicted_evidence_sentences": [
+        [
+          7915836,
+          1
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 7915836,
+          "sentence_idx": 3,
+          "text": "Here, we show that the SMC5/6 complex localizes to APBs in ALT cells and is required for targeting telomeres to APBs.",
+          "title": "The SMC5/6 complex maintains telomere length in ALT cancer cells through SUMOylation of telomere-binding proteins",
+          "bm25_score": 6.228164652247398,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9054220914840698,
+          "probabilities": {
+            "SUPPORTS": 0.07964048534631729,
+            "CONTRADICTS": 0.01493742037564516,
+            "NOT ENOUGH INFORMATION": 0.9054220914840698
+          }
+        },
+        {
+          "doc_id": 7915836,
+          "sentence_idx": 0,
+          "text": "Most cancer cells activate telomerase to elongate telomeres and achieve unlimited replicative potential.",
+          "title": "The SMC5/6 complex maintains telomere length in ALT cancer cells through SUMOylation of telomere-binding proteins",
+          "bm25_score": 6.17731532280575,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.8297580480575562,
+          "probabilities": {
+            "SUPPORTS": 0.08370855450630188,
+            "CONTRADICTS": 0.08653346449136734,
+            "NOT ENOUGH INFORMATION": 0.8297580480575562
+          }
+        },
+        {
+          "doc_id": 7915836,
+          "sentence_idx": 1,
+          "text": "Some cancer cells cannot activate telomerase and use telomere homologous recombination (HR) to elongate telomeres, a mechanism termed alternative lengthening of telomeres (ALT).",
+          "title": "The SMC5/6 complex maintains telomere length in ALT cancer cells through SUMOylation of telomere-binding proteins",
+          "bm25_score": 5.820012414638426,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.9587209820747375,
+          "probabilities": {
+            "SUPPORTS": 0.002732018241658807,
+            "CONTRADICTS": 0.9587209820747375,
+            "NOT ENOUGH INFORMATION": 0.03854698687791824
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 7915836,
+          "title": "The SMC5/6 complex maintains telomere length in ALT cancer cells through SUMOylation of telomere-binding proteins",
+          "bm25_score": 6.228164652247398,
+          "abstract_preview": "Most cancer cells activate telomerase to elongate telomeres and achieve unlimited replicative potential. Some cancer cells cannot activate telomerase and use telomere homologous recombination (HR) to elongate telomeres, a mechanism termed alternative lengthening of telomeres (ALT..."
+        },
+        {
+          "doc_id": 1226452,
+          "title": "hnRNP A1 associates with telomere ends and stimulates telomerase activity.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Telomerase is a ribonucleoprotein enzyme complex that reverse-transcribes an integral RNA template to add short DNA repeats to the 3'-ends of telomeres. G-quadruplex structure in a DNA substrate can block its extension by telomerase. We have found that hnRNP A1--which was previou..."
+        },
+        {
+          "doc_id": 4411655,
+          "title": "The yeast Pif1p helicase removes telomerase from telomeric DNA",
+          "bm25_score": 0.0,
+          "abstract_preview": "Telomeres are the physical ends of eukaryotic chromosomes. Genetic studies have established that the baker's yeast Pif1p DNA helicase is a negative regulator of telomerase, the specialized reverse transcriptase that maintains telomeric DNA, but the biochemical basis for this inhi..."
+        },
+        {
+          "doc_id": 28230867,
+          "title": "Detection and distribution patterns of telomerase activity in insects.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Telomeres of most insects consist of pentanucleotide (TTAGG)n repeats, although the repeats are absent in Diptera and some other insect species, where the telomere regions are perhaps maintained without telomerase. To understand various and unusual telomere formation in insects, ..."
+        },
+        {
+          "doc_id": 19255949,
+          "title": "Poly(A)-specific ribonuclease (PARN) mediates 3′-end maturation of the telomerase RNA component",
+          "bm25_score": 0.0,
+          "abstract_preview": "Mutations in the PARN gene (encoding poly(A)-specific ribonuclease) cause telomere diseases including familial idiopathic pulmonary fibrosis (IPF) and dyskeratosis congenita, but how PARN deficiency impairs telomere maintenance is unclear. Here, using somatic cells and induced pl..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 143.92,
+      "error": null
+    },
+    {
+      "claim_id": 18,
+      "claim": "Antibiotic treatment can disrupt intestinal commensal microbiota and increase vulnerability to Clostridium difficile infection.",
+      "domain": "Microbiology / Gastroenterology",
+      "claim_type": "straightforward",
+      "gold_label": "SUPPORTS",
+      "gold_doc_id": 4465735,
+      "gold_sentence_indices": [
+        1,
+        2
+      ],
+      "gold_evidence_sentences": [
+        "Many antibiotics destroy intestinal microbial communities and increase susceptibility to intestinal pathogens.",
+        "Among these, Clostridium difficile, a major cause of antibiotic-induced diarrhoea, greatly increases morbidity and mortality in hospitalized patients."
+      ],
+      "verification_source": "Buffie et al., Nature 2015 (PMID 25337874); Indexed Corpus Doc 4465735",
+      "answerable_from_corpus": true,
+      "predicted_label": "SUPPORTS",
+      "confidence": 0.968612790107727,
+      "probabilities": {
+        "SUPPORTS": 0.968612790107727,
+        "CONTRADICTS": 0.014469875954091549,
+        "NOT ENOUGH INFORMATION": 0.016917362809181213
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": true,
+      "sentence_retrieved_gold": false,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        4465735,
+        6372244,
+        2604063,
+        32454714,
+        14803797
+      ],
+      "predicted_evidence_doc_ids": [
+        6372244
+      ],
+      "predicted_evidence_sentences": [
+        [
+          6372244,
+          1
+        ]
+      ],
+      "evidence_details": [
+        {
+          "doc_id": 6372244,
+          "sentence_idx": 1,
+          "text": "Here we show that antibiotic treatment induces substantial changes in the gut microbial community and in the metabolome of mice susceptible to C. difficile infection.",
+          "title": "Antibiotic-induced shifts in the mouse gut microbiome and metabolome increase susceptibility to Clostridium difficile infection",
+          "bm25_score": 8.491192763198981,
+          "entailment_label": "SUPPORTS",
+          "confidence": 0.968612790107727,
+          "probabilities": {
+            "SUPPORTS": 0.968612790107727,
+            "CONTRADICTS": 0.014469875954091549,
+            "NOT ENOUGH INFORMATION": 0.016917362809181213
+          }
+        },
+        {
+          "doc_id": 6372244,
+          "sentence_idx": 0,
+          "text": "Antibiotics can have significant and long-lasting effects on the gastrointestinal tract microbiota, reducing colonization resistance against pathogens including Clostridium difficile.",
+          "title": "Antibiotic-induced shifts in the mouse gut microbiome and metabolome increase susceptibility to Clostridium difficile infection",
+          "bm25_score": 7.602120009630798,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.7818120718002319,
+          "probabilities": {
+            "SUPPORTS": 0.18707099556922913,
+            "CONTRADICTS": 0.7818120718002319,
+            "NOT ENOUGH INFORMATION": 0.031116964295506477
+          }
+        },
+        {
+          "doc_id": 4465735,
+          "sentence_idx": 6,
+          "text": "Using these platforms, we determine that Clostridium scindens, a bile acid 7α-dehydroxylating intestinal bacterium, is associated with resistance to C. difficile infection and, upon administration, enhances resistance to infection in a secondary bile acid dependent fashion.",
+          "title": "Precision microbiome reconstitution restores bile acid mediated resistance to Clostridium difficile",
+          "bm25_score": 6.9079277799593015,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.7043079137802124,
+          "probabilities": {
+            "SUPPORTS": 0.2192060798406601,
+            "CONTRADICTS": 0.7043079137802124,
+            "NOT ENOUGH INFORMATION": 0.0764860287308693
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 4465735,
+          "title": "Precision microbiome reconstitution restores bile acid mediated resistance to Clostridium difficile",
+          "bm25_score": 6.9079277799593015,
+          "abstract_preview": "The gastrointestinal tracts of mammals are colonized by hundreds of microbial species that contribute to health, including colonization resistance against intestinal pathogens. Many antibiotics destroy intestinal microbial communities and increase susceptibility to intestinal pat..."
+        },
+        {
+          "doc_id": 6372244,
+          "title": "Antibiotic-induced shifts in the mouse gut microbiome and metabolome increase susceptibility to Clostridium difficile infection",
+          "bm25_score": 8.491192763198981,
+          "abstract_preview": "Antibiotics can have significant and long-lasting effects on the gastrointestinal tract microbiota, reducing colonization resistance against pathogens including Clostridium difficile. Here we show that antibiotic treatment induces substantial changes in the gut microbial communit..."
+        },
+        {
+          "doc_id": 2604063,
+          "title": "The composition of the gut microbiota throughout life, with an emphasis on early life",
+          "bm25_score": 0.0,
+          "abstract_preview": "The intestinal microbiota has become a relevant aspect of human health. Microbial colonization runs in parallel with immune system maturation and plays a role in intestinal physiology and regulation. Increasing evidence on early microbial contact suggest that human intestinal mic..."
+        },
+        {
+          "doc_id": 32454714,
+          "title": "Role of gut commensal microflora in the development of experimental autoimmune encephalomyelitis.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Mucosal tolerance has been considered a potentially important pathway for the treatment of autoimmune disease, including human multiple sclerosis and experimental conditions such as experimental autoimmune encephalomyelitis (EAE). There is limited information on the capacity of c..."
+        },
+        {
+          "doc_id": 14803797,
+          "title": "Intestinal microbiota metabolism of L-carnitine, a nutrient in red meat, promotes atherosclerosis",
+          "bm25_score": 0.0,
+          "abstract_preview": "Intestinal microbiota metabolism of choline and phosphatidylcholine produces trimethylamine (TMA), which is further metabolized to a proatherogenic species, trimethylamine-N-oxide (TMAO). We demonstrate here that metabolism by intestinal microbiota of dietary L-carnitine, a trime..."
+        }
+      ],
+      "warning": null,
+      "explanation": null,
+      "latency_ms": 161.78,
+      "error": null
+    },
+    {
+      "claim_id": 19,
+      "claim": "High-dose oral vitamin C supplementation effectively cures established metastatic lung carcinoma in humans.",
+      "domain": "Medicine / Oncology",
+      "claim_type": "insufficient_evidence_unsubstantiated",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Moertel et al., NEJM 1985 (PMID 3880514); Jacobs et al., Cochrane Database Syst Rev 2015; NCI PDQ High-Dose Vitamin C Evidence Summary",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9858193397521973,
+      "probabilities": {
+        "SUPPORTS": 0.032683271914720535,
+        "CONTRADICTS": 0.4987454414367676,
+        "NOT ENOUGH INFORMATION": 0.4685712456703186
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        13312471,
+        12009265,
+        23868856,
+        3034412,
+        23267371
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 12009265,
+          "sentence_idx": 11,
+          "text": "Neither vitamin E nor vitamin C had a significant effect on colorectal, lung, or other site-specific cancers.",
+          "title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial.",
+          "bm25_score": 6.0056209655475286,
+          "entailment_label": "CONTRADICTS",
+          "confidence": 0.4987454414367676,
+          "probabilities": {
+            "SUPPORTS": 0.032683271914720535,
+            "CONTRADICTS": 0.4987454414367676,
+            "NOT ENOUGH INFORMATION": 0.4685712456703186
+          }
+        },
+        {
+          "doc_id": 13312471,
+          "sentence_idx": 3,
+          "text": "The aims of this study were to compare in patients with established osteoporosis and differing degrees of vitamin D and PTH status : (1) the presence of Mg deficiency using the standard Mg loading test (2) evaluate the effects of Mg loading on the calcium-PTH endocrine axis (3) determine the effects of oral, short term Mg supplementation on the calcium-PTH endocrine axis and bone turnover.",
+          "title": "Vitamin D insufficiency and the blunted PTH response in established osteoporosis: the role of magnesium deficiency",
+          "bm25_score": 4.399312759614423,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9475516080856323,
+          "probabilities": {
+            "SUPPORTS": 0.013156604953110218,
+            "CONTRADICTS": 0.039291780441999435,
+            "NOT ENOUGH INFORMATION": 0.9475516080856323
+          }
+        },
+        {
+          "doc_id": 13312471,
+          "sentence_idx": 1,
+          "text": "This further extends to patients with established osteoporosis.",
+          "title": "Vitamin D insufficiency and the blunted PTH response in established osteoporosis: the role of magnesium deficiency",
+          "bm25_score": 4.14228471364428,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9858193397521973,
+          "probabilities": {
+            "SUPPORTS": 0.003512647468596697,
+            "CONTRADICTS": 0.010668034665286541,
+            "NOT ENOUGH INFORMATION": 0.9858193397521973
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 13312471,
+          "title": "Vitamin D insufficiency and the blunted PTH response in established osteoporosis: the role of magnesium deficiency",
+          "bm25_score": 4.399312759614423,
+          "abstract_preview": "Vitamin D insufficiency is common, however within individuals, not all manifest the biochemical effects of PTH excess. This further extends to patients with established osteoporosis. The mechanism underlying the blunted PTH response is unclear but may be related to magnesium (Mg)..."
+        },
+        {
+          "doc_id": 12009265,
+          "title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial.",
+          "bm25_score": 6.0056209655475286,
+          "abstract_preview": "CONTEXT Many individuals take vitamins in the hopes of preventing chronic diseases such as cancer, and vitamins E and C are among the most common individual supplements. A large-scale randomized trial suggested that vitamin E may reduce risk of prostate cancer; however, few trial..."
+        },
+        {
+          "doc_id": 23868856,
+          "title": "Downregulation of Superoxide Dismutase Activity and Gene Expression in Cultured Rat Brain Astrocytes after Incubation with Vitamin C",
+          "bm25_score": 0.0,
+          "abstract_preview": "Reactive oxygen species have been linked with neuropathological changes in the central nervous system. Epidemiological studies supported the beneficial effect of supplementation of antioxidants. Superoxide dismutase (SOD) is an endogenous enzyme which can scavenge reactive oxygen..."
+        },
+        {
+          "doc_id": 3034412,
+          "title": "Calcium absorption varies within the reference range for serum 25-hydroxyvitamin D.",
+          "bm25_score": 0.0,
+          "abstract_preview": "BACKGROUND Calcium absorption is generally considered to be impaired under conditions of vitamin D deficiency, but the vitamin D status that fully normalizes absorption is not known for humans.   \n OBJECTIVE To quantify calcium absorption at two levels of vitamin D repletion, usi..."
+        },
+        {
+          "doc_id": 23267371,
+          "title": "Vitamin D: The \"sunshine\" vitamin.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Vitamin D insufficiency affects almost 50% of the population worldwide. An estimated 1 billion people worldwide, across all ethnicities and age groups, have a vitamin D deficiency (VDD). This pandemic of hypovitaminosis D can mainly be attributed to lifestyle (for example, reduce..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 196.87,
+      "error": null
+    },
+    {
+      "claim_id": 20,
+      "claim": "Routine whole-body MRI screening in asymptomatic young adults improves overall life expectancy.",
+      "domain": "Medicine / Epidemiology",
+      "claim_type": "insufficient_evidence_unsubstantiated",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "US Preventive Services Task Force (USPSTF) Screening Evidence Reviews; Schmidt et al., Lancet Oncol 2018; American College of Radiology Appropriateness Criteria",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9968211650848389,
+      "probabilities": {
+        "SUPPORTS": 0.002062760293483734,
+        "CONTRADICTS": 0.0011161231668666005,
+        "NOT ENOUGH INFORMATION": 0.9968211650848389
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        14823313,
+        74137632,
+        21232018,
+        13959707,
+        26341063
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 13959707,
+          "sentence_idx": 1,
+          "text": "Young children bear the brunt of the disease and though older children and adults suffer relatively fewer clinical attacks, they remain susceptible to asymptomatic P. falciparum infection.",
+          "title": "The Ratio of Monocytes to Lymphocytes in Peripheral Blood Correlates with Increased Susceptibility to Clinical Malaria in Kenyan Children",
+          "bm25_score": 7.1872783971207355,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9968211650848389,
+          "probabilities": {
+            "SUPPORTS": 0.002062760293483734,
+            "CONTRADICTS": 0.0011161231668666005,
+            "NOT ENOUGH INFORMATION": 0.9968211650848389
+          }
+        },
+        {
+          "doc_id": 14823313,
+          "sentence_idx": 4,
+          "text": "Female life expectancy in Poland deteriorated by 0.3 years, largely attributable to increasing circulatory mortality among the old, while in East German female rising death rates in children and young adults were nearly outbalanced by declining circulatory mortality among those over 70.",
+          "title": "Changing mortality patterns in East and West Germany and Poland. II: short-term trends during transition and in the 1990s.",
+          "bm25_score": 5.464115383376942,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9860826134681702,
+          "probabilities": {
+            "SUPPORTS": 0.0034443028271198273,
+            "CONTRADICTS": 0.01047308649867773,
+            "NOT ENOUGH INFORMATION": 0.9860826134681702
+          }
+        },
+        {
+          "doc_id": 14823313,
+          "sentence_idx": 6,
+          "text": "In East Germany and Poland, the overall improvement was largely attributable to falling mortality among men aged 40-64, while those over 65 contributed the largest proportion to life expectancy gains in women.",
+          "title": "Changing mortality patterns in East and West Germany and Poland. II: short-term trends during transition and in the 1990s.",
+          "bm25_score": 4.249043306892004,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9939857125282288,
+          "probabilities": {
+            "SUPPORTS": 0.005112385377287865,
+            "CONTRADICTS": 0.0009019121062010527,
+            "NOT ENOUGH INFORMATION": 0.9939857125282288
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 14823313,
+          "title": "Changing mortality patterns in East and West Germany and Poland. II: short-term trends during transition and in the 1990s.",
+          "bm25_score": 5.464115383376942,
+          "abstract_preview": "OBJECTIVES To examine trends in life expectancy at birth and age and cause specific patterns of mortality in the former German Democratic Republic (GDR) and Poland during political transition and throughout the 1990s in both parts of Germany and in Poland.   \n METHODS Decompositi..."
+        },
+        {
+          "doc_id": 74137632,
+          "title": "Rembrandt Scholz",
+          "bm25_score": 0.0,
+          "abstract_preview": "This paper examines the potential impact of changes in medical care on changing population health in Lithuania, Hungary and Romania, with west Germany included for comparison. We used the concept of deaths from certain causes that should not occur in the presence of timely and ef..."
+        },
+        {
+          "doc_id": 21232018,
+          "title": "Age of ovary determines remaining life expectancy in old ovariectomized mice.",
+          "bm25_score": 0.0,
+          "abstract_preview": "We investigated the capacity of young ovaries, transplanted into old ovariectomized CBA mice, to improve remaining life expectancy of the hosts. Donor females were sexually mature 2-month-olds; recipients were prepubertally ovariectomized at 3 weeks and received transplants at 5,..."
+        },
+        {
+          "doc_id": 13959707,
+          "title": "The Ratio of Monocytes to Lymphocytes in Peripheral Blood Correlates with Increased Susceptibility to Clinical Malaria in Kenyan Children",
+          "bm25_score": 7.1872783971207355,
+          "abstract_preview": "BACKGROUND Plasmodium falciparum malaria remains a major cause of illness and death in sub-Saharan Africa. Young children bear the brunt of the disease and though older children and adults suffer relatively fewer clinical attacks, they remain susceptible to asymptomatic P. falcip..."
+        },
+        {
+          "doc_id": 26341063,
+          "title": "Effect of enalapril on 12-year survival and life expectancy in patients with left ventricular systolic dysfunction: a follow-up study.",
+          "bm25_score": 0.0,
+          "abstract_preview": "BACKGROUND In the studies of left ventricular dysfunction (SOLVD), enalapril reduced mortality in patients with symptomatic but not asymptomatic left ventricular systolic dysfunction during the trial. We did a 12-year follow-up of SOLVD to establish if the mortality reduction wit..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 162.17,
+      "error": null
+    },
+    {
+      "claim_id": 21,
+      "claim": "Consuming moderate amounts of dark chocolate prevents the development of Alzheimer's disease.",
+      "domain": "Neuroscience / Nutrition",
+      "claim_type": "insufficient_evidence_speculative",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Alzheimer's Association Evidence Brief (2023); Rutledge et al., Cochrane Database Syst Rev 2017; While cocoa flavanols exhibit antioxidant properties in vitro, clinical human trials lack sufficient evidence to establish Alzheimer's prevention",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9959134459495544,
+      "probabilities": {
+        "SUPPORTS": 0.0031950941774994135,
+        "CONTRADICTS": 0.0029553456697613,
+        "NOT ENOUGH INFORMATION": 0.9938495755195618
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        24652030,
+        4459491,
+        8780599,
+        5293024,
+        45336190
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 4459491,
+          "sentence_idx": 10,
+          "text": "Our unique strategy for recapitulating Alzheimer’s disease pathology in a 3D neural cell culture model should also serve to facilitate the development of more precise human neural cell models of other neurodegenerative disorders.",
+          "title": "A three-dimensional human neural cell culture model of Alzheimer’s disease",
+          "bm25_score": 8.834563148169831,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9938495755195618,
+          "probabilities": {
+            "SUPPORTS": 0.0031950941774994135,
+            "CONTRADICTS": 0.0029553456697613,
+            "NOT ENOUGH INFORMATION": 0.9938495755195618
+          }
+        },
+        {
+          "doc_id": 8780599,
+          "sentence_idx": 3,
+          "text": "The evidence based recipe included wine, fish, dark chocolate, fruits, vegetables, garlic, and almonds.",
+          "title": "The Polymeal: a more natural, safer, and probably tastier (than the Polypill) strategy to reduce cardiovascular disease by more than 75%.",
+          "bm25_score": 8.344043685969226,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9951673746109009,
+          "probabilities": {
+            "SUPPORTS": 0.004251411650329828,
+            "CONTRADICTS": 0.0005812583840452135,
+            "NOT ENOUGH INFORMATION": 0.9951673746109009
+          }
+        },
+        {
+          "doc_id": 45336190,
+          "sentence_idx": 6,
+          "text": "Secondary outcome measures included the Alzheimer's Disease Assessment Scale cognitive subscale and the Alzheimer's Disease Cooperative Study Activities of Daily Living Scale.   \n",
+          "title": "Phase 2 safety trial targeting amyloid beta production with a gamma-secretase inhibitor in Alzheimer disease.",
+          "bm25_score": 8.32004937581057,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9959134459495544,
+          "probabilities": {
+            "SUPPORTS": 0.0021398691460490227,
+            "CONTRADICTS": 0.0019466894445940852,
+            "NOT ENOUGH INFORMATION": 0.9959134459495544
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 24652030,
+          "title": "Alzheimer’s disease and NGF signaling",
+          "bm25_score": 0.0,
+          "abstract_preview": "Age-related degeneration of basal forebrain cholinergic neurons (BFCNs) occurs early and contributes significantly to cognitive decline in Alzheimer’s disease (AD). Proper function and morphology of BFCNs depends on the supply of nerve growth factor (NGF) from the cortex and the ..."
+        },
+        {
+          "doc_id": 4459491,
+          "title": "A three-dimensional human neural cell culture model of Alzheimer’s disease",
+          "bm25_score": 8.834563148169831,
+          "abstract_preview": "Alzheimer’s disease is the most common form of dementia, characterized by two pathological hallmarks: amyloid-β plaques and neurofibrillary tangles. The amyloid hypothesis of Alzheimer’s disease posits that the excessive accumulation of amyloid-β peptide leads to neurofibrillary ..."
+        },
+        {
+          "doc_id": 8780599,
+          "title": "The Polymeal: a more natural, safer, and probably tastier (than the Polypill) strategy to reduce cardiovascular disease by more than 75%.",
+          "bm25_score": 8.344043685969226,
+          "abstract_preview": "OBJECTIVE Although the Polypill concept (proposed in 2003) is promising in terms of benefits for cardiovascular risk management, the potential costs and adverse effects are its main pitfalls. The objective of this study was to identify a tastier and safer alternative to the Polyp..."
+        },
+        {
+          "doc_id": 5293024,
+          "title": "Life is sweet: candy consumption and longevity.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Our attitude towards candy—“if it tastes that good, it can't be healthy”—betrays society's puritanical stance towards pleasure. Candy has been blamed for various ills, including hyperactivity in children; however, clinical trials have not supported this.1  Candy—sugar confectione..."
+        },
+        {
+          "doc_id": 45336190,
+          "title": "Phase 2 safety trial targeting amyloid beta production with a gamma-secretase inhibitor in Alzheimer disease.",
+          "bm25_score": 8.32004937581057,
+          "abstract_preview": "OBJECTIVE To evaluate the safety, tolerability, and amyloid beta (Abeta) response to the gamma-secretase inhibitor LY450139 in Alzheimer disease.   \n DESIGN Multicenter, randomized, double-blind, dose-escalation, placebo-controlled trial.   \n SETTING Community-based clinical rese..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 159.79,
+      "error": null
+    },
+    {
+      "claim_id": 22,
+      "claim": "Extracellular vesicles isolated from plant fluids cross the human blood-brain barrier to reverse neurodegeneration.",
+      "domain": "Neuroscience / Pharmacology / Nanomedicine",
+      "claim_type": "difficult_retrieval_unindexed",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "van Niel et al., Nat Rev Mol Cell Biol 2018 (PMID 29339798); Exploratory preclinical hypothesis lacking verified clinical proof or systematic human trial evidence",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9711459279060364,
+      "probabilities": {
+        "SUPPORTS": 0.03441137820482254,
+        "CONTRADICTS": 0.0026543999556452036,
+        "NOT ENOUGH INFORMATION": 0.9629341959953308
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        7764903,
+        14692646,
+        3588621,
+        27602752,
+        14753395
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 7764903,
+          "sentence_idx": 7,
+          "text": "Because vesicles may pass the blood-brain barrier, they can perhaps even be considered naturally occurring liposomes.",
+          "title": "Classification, functions, and clinical relevance of extracellular vesicles.",
+          "bm25_score": 5.859033400508885,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9629341959953308,
+          "probabilities": {
+            "SUPPORTS": 0.03441137820482254,
+            "CONTRADICTS": 0.0026543999556452036,
+            "NOT ENOUGH INFORMATION": 0.9629341959953308
+          }
+        },
+        {
+          "doc_id": 14753395,
+          "sentence_idx": 1,
+          "text": "Cells at three key interfaces form barriers between the blood and the CNS: the blood-brain barrier (BBB), blood-CSF barrier and the arachnoid barrier.",
+          "title": "Structure and function of the blood–brain barrier",
+          "bm25_score": 6.852379728489046,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9711459279060364,
+          "probabilities": {
+            "SUPPORTS": 0.012997468002140522,
+            "CONTRADICTS": 0.015856606885790825,
+            "NOT ENOUGH INFORMATION": 0.9711459279060364
+          }
+        },
+        {
+          "doc_id": 14692646,
+          "sentence_idx": 1,
+          "text": "Most, if not all, cell types release extracellular vesicles, which then enter the bodily fluids.",
+          "title": "Regulation of immune responses by extracellular vesicles",
+          "bm25_score": 5.519621409550314,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9529659748077393,
+          "probabilities": {
+            "SUPPORTS": 0.03863217681646347,
+            "CONTRADICTS": 0.008401806466281414,
+            "NOT ENOUGH INFORMATION": 0.9529659748077393
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 7764903,
+          "title": "Classification, functions, and clinical relevance of extracellular vesicles.",
+          "bm25_score": 5.859033400508885,
+          "abstract_preview": "Both eukaryotic and prokaryotic cells release small, phospholipid-enclosed vesicles into their environment. Why do cells release vesicles? Initial studies showed that eukaryotic vesicles are used to remove obsolete cellular molecules. Although this release of vesicles is benefici..."
+        },
+        {
+          "doc_id": 14692646,
+          "title": "Regulation of immune responses by extracellular vesicles",
+          "bm25_score": 5.519621409550314,
+          "abstract_preview": "Extracellular vesicles, including exosomes, are small membrane vesicles derived from multivesicular bodies or from the plasma membrane. Most, if not all, cell types release extracellular vesicles, which then enter the bodily fluids. These vesicles contain a subset of proteins, li..."
+        },
+        {
+          "doc_id": 3588621,
+          "title": "Extracellular vesicle isolation and characterization: toward clinical application.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Two broad categories of extracellular vesicles (EVs), exosomes and shed microvesicles (sMVs), which differ in size distribution as well as protein and RNA profiles, have been described. EVs are known to play key roles in cell-cell communication, acting proximally as well as syste..."
+        },
+        {
+          "doc_id": 27602752,
+          "title": "CCL2/monocyte chemoattractant protein-1 mediates enhanced transmigration of human immunodeficiency virus (HIV)-infected leukocytes across the blood-brain barrier: a potential mechanism of HIV-CNS invasion and NeuroAIDS.",
+          "bm25_score": 0.0,
+          "abstract_preview": "Encephalitis and dementia associated with acquired immunodeficiency syndrome (AIDS) are characterized by leukocyte infiltration into the CNS, microglia activation, aberrant chemokine expression, blood-brain barrier (BBB) disruption, and eventual loss of neurons. Little is known a..."
+        },
+        {
+          "doc_id": 14753395,
+          "title": "Structure and function of the blood–brain barrier",
+          "bm25_score": 6.852379728489046,
+          "abstract_preview": "Neural signalling within the central nervous system (CNS) requires a highly controlled microenvironment. Cells at three key interfaces form barriers between the blood and the CNS: the blood-brain barrier (BBB), blood-CSF barrier and the arachnoid barrier. The BBB at the level of ..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 153.26,
+      "error": null
+    },
+    {
+      "claim_id": 23,
+      "claim": "Regular mindfulness meditation practice completely eliminates cerebral cortex atrophy during aging.",
+      "domain": "Neuroscience / Gerontology",
+      "claim_type": "overly_broad",
+      "gold_label": "CONTRADICTS",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Fjell et al., Ann NY Acad Sci 2014 (PMID 24697728); Luders et al., Front Aging Neurosci 2015; Normal human cortical senescence involves inevitable loss of gray matter volume, synaptic density, and glial structure that meditation cannot completely eliminate",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9976668357849121,
+      "probabilities": {
+        "SUPPORTS": 0.0048264735378324986,
+        "CONTRADICTS": 0.00911632925271988,
+        "NOT ENOUGH INFORMATION": 0.9860571622848511
+      },
+      "is_correct": false,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": "Claim outside the dataset's subject coverage",
+      "retrieved_candidate_doc_ids": [
+        17973630,
+        4679264,
+        10605189,
+        9796495,
+        5503194
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 17973630,
+          "sentence_idx": 2,
+          "text": "OBJECTIVE To determine the efficacy of a mind-body medicine intervention, called mindfulness meditation, to promote sleep quality in older adults with moderate sleep disturbances.   \n",
+          "title": "Mindfulness meditation and improvement in sleep quality and daytime impairment among older adults with sleep disturbances: a randomized clinical trial.",
+          "bm25_score": 6.81794543707777,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9860571622848511,
+          "probabilities": {
+            "SUPPORTS": 0.0048264735378324986,
+            "CONTRADICTS": 0.00911632925271988,
+            "NOT ENOUGH INFORMATION": 0.9860571622848511
+          }
+        },
+        {
+          "doc_id": 4679264,
+          "sentence_idx": 0,
+          "text": "The role of DNA cytosine methylation, an epigenetic regulator of chromatin structure and function, during normal and pathological brain development and aging remains unclear.",
+          "title": "DNA Methylation in the Human Cerebral Cortex Is Dynamically Regulated throughout the Life Span and Involves Differentiated Neurons",
+          "bm25_score": 5.566146619834722,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9954999089241028,
+          "probabilities": {
+            "SUPPORTS": 0.00033433575299568474,
+            "CONTRADICTS": 0.00416575139388442,
+            "NOT ENOUGH INFORMATION": 0.9954999089241028
+          }
+        },
+        {
+          "doc_id": 10605189,
+          "sentence_idx": 0,
+          "text": "The mammalian cerebral cortex is responsible for the highest levels of associative, cognitive and motor functions.",
+          "title": "Cerebral cortex assembly: generating and reprogramming projection neuron diversity",
+          "bm25_score": 3.374083045130873,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9976668357849121,
+          "probabilities": {
+            "SUPPORTS": 0.001532896189019084,
+            "CONTRADICTS": 0.0008003079565241933,
+            "NOT ENOUGH INFORMATION": 0.9976668357849121
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 17973630,
+          "title": "Mindfulness meditation and improvement in sleep quality and daytime impairment among older adults with sleep disturbances: a randomized clinical trial.",
+          "bm25_score": 6.81794543707777,
+          "abstract_preview": "IMPORTANCE Sleep disturbances are most prevalent among older adults and often go untreated. Treatment options for sleep disturbances remain limited, and there is a need for community-accessible programs that can improve sleep.   \n OBJECTIVE To determine the efficacy of a mind-bod..."
+        },
+        {
+          "doc_id": 4679264,
+          "title": "DNA Methylation in the Human Cerebral Cortex Is Dynamically Regulated throughout the Life Span and Involves Differentiated Neurons",
+          "bm25_score": 5.566146619834722,
+          "abstract_preview": "The role of DNA cytosine methylation, an epigenetic regulator of chromatin structure and function, during normal and pathological brain development and aging remains unclear. Here, we examined by MethyLight PCR the DNA methylation status at 50 loci, encompassing primarily 5′ CpG ..."
+        },
+        {
+          "doc_id": 10605189,
+          "title": "Cerebral cortex assembly: generating and reprogramming projection neuron diversity",
+          "bm25_score": 3.374083045130873,
+          "abstract_preview": "The mammalian cerebral cortex is responsible for the highest levels of associative, cognitive and motor functions. In the central nervous system (CNS) the cortex stands as a prime example of extreme neuronal diversity, broadly classified into excitatory projection neurons (PNs) a..."
+        },
+        {
+          "doc_id": 9796495,
+          "title": "Updated energy budgets for neural computation in the neocortex and cerebellum.",
+          "bm25_score": 0.0,
+          "abstract_preview": "The brain's energy supply determines its information processing power, and generates functional imaging signals. The energy use on the different subcellular processes underlying neural information processing has been estimated previously for the grey matter of the cerebral and ce..."
+        },
+        {
+          "doc_id": 5503194,
+          "title": "alphaE-catenin controls cerebral cortical size by regulating the hedgehog signaling pathway.",
+          "bm25_score": 0.0,
+          "abstract_preview": "During development, cells monitor and adjust their rates of accumulation to produce organs of predetermined size. We show here that central nervous system-specific deletion of the essential adherens junction gene, alphaE-catenin, causes abnormal activation of the hedgehog pathway..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 129.66,
+      "error": null
+    },
+    {
+      "claim_id": 24,
+      "claim": "Specific maternal dietary microbiome alterations during the first trimester can completely eradicate childhood asthma risk.",
+      "domain": "Microbiology / Pediatrics / Immunology",
+      "claim_type": "insufficient_evidence_overly_broad",
+      "gold_label": "NOT ENOUGH INFORMATION",
+      "gold_doc_id": null,
+      "gold_sentence_indices": [],
+      "gold_evidence_sentences": [],
+      "verification_source": "Vael et al., Lancet 2011; GINA Global Strategy for Asthma Management and Prevention 2023; Childhood asthma has multifactorial genetic and environmental etiology; complete risk eradication via maternal dietary microbiome alterations is unevidenced",
+      "answerable_from_corpus": false,
+      "predicted_label": "NOT ENOUGH INFORMATION",
+      "confidence": 0.9853616952896118,
+      "probabilities": {
+        "SUPPORTS": 0.01844959706068039,
+        "CONTRADICTS": 0.08614660054445267,
+        "NOT ENOUGH INFORMATION": 0.8954037427902222
+      },
+      "is_correct": true,
+      "doc_retrieved_gold": null,
+      "sentence_retrieved_gold": null,
+      "failure_category": null,
+      "retrieved_candidate_doc_ids": [
+        24269361,
+        33740844,
+        356218,
+        11360768,
+        20148808
+      ],
+      "predicted_evidence_doc_ids": [],
+      "predicted_evidence_sentences": [],
+      "evidence_details": [
+        {
+          "doc_id": 33740844,
+          "sentence_idx": 5,
+          "text": "The available data indicate the importance of women's nutrition prior to and during the first trimester of pregnancy, but there is a need for well-designed prospective studies and controlled trials in developing country settings that examine relationships with low birthweight, SGA, PTD, stillbirth and maternal and neonatal mortality.",
+          "title": "Effect of women's nutrition before and during early pregnancy on maternal and infant outcomes: a systematic review.",
+          "bm25_score": 6.534901368394121,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.8954037427902222,
+          "probabilities": {
+            "SUPPORTS": 0.01844959706068039,
+            "CONTRADICTS": 0.08614660054445267,
+            "NOT ENOUGH INFORMATION": 0.8954037427902222
+          }
+        },
+        {
+          "doc_id": 24269361,
+          "sentence_idx": 13,
+          "text": "It is not clear whether fish oil can be used to treat children with asthma as the two studies conducted to date give divergent results.",
+          "title": "Atopy risk in infants and children in relation to early exposure to fish, oily fish, or long-chain omega-3 fatty acids: a systematic review.",
+          "bm25_score": 6.12329024740276,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.9853616952896118,
+          "probabilities": {
+            "SUPPORTS": 0.001846405561082065,
+            "CONTRADICTS": 0.01279185526072979,
+            "NOT ENOUGH INFORMATION": 0.9853616952896118
+          }
+        },
+        {
+          "doc_id": 24269361,
+          "sentence_idx": 8,
+          "text": "Fish oil supplementation during pregnancy and lactation or during infancy or childhood results in a higher n-3 PUFA status in the infants or children.",
+          "title": "Atopy risk in infants and children in relation to early exposure to fish, oily fish, or long-chain omega-3 fatty acids: a systematic review.",
+          "bm25_score": 5.696536663549703,
+          "entailment_label": "NOT ENOUGH INFORMATION",
+          "confidence": 0.7442671060562134,
+          "probabilities": {
+            "SUPPORTS": 0.05906007066369057,
+            "CONTRADICTS": 0.19667276740074158,
+            "NOT ENOUGH INFORMATION": 0.7442671060562134
+          }
+        }
+      ],
+      "retrieved_papers": [
+        {
+          "doc_id": 24269361,
+          "title": "Atopy risk in infants and children in relation to early exposure to fish, oily fish, or long-chain omega-3 fatty acids: a systematic review.",
+          "bm25_score": 6.12329024740276,
+          "abstract_preview": "There are two main families of polyunsaturated fatty acids (PUFAs), the n-6 and the n-3 families. It has been suggested that there is a causal relationship between n-6 PUFA intake and allergic disease, and there are biologically plausible mechanisms, involving eicosanoid mediator..."
+        },
+        {
+          "doc_id": 33740844,
+          "title": "Effect of women's nutrition before and during early pregnancy on maternal and infant outcomes: a systematic review.",
+          "bm25_score": 6.534901368394121,
+          "abstract_preview": "Current understanding of biologic processes indicates that women's nutritional status before and during early pregnancy may play an important role in determining early developmental processes and ensuring successful pregnancy outcomes. We conducted a systematic review of the evid..."
+        },
+        {
+          "doc_id": 356218,
+          "title": "Outcome of pregnancy in women with moderate or severe renal insufficiency.",
+          "bm25_score": 0.0,
+          "abstract_preview": "BACKGROUND Pregnant women with mild preexisting renal disease have relatively few complications of pregnancy, but the risks of maternal and obstetrical complications in women with moderate or severe renal insufficiency remain uncertain.   \n METHODS We determined the frequency and..."
+        },
+        {
+          "doc_id": 11360768,
+          "title": "Effects of interventions in pregnancy on maternal weight and obstetric outcomes: meta-analysis of randomised evidence",
+          "bm25_score": 0.0,
+          "abstract_preview": "OBJECTIVE To evaluate the effects of dietary and lifestyle interventions in pregnancy on maternal and fetal weight and to quantify the effects of these interventions on obstetric outcomes.   \n DESIGN Systematic review and meta-analysis.   \n DATA SOURCES Major databases from incep..."
+        },
+        {
+          "doc_id": 20148808,
+          "title": "Microbiome-driven allergic lung inflammation is ameliorated by short-chain fatty acids",
+          "bm25_score": 0.0,
+          "abstract_preview": "The mammalian gastrointestinal tract harbors a microbial community with metabolic activity critical for host health, including metabolites that can modulate effector functions of immune cells. Mice treated with vancomycin have an altered microbiome and metabolite profile, exhibit..."
+        }
+      ],
+      "warning": "Insufficient conclusive evidence found in corpus. Neither high-confidence supporting nor contradicting evidence could be validated.",
+      "explanation": null,
+      "latency_ms": 178.4,
+      "error": null
+    }
+  ]
+}

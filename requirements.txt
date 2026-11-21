@@ -1,0 +1,27 @@
+# ResearchMap Dependencies
+# PyTorch for neural inference
+torch>=2.2.0
+
+# Hugging Face Transformers for NLI Cross-Encoder model
+transformers>=4.40.0
+
+# BM25 Lexical Retrieval for candidate evidence selection
+rank-bm25>=0.2.2
+
+# Metrics and Evaluation (Macro-F1, Confusion Matrix, Classification Report)
+scikit-learn>=1.4.0
+
+# Testing Framework
+pytest>=8.0.0
+
+# Environment Configuration
+python-dotenv>=1.0.0
+
+# Progress Tracking
+tqdm>=4.66.0
+
+# Backend Web API (Phase 3)
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic>=2.0.0
+httpx>=0.27.0

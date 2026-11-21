@@ -7,26 +7,25 @@
 
 ---
 
-## Phase 2: Leakage-Safe Fine-Tuning & Fair Evaluation
+## Production Pipeline Overview (Configuration C)
 
-In Phase 2, we conducted an audit of the evaluation protocol, established an airtight leakage-safe partitioning scheme, and fine-tuned a compact scientific sequence classifier (`cross-encoder/nli-deberta-v3-small`, 44M parameters) on SciFact claim-evidence pairs. We evaluated the fine-tuned checkpoint against the zero-shot baseline on the **exact same 300 held-out claims** of the official SciFact development set.
+The active production pipeline couples lexical BM25 retrieval with a domain-adapted sequence classification cross-encoder:
 
-### Architecture Overview
 ```
                          [ Scientific Claim ]
                                   │
                                   ▼
                      ┌─────────────────────────┐
-                     │ BM25 Lexical Retrieval  │ (Abstract-level Top-5 &
-                     │     (rank-bm25)         │  Sentence-level Top-3)
+                     │ BM25 Lexical Retrieval  │ (Abstract-level Top-10 &
+                     │   (Configuration C)     │  Sentence-level Top-4, Doc Weight: 0.35)
                      └────────────┬────────────┘
-                                  │ Candidate Evidence Sentences
+                                  │ Candidate Evidence Sentences (Max 2/Doc)
                                   ▼
                      ┌─────────────────────────┐
                      │  Fine-Tuned Scientific  │ (cross-encoder/nli-deberta-v3-small
-                     │  NLI Cross-Encoder      │  Fine-Tuned on SciFact Pairs)
+                     │  NLI Cross-Encoder      │  Active Checkpoint: models/finetuned_nli)
                      └────────────┬────────────┘
-                                  │ Calibrated In-Domain Probabilities
+                                  │ Softmax Entailment Probabilities
                                   ▼
                    ┌──────────────────────────────┐
                    │ Evidence-Grounded Decision:  │
@@ -34,6 +33,16 @@ In Phase 2, we conducted an audit of the evaluation protocol, established an air
                    │ + Traceable Cited Evidence   │
                    └──────────────────────────────┘
 ```
+
+### Production Components & Configuration:
+- **Corpus**: 5,183 peer-reviewed biomedical abstracts from the SciFact corpus (`data/raw/corpus.jsonl`).
+- **Retrieval Engine**: BM25Okapi with lowercase regex tokenization (`backend/retrieval.py`).
+- **Sentence Scoring**: Configuration C combines sentence-level BM25 with parent document relevance:
+  $$\text{Score}(s) = \text{BM25}(s, q) + 0.35 \cdot \text{BM25}(d, q)$$
+  Sentences are capped at a maximum of 2 per candidate document to prevent distractor displacement.
+- **Active NLI Model**: `models/finetuned_nli` (fine-tuned 3 epochs on SciFact claim-evidence pairs, 44M parameters).
+- **Probability Output**: Standard uncalibrated softmax entailment probabilities $[P_{\text{CON}}, P_{\text{SUP}}, P_{\text{NEI}}]$ summing to 1.0 (probability calibration was explored under isolated Phase 4 research).
+- **Decision Thresholds**: Symmetric $\tau_{\text{SUP}} = 0.50, \tau_{\text{CON}} = 0.50$ with default abstention to `NOT ENOUGH INFORMATION`.
 
 ---
 
@@ -43,47 +52,55 @@ In Phase 2, we conducted an audit of the evaluation protocol, established an air
 ResearchMap/
 ├── backend/
 │   ├── __init__.py           # Package marker
-│   ├── config.py             # Configurable relative paths and thresholds
+│   ├── config.py             # Configurable relative paths and Configuration C settings
 │   ├── data_loader.py        # SciFact JSONL loaders, label normalization, split statistics
 │   ├── dataset_builder.py    # Semantic pair construction (multi-sentence & distractor safety)
 │   ├── retrieval.py          # BM25Okapi document and sentence lexical retrieval
-│   ├── entailment.py         # NLI Cross-Encoder inference wrapper (supports local checkpoints)
+│   ├── entailment.py         # NLI Cross-Encoder inference wrapper (dynamic id2label mapping)
 │   ├── trainer.py            # PyTorch training loop, dynamic padding, checkpointing
 │   ├── pipeline.py           # End-to-end claim verification pipeline
-│   └── evaluation.py         # Macro-F1, Recall@K, Sentence Evidence P/R/F1, confusion matrix
+│   ├── evaluation.py         # Macro-F1, Recall@K, Sentence Evidence P/R/F1, confusion matrix
+│   └── server.py             # FastAPI REST API (startup lifespan, health, verify, paper, metrics)
 ├── scripts/
 │   ├── download_scifact.py   # Downloads & extracts official SciFact release
 │   ├── prepare_splits.py     # Leakage-safe partitioning (training claims only)
 │   ├── train.py              # Model fine-tuning CLI
 │   ├── evaluate_baseline.py  # Repeatable benchmark evaluation runner
 │   ├── compare_models.py     # Fair side-by-side model comparison runner
-│   └── run_baseline.py       # Single-claim ad-hoc verification via CLI
+│   ├── run_baseline.py       # Single-claim ad-hoc verification via CLI
+│   └── experimental/         # Isolated experimental research scripts (Phases 1–6A)
 ├── tests/
 │   ├── __init__.py
+│   ├── test_api.py           # Tests FastAPI endpoints, validation, error handling
 │   ├── test_data_loader.py   # Tests label parsing, evidence extraction, split stats
 │   ├── test_retrieval.py     # Tests BM25 indexing, empty queries, sentence ranking
-│   ├── test_entailment.py    # Tests mock NLI decision logic and thresholds
+│   ├── test_entailment.py    # Tests NLI decision logic, thresholds, dynamic mapping
 │   ├── test_evaluation.py    # Tests F1, recall, precision, and matrix calculations
-│   └── test_phase2.py        # Tests leakage audit, distractor safety, checkpoint save/reload
+│   ├── test_phase2.py        # Tests leakage audit, distractor safety, checkpoint reload
+│   ├── test_experimental_entity_grounding.py # Tests 15 scientific entity grounding rules
+│   ├── test_experimental_numerical.py        # Tests numerical comparison rules
+│   └── test_regression_phase4.py             # Tests Phase 4 regression safety
 ├── data/
 │   ├── raw/                  # Official SciFact release files (corpus, claims_train, claims_dev, claims_test)
-│   └── processed/            # Leakage-safe partitions & metadata (train_partition, val_internal, dev_heldout)
+│   ├── processed/            # Leakage-safe partitions (train_partition, val_internal, dev_heldout)
+│   └── experimental/         # Research datasets (hard_negative_pairs, challenge_set, corpus_expanded_10k)
 ├── models/
-│   └── finetuned_nli/        # Fine-tuned model checkpoint (safetensors, config, tokenizer)
+│   ├── finetuned_nli/        # Active production model checkpoint (safetensors, config, tokenizer)
+│   ├── finetuned_epoch1/     # Intermediate epoch 1 checkpoint
+│   ├── experimental_augmented_nli/   # Phase 3 augmented research checkpoint
+│   └── experimental_calibrated_nli/  # Phase 4 class-balanced loss weighting research checkpoint
 ├── reports/                  # Benchmark reports, metrics JSON, and predictions JSONL
-│   ├── model_comparison_report.md
-│   ├── model_comparison_metrics.json
-│   ├── baseline_dev_evaluation_report.md
-│   └── baseline_dev_metrics.json
-├── frontend/                 # Scaffolding for future React + Vite website
+├── experiments/              # Comprehensive research reports (Phases 1, 2, 3, 4, 5A, 5B, 6A, Audit)
+├── frontend/                 # Interactive React 18 + Vite 6 web application
 │   ├── package.json
 │   ├── vite.config.js
 │   ├── index.html
 │   └── src/
+│       ├── App.jsx           # Root layout and tab management
+│       └── components/       # UI components (EvidenceGraph, VerdictCard, Navbar, etc.)
 ├── requirements.txt          # Python dependencies with pinned versions
-├── .env.example              # Template environment configuration
-├── .env                      # Local environment configuration
-├── .gitignore                # Git exclusions (caches, virtualenvs, weights)
+├── .env.example              # Template environment configuration (copy to .env; .env contains local settings and is untracked)
+├── .gitignore                # Git exclusions (caches, virtualenvs, weights, local .env)
 └── README.md                 # Complete project documentation
 ```
 
@@ -105,12 +122,22 @@ In standard SciFact releases, the official test set (`claims_test.jsonl`) labels
 
 ## Environment Setup & Reproduction (PowerShell)
 
+> [!NOTE]
+> **Model Weights Note**: Binary model checkpoint weights (`model.safetensors`, ~541 MB each) are excluded from the Git repository due to GitHub file-size limits.
+> - **Production Checkpoint Setup**: Follow Step 3 below to fine-tune the production checkpoint locally (`models/finetuned_nli`).
+> - **Base-Model Fallback**: If you skip training, the backend automatically falls back to downloading the base pretrained model (`cross-encoder/nli-deberta-v3-small`) from Hugging Face on demand. All core pipeline components remain fully operational, and tests that specifically validate fine-tuned checkpoint files will gracefully skip.
+
 ### 1. Setup Virtual Environment & Dependencies
 ```powershell
 # From the ResearchMap root directory:
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+
+# Install frontend dependencies:
+cd frontend
+npm install
+cd ..
 ```
 
 ### 2. Download Dataset & Prepare Leakage-Safe Partitions
@@ -118,16 +145,24 @@ pip install -r requirements.txt
 python scripts\download_scifact.py
 python scripts\prepare_splits.py
 ```
+*Note: Raw SciFact abstracts (`corpus.jsonl`, 8.3 MB) and raw annotations are excluded from the repository to maintain a minimal clone footprint (< 3 MB). Running `download_scifact.py` fetches the official release directly from AWS S3, and `prepare_splits.py` compiles the stratified splits into `data/processed/`.*
 
-### 3. Run All Automated Unit Tests (20 Tests)
+*(Optional) If reproducing experimental dense/hybrid retrieval benchmarks (Phases 5A & 5B), regenerate the excluded embedding cache (16.6 MB `.npy` matrix) via:*
 ```powershell
-pytest -v
+python scripts\experimental\build_dense_cache.py
 ```
 
-### 4. Fine-Tune the Scientific NLI Model
+### 3. Fine-Tune the Production Scientific NLI Model
 ```powershell
-python scripts\train.py --epochs 3 --batch-size 8 --lr 2e-5 --output-dir models/finetuned_nli
+python scripts\train.py --model cross-encoder/nli-deberta-v3-small --epochs 3 --batch-size 8 --lr 2e-5 --output-dir models/finetuned_nli
 ```
+*Reproduces the training procedure on leakage-safe SciFact pairs using the fixed random seed (42) and outputs the fine-tuned checkpoint to `models/finetuned_nli`. (Note: Due to floating-point nondeterminism across different GPU architectures and CUDA/PyTorch runtime kernels, local training reproduces the model training procedure and benchmark performance profile rather than bit-for-bit identical binary tensor weights). Once generated, the FastAPI server will automatically prioritize this local checkpoint.*
+
+### 4. Run Automated Test Suite
+```powershell
+.\.venv\Scripts\pytest -v
+```
+*Executes all unit, integration, and regression tests. All 60 tests pass when the fine-tuned checkpoint is present. On fresh clones before running Step 3, 57 tests pass and 3 checkpoint-dependent tests skip gracefully with clear explanations.*
 
 ### 5. Run Fair Side-by-Side Model Comparison Benchmark
 ```powershell
@@ -185,19 +220,12 @@ Evaluated on the **exact same 300 held-out claims** of the official SciFact deve
 1. Correctly identified `SUPPORTS` claims doubled from 40 to **81** (recall jumped from 32.3% to 65.3%).
 2. Misclassification of neutral (`NEI`) claims as `CONTRADICTS` dropped by more than half (from 49 down to 21).
 3. Fine-tuning resolved the severe out-of-domain contradiction bias inherent in general NLI models.
----
-
-## Limitations Identified & Future Roadmap
-
-1. **Retriever Bottleneck**: Lexical BM25 achieves 92.55% Recall@10, meaning ~7.5% of claims with evidence are missed before verification begins. Introducing a dense bi-encoder (e.g. `allenai/specter2`) will bridge this gap.
-2. **Joint Document-Level Reasoning**: While sentence evidence F1 improved from 0.1875 to 0.2541, joint multi-sentence reasoning across paragraphs remains an area for architecture enhancement.
-3. **Threshold Calibration**: The current pipeline uses symmetric 0.50 thresholds. Learning per-class decision boundaries on `val_internal.jsonl` will yield further precision improvements.
 
 ---
 
-## Phase 3: Working Web Application
+## Interactive Web Application
 
-In Phase 3, we built an academic research-evidence explorer web application that connects the existing fine-tuned model checkpoint (`models/finetuned_nli`) and BM25 retrieval index to an interactive React + Vite frontend.
+The interactive web application connects the active fine-tuned checkpoint (`models/finetuned_nli`) and BM25 index to a modern React 18 frontend:
 
 ### Architecture & System Design
 ```
@@ -206,7 +234,7 @@ In Phase 3, we built an academic research-evidence explorer web application that
        │  (Port 3000 — Dark Navy Academic Aesthetic & UI)       │
        │                                                        │
        │  • Claim Input & SciFact Real Samples Chips            │
-       │  • Verdict Card & Calibrated Confidence Meters         │
+       │  • Verdict Card & Softmax Probability Meters           │
        │  • Interactive Evidence Graph (@xyflow/react)          │
        │  • Side Inspector Panel & Sentence-by-Sentence Modal   │
        │  • Empirical Model Performance & Benchmark Reports     │
@@ -238,65 +266,65 @@ Run the backend and frontend in two separate PowerShell terminals:
 
 #### Terminal 1 — Backend API Server:
 ```powershell
-cd "c:\Users\Balija Manohar\Downloads\ResearchMap"
+# From repository root:
 .\.venv\Scripts\Activate.ps1
 uvicorn backend.server:app --host 127.0.0.1 --port 8000 --reload
 ```
-*The service will load the 5,183 abstracts, compile the BM25 index, and initialize the fine-tuned NLI model once at startup.*
+*The service loads the 5,183 abstracts, compiles the BM25 index, and initializes the fine-tuned NLI model once at startup on port 8000.*
 
 #### Terminal 2 — Frontend Application:
 ```powershell
-cd "c:\Users\Balija Manohar\Downloads\ResearchMap\frontend"
+cd frontend
 npm run dev
 ```
-*Open `http://localhost:3000` in your browser. All `/api` requests are proxied directly to port 8000.*
+*Open `http://localhost:3000` in your browser. All `/api` requests are automatically proxied to port 8000.*
 
 ### Running Verification Tests
 
-#### Full Python Test Suite (27 Unit & Integration Tests):
+#### Full Python Test Suite (60 Passing Tests):
 ```powershell
-cd "c:\Users\Balija Manohar\Downloads\ResearchMap"
+# From repository root:
 .\.venv\Scripts\pytest -v
 ```
 
 #### Frontend Production Build:
 ```powershell
-cd "c:\Users\Balija Manohar\Downloads\ResearchMap\frontend"
+cd frontend
 npm run build
-```
-
-#### Command-Line Ad-Hoc Inference:
-```powershell
-cd "c:\Users\Balija Manohar\Downloads\ResearchMap"
-.\.venv\Scripts\python scripts/run_baseline.py --claim "0-dimensional biomaterials show inductive properties."
 ```
 
 ---
 
-## Phase 6A — Evidence Selection & NLI Improvement
+## Experimental Research Catalog (Phases 1–6A)
 
-In Phase 6A, we conducted an experimental investigation into whether refined evidence sentence selection and multi-sentence aggregation could improve Natural Language Inference (NLI) classification on the expanded 10,835-abstract corpus without retraining the fine-tuned DeBERTa-v3 cross-encoder.
+To prevent data drift and preserve production stability, all advanced explorations were developed in **isolated research scripts** under `scripts/experimental/` and documented in `experiments/`. These models and dense indexes remain research artifacts and are **not active in production**:
 
-### Evaluated Approaches:
-1. **Approach A (Existing Baseline Selection)**: Lexical BM25 sentence score with parent document prior ($\text{Score} = \text{BM25}(s) + 0.35 \cdot \text{BM25}(d)$, max 2 per doc).
-2. **Approach B (BM25-based Selection)**: Pure sentence-level lexical relevance ($\text{doc\_score\_weight} = 0.0$, max 2 per doc).
-3. **Approach C (Hybrid Document Score + Sentence Relevance)**: Normalized Hybrid RRF consensus document score fused with sentence relevance ($\text{BM25}(s) + 0.35 \cdot \widetilde{\text{RRF}}(d) \cdot 15.0$).
-4. **Approach D (Evidence Diversity Selection)**: Maximal Marginal Relevance (MMR) with lexical Jaccard redundancy penalty and cross-document diversification.
-5. **Approach E (Multi-Sentence Evidence Aggregation)**: Document-bounded multi-sentence premise concatenation and calibrated decision consensus.
+| Research Phase | Topic & Focus | Report | Status | Key Finding |
+| :---: | :--- | :--- | :---: | :--- |
+| **Phase 1** | Evidence Aggregation Improvement | [PHASE1_AGGREGATION_REPORT.md](experiments/PHASE1_AGGREGATION_REPORT.md) | Research | Evaluated 4 aggregation strategies; consensus mitigated some false contradictions but reduced true positive predictions; voting did not fully solve the veto problem. |
+| **Phase 2** | Scientific Entity Grounding Filter | [PHASE2_ENTITY_GROUNDING_REPORT.md](experiments/PHASE2_ENTITY_GROUNDING_REPORT.md) | Research | 15/15 unit tests pass; prevents cross-organism entity mismatches (+1.24% validation accuracy). |
+| **Phase 3** | Hard-Negative Augmentation | [PHASE3_HARD_NEGATIVE_REPORT.md](experiments/PHASE3_HARD_NEGATIVE_REPORT.md) | Research | Added 1,500 hard negatives; fine-tuned `models/experimental_augmented_nli` (85% on 60-probe challenge set). |
+| **Phase 4** | Targeted Error Analysis & Calibration | [PHASE4_ERROR_ANALYSIS_REPORT.md](experiments/PHASE4_ERROR_ANALYSIS_REPORT.md) | Research | Identified 61.3% NEI prior shift (+1.33 logit offset); trained class-balanced research checkpoint (`models/experimental_calibrated_nli`). Recommended retaining baseline in production. |
+| **Phase 4A**| BM25 Configuration C Tuning | [PHASE4A_RETRIEVAL_IMPLEMENTATION.md](experiments/PHASE4A_RETRIEVAL_IMPLEMENTATION.md) | **Production** | Established Configuration C (parent doc weight 0.35, max 2 sents/doc) achieving 83.33% diagnostic accuracy and 89.11% validation Doc Recall@10. |
+| **Phase 4B**| Corpus Expansion | [PHASE4B_CORPUS_EXPANSION.md](experiments/PHASE4B_CORPUS_EXPANSION.md) | Research | Expanded corpus to 10,835 abstracts via PubMed to stress-test distractor robustness. |
+| **Phase 5A**| Hybrid Dense-Lexical Retrieval | [PHASE5A_HYBRID_RETRIEVAL_REPORT.md](experiments/PHASE5A_HYBRID_RETRIEVAL_REPORT.md) | Research | Evaluated `all-MiniLM-L6-v2` dense retrieval fused via Reciprocal Rank Fusion (RRF). |
+| **Phase 5B**| Hybrid Latency Optimization | [PHASE5B_OPTIMIZATION_REPORT.md](experiments/PHASE5B_OPTIMIZATION_REPORT.md) | Research | Optimized hybrid candidate generation down to 242.8 ms CPU latency while maintaining 92.08% Recall@10. |
+| **Phase 6A**| Evidence Selection Optimization | [PHASE6A_EVIDENCE_SELECTION_REPORT.md](experiments/PHASE6A_EVIDENCE_SELECTION_REPORT.md) | Research | Evaluated 5 sentence selection strategies; confirmed Approach B (pure sentence BM25) achieves sub-250ms latency. |
 
-### Benchmark Summary:
-- **Validation Dataset**: 161 claims (`data/processed/val_internal.jsonl`)
-- **Diagnostic Test Dataset**: 24 out-of-domain claims (`experiments/new_claims.jsonl`)
-- **Best Validation Macro-F1**: **0.5635** (Approach C: Hybrid Document Score + Sentence Relevance)
-- **Best Validation Accuracy**: **58.39%** (Tied across Approaches B, C, and D, outperforming baseline 57.76%)
-- **Best Diagnostic Test Accuracy**: **83.33%** (Approaches A and B)
-- **Fastest Experimental Strategy**: **Approach B** (Mean CPU latency: **244.21 ms**, P95: **315.07 ms** on validation; **236.81 ms** on test)
-- **Multi-Sentence Aggregation Finding**: Approach E underperformed (56.52% validation accuracy), proving that concatenating multiple sentences dilutes specific claim evidence with background caveats and increases latency (+81%).
+---
 
-### Production Default Rationale:
-**BM25 Configuration C remains the active production default** because:
-1. It is thoroughly verified across all regression suites without requiring dense vector index memory or embedding cache dependencies.
-2. It provides high precision on the diagnostic test suite (87.50% in initial benchmark, 83.33% in controlled runs) with zero risk of neural distractor drift.
-3. If Hybrid Retrieval is deployed in staging, pairing it with **Approach B sentence selection** ($\text{doc\_score\_weight} = 0.0$) is recommended over multi-sentence aggregation to maintain sub-250ms CPU latency and eliminate parent-document bias.
+## Limitations Identified & Future Roadmap
 
-For full methodology, error modes, confusion matrices, and the Claim 24 investigation, see [experiments/PHASE6A_EVIDENCE_SELECTION_REPORT.md](file:///C:/Users/Balija%20Manohar/Downloads/ResearchMap/experiments/PHASE6A_EVIDENCE_SELECTION_REPORT.md).
+1. **Retriever Bottleneck**: Lexical BM25 achieves 92.55% Recall@10, meaning ~7.5% of claims with evidence are missed before verification begins if lexical overlap is weak. Research Phase 5B demonstrated that hybrid RRF bridges this gap, but requires dense embedding dependencies.
+2. **Distractor Sensitivity in Synthetic Negative Training**: Phase 4 error analysis revealed that training on synthetic hard negatives containing entity swaps increases sensitivity to unrelated retrieved passages. Future iterations should couple the Phase 2 entity grounding filter before NLI scoring.
+3. **Joint Document-Level Reasoning**: Current cross-encoder scoring evaluates individual sentence premises. Paragraph-level and cross-document multi-hop reasoning remain areas for future architectural enhancement.
+
+---
+
+## License & Attribution
+
+- **Project License**: This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+- **SciFact Dataset**: Released by the Allen Institute for AI under the **Apache License 2.0** (Wadden et al., EMNLP 2020).
+- **Base Pretrained Model**: `cross-encoder/nli-deberta-v3-small` is released under the **MIT License** (Heitmann et al., Microsoft DeBERTa-v3).
+- **PubMed / MEDLINE Abstracts**: Used in experimental research (`data/experimental/corpus_expanded_10k.jsonl`). While NLM citation metadata is open government data, individual journal article abstracts are subject to copyright and licensing terms that vary by publisher; they are not tracked in Git.
+- **Third-Party Dependencies**: Backend and frontend dependencies are subject to their respective upstream licenses (FastAPI: MIT, PyTorch: BSD-3, Transformers: Apache 2.0, React: MIT, Vite: MIT, Tailwind CSS: MIT). Any unverified third-party assets remain unverified until audited.
