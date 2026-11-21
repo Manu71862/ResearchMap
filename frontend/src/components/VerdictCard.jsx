@@ -6,8 +6,7 @@ import {
   AlertTriangle,
   ShieldCheck,
   BarChart3,
-  FileText,
-  Layers
+  Check
 } from 'lucide-react';
 
 export default function VerdictCard({ result }) {
@@ -22,21 +21,17 @@ export default function VerdictCard({ result }) {
     disclaimer,
     retrieved_papers = [],
     evidence_details = [],
-    predicted_evidence_doc_ids = []
+    reversibility_detected
   } = result;
 
   // Determine color scheme based on label
   const isSupports = predicted_label === 'SUPPORTS';
   const isContradicts = predicted_label === 'CONTRADICTS';
-  const isNEI = predicted_label === 'NOT ENOUGH INFORMATION';
 
   const badgeConfig = isSupports
     ? {
         label: 'SUPPORTS',
         icon: CheckCircle2,
-        colorClass: 'text-emerald-400',
-        bgClass: 'bg-emerald-950/40 border-emerald-500/50',
-        glowClass: 'shadow-[0_0_25px_rgba(16,185,129,0.2)]',
         accentColor: '#10b981',
         description: 'Scientific evidence retrieved from peer-reviewed literature supports this claim.'
       }
@@ -44,18 +39,12 @@ export default function VerdictCard({ result }) {
     ? {
         label: 'CONTRADICTS',
         icon: XCircle,
-        colorClass: 'text-rose-400',
-        bgClass: 'bg-rose-950/40 border-rose-500/50',
-        glowClass: 'shadow-[0_0_25px_rgba(244,63,94,0.2)]',
         accentColor: '#f43f5e',
         description: 'Scientific evidence retrieved from peer-reviewed literature refutes or contradicts this claim.'
       }
     : {
         label: 'NOT ENOUGH INFORMATION',
         icon: HelpCircle,
-        colorClass: 'text-amber-400',
-        bgClass: 'bg-amber-950/40 border-amber-500/50',
-        glowClass: 'shadow-[0_0_25px_rgba(245,158,11,0.2)]',
         accentColor: '#f59e0b',
         description: 'Retrieved literature does not provide conclusive evidence to support or refute this claim.'
       };
@@ -124,7 +113,7 @@ export default function VerdictCard({ result }) {
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', fontWeight: 600 }}>
-              Model Verdict
+              VERDICT
             </div>
             <div style={{
               fontSize: '1.5rem',
@@ -134,25 +123,44 @@ export default function VerdictCard({ result }) {
             }}>
               {badgeConfig.label}
             </div>
-            {result.gold_label && (
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                marginTop: '0.35rem',
-                fontSize: '0.75rem',
-                fontFamily: 'var(--font-mono)',
-                padding: '2px 8px',
-                borderRadius: '4px',
-                backgroundColor: result.label_matches_gold ? 'rgba(16, 185, 129, 0.15)' : 'rgba(244, 63, 94, 0.15)',
-                border: `1px solid ${result.label_matches_gold ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)'}`,
-                color: result.label_matches_gold ? '#34d399' : '#fb7185'
-              }}>
-                <span>SciFact Gold: <strong>{result.gold_label}</strong></span>
-                <span>•</span>
-                <span>{result.label_matches_gold ? '✓ Agreement' : '⚠ Benchmark Divergence'}</span>
-              </div>
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
+              {result.gold_label && (
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  fontSize: '0.75rem',
+                  fontFamily: 'var(--font-mono)',
+                  padding: '2px 8px',
+                  borderRadius: '4px',
+                  backgroundColor: result.label_matches_gold ? 'rgba(16, 185, 129, 0.15)' : 'rgba(244, 63, 94, 0.15)',
+                  border: `1px solid ${result.label_matches_gold ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)'}`,
+                  color: result.label_matches_gold ? '#34d399' : '#fb7185'
+                }}>
+                  <span>SciFact Benchmark Label: <strong>{result.gold_label}</strong></span>
+                  <span>•</span>
+                  <span>{result.label_matches_gold ? 'Agreement' : 'Divergence'}</span>
+                </div>
+              )}
+
+              {reversibility_detected && (
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  fontSize: '0.75rem',
+                  fontFamily: 'var(--font-mono)',
+                  padding: '2px 8px',
+                  borderRadius: '4px',
+                  backgroundColor: 'rgba(59, 130, 246, 0.12)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  color: '#93c5fd'
+                }} title="Cessation/reversibility evidence evaluated under Bradford Hill's criteria">
+                  <Check size={12} style={{ color: '#60a5fa' }} />
+                  <span>Hill's Reversibility Criterion Applied</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -193,7 +201,7 @@ export default function VerdictCard({ result }) {
             <BarChart3 size={14} /> Class Probabilities Distribution
           </span>
           <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
-            Raw Softmax Class Probabilities (Uncalibrated)
+            Softmax Class Probabilities
           </span>
         </div>
 
@@ -240,12 +248,12 @@ export default function VerdictCard({ result }) {
           padding: '0.875rem 1rem',
           marginBottom: '1rem'
         }}>
-          <strong style={{ color: 'var(--text-primary)' }}>Pipeline Analysis: </strong>
+          <strong style={{ color: 'var(--text-primary)' }}>Evidence Summary: </strong>
           {explanation}
         </div>
       )}
 
-      {/* Warning Box (if evidence is weak, ambiguous, or zero retrieval) */}
+      {/* Warning Box */}
       {warning && (
         <div style={{
           display: 'flex',
@@ -279,7 +287,7 @@ export default function VerdictCard({ result }) {
         <ShieldCheck size={14} style={{ color: 'var(--accent-cyan)' }} />
         <span>
           <strong>Scientific Disclaimer: </strong>
-          {disclaimer || "Model predictions reflect statistical NLP inference over retrieved abstracts, not peer-reviewed scientific consensus."}
+          {disclaimer || "Model predictions reflect statistical NLP entailment over retrieved abstracts, not peer-reviewed scientific consensus."}
         </span>
       </div>
     </div>

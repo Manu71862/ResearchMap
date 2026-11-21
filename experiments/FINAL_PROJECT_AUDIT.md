@@ -1,11 +1,13 @@
 # ResearchMap — Complete Final Project Audit
 
 **Audit Date**: November 21, 2026
-**Auditor**: Antigravity NLP / Systems Agent
+**Audit Type**: Full-Stack System & Pipeline Audit
 **Repository**: `https://github.com/Manu71862/ResearchMap.git`
 **Branch**: `main` (Local Commit: `8760c95`)
 **Scope**: Full-stack audit across Frontend, Backend, NLP Pipeline, Data & Experiments, and Project Setup.
 **Audit Policy**: Strict read-only audit. No production files, models, or configurations were modified.
+
+> **Post-Audit Update (November 21, 2026):** Following this audit, one production enhancement was integrated: a condition-aware reversibility filter was added to `backend/pipeline.py`. This filter applies Bradford Hill's reversibility criterion to prevent spurious contradiction vetoes when cessation evidence corroborates an active exposure claim (e.g. "smoking cessation reduces risk" for the claim "smoking increases risk"). The NLI model, checkpoint, retrieval pipeline, and all benchmark numbers reported in this document remain unchanged. The new filter is covered by `tests/test_condition_aware_reversibility.py` (6 tests).
 
 ---
 

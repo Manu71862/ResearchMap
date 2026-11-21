@@ -2,12 +2,10 @@ import React from 'react';
 import {
   FileText,
   ExternalLink,
-  CheckCircle,
-  XCircle,
-  HelpCircle,
   Search,
   SlidersHorizontal,
-  ChevronRight
+  ChevronRight,
+  Info
 } from 'lucide-react';
 
 export default function EvidenceList({ result, onSelectEvidence, onViewPaper }) {
@@ -43,7 +41,7 @@ export default function EvidenceList({ result, onSelectEvidence, onViewPaper }) 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <FileText size={20} style={{ color: 'var(--accent-cyan)' }} />
           <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-            Retrieved Research Papers & Verbatim Passages
+            Retrieved Papers & Evidence Passages
           </h3>
           <span style={{
             fontSize: '0.75rem',
@@ -210,8 +208,8 @@ export default function EvidenceList({ result, onSelectEvidence, onViewPaper }) 
                           onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
                           onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                         >
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
                               <span style={{
                                 fontFamily: 'var(--font-mono)',
                                 fontSize: '0.75rem',
@@ -231,6 +229,21 @@ export default function EvidenceList({ result, onSelectEvidence, onViewPaper }) 
                               }}>
                                 {sent.entailment_label}
                               </span>
+
+                              {sent.veto_masked && (
+                                <span style={{
+                                  fontSize: '0.68rem',
+                                  fontFamily: 'var(--font-mono)',
+                                  color: '#93c5fd',
+                                  background: 'rgba(59, 130, 246, 0.18)',
+                                  border: '1px solid rgba(59, 130, 246, 0.35)',
+                                  padding: '1px 6px',
+                                  borderRadius: '4px',
+                                  fontWeight: 500
+                                }}>
+                                  Veto Excluded (Hill's Reversibility)
+                                </span>
+                              )}
                             </div>
 
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
@@ -250,6 +263,24 @@ export default function EvidenceList({ result, onSelectEvidence, onViewPaper }) 
                           }}>
                             "{sent.text}"
                           </div>
+
+                          {sent.veto_masked && sent.reversibility_rationale && (
+                            <div style={{
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              gap: '0.4rem',
+                              fontSize: '0.75rem',
+                              color: '#93c5fd',
+                              background: 'rgba(15, 23, 42, 0.5)',
+                              border: '1px solid rgba(59, 130, 246, 0.25)',
+                              borderRadius: '6px',
+                              padding: '0.4rem 0.65rem',
+                              marginTop: '0.25rem'
+                            }}>
+                              <Info size={13} style={{ flexShrink: 0, marginTop: '2px', color: '#60a5fa' }} />
+                              <span>{sent.reversibility_rationale}</span>
+                            </div>
+                          )}
                         </div>
                       );
                     })}

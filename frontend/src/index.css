@@ -93,6 +93,18 @@ body {
   gap: 0.875rem;
 }
 
+.brand-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.35));
+  transition: transform 0.2s ease;
+}
+
+.brand-logo-container:hover {
+  transform: scale(1.05);
+}
+
 .brand-icon {
   width: 2.25rem;
   height: 2.25rem;
@@ -231,4 +243,23 @@ body {
 
 .react-flow__controls-button:hover {
   background: var(--bg-card-hover);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .navbar-inner {
+    height: auto;
+    padding: 0.75rem 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+  }
 }

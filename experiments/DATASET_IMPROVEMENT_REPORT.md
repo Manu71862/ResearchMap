@@ -2,7 +2,7 @@
 
 **Date**: 2026-10-28
 **Project**: ResearchMap
-**Auditor**: Antigravity (Google DeepMind Advanced Agentic Coding)
+**Audit Type**: Empirical NLP System & Dataset Audit
 **System Hardware Profile**: AMD Ryzen 7 7435HS (8 Cores, 16 Threads), 16 GB RAM (~4.8 GB available), Windows 11 x64, PyTorch 2.6.0 on CPU.
 
 ---

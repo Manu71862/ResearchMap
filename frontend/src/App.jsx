@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ClaimInput from './components/ClaimInput';
 import VerdictCard from './components/VerdictCard';
@@ -10,10 +10,9 @@ import BenchmarkSection from './components/BenchmarkSection';
 import {
   Loader2,
   AlertCircle,
-  BookOpen,
-  Sparkles,
-  GitFork,
   Database,
+  Cpu,
+  GitFork,
   ShieldCheck
 } from 'lucide-react';
 
@@ -28,8 +27,10 @@ export default function App() {
 
   // Paper modal state
   const [modalPaperId, setModalPaperId] = useState(null);
+  const [currentClaim, setCurrentClaim] = useState('');
 
   const handleVerify = async (claimText, topKDocs = 5, topKSentences = 3, claimId = null) => {
+    setCurrentClaim(claimText);
     setLoading(true);
     setResult(null); // Prevent rendering stale results during in-flight analysis
     setError(null);
@@ -80,6 +81,17 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const queryClaim = params.get('claim');
+      if (queryClaim) {
+        setCurrentClaim(queryClaim);
+        handleVerify(queryClaim);
+      }
+    } catch (_) {}
+  }, []);
+
   const handleSelectNode = (nodeData) => {
     setSelectedNode(nodeData);
   };
@@ -103,21 +115,21 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-primary)' }}>
-      {/* Top Academic Navigation Bar */}
+      {/* Navigation Bar */}
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <main style={{ flex: 1, padding: '2rem 1.5rem 4rem' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
 
-          {/* Hero Section (When on Explorer tab) */}
+          {/* Hero Header Section */}
           {activeTab === 'explorer' && (
             <div className="hero-section">
               <h1 className="hero-title">
-                ResearchMap Evidence Explorer
+                ResearchMap Claim Explorer
               </h1>
               <p className="hero-subtitle">
-                Automated scientific claim verification over 5,183 peer-reviewed biomedical abstracts.
-                Powered by BM25 lexical retrieval and domain-adapted cross-encoder natural language inference.
+                Verify scientific claims against peer-reviewed biomedical literature. Retrieves relevant abstracts
+                via BM25 lexical ranking and evaluates evidence using a transformer-based natural language inference model.
               </p>
 
               {/* Architecture Badges */}
@@ -142,7 +154,7 @@ export default function App() {
                   borderRadius: '20px'
                 }}>
                   <Database size={13} style={{ color: 'var(--accent-cyan)' }} />
-                  <span>Corpus: SciFact (5,183 Papers)</span>
+                  <span>Corpus: SciFact (5,183 Abstracts)</span>
                 </div>
 
                 <div style={{
@@ -157,8 +169,8 @@ export default function App() {
                   padding: '3px 10px',
                   borderRadius: '20px'
                 }}>
-                  <Sparkles size={13} style={{ color: '#a78bfa' }} />
-                  <span>Model: Fine-Tuned DeBERTa-v3 NLI</span>
+                  <Cpu size={13} style={{ color: 'var(--accent-blue)' }} />
+                  <span>Model: DeBERTa-v3 Cross-Encoder</span>
                 </div>
 
                 <div style={{
@@ -174,7 +186,7 @@ export default function App() {
                   borderRadius: '20px'
                 }}>
                   <GitFork size={13} style={{ color: '#34d399' }} />
-                  <span>3-Way Verdict + Evidence Graph</span>
+                  <span>Output: SUPPORTS / CONTRADICTS / NEI</span>
                 </div>
               </div>
             </div>
@@ -184,7 +196,7 @@ export default function App() {
           {activeTab === 'explorer' && (
             <div>
               {/* Claim Input Component */}
-              <ClaimInput onVerify={handleVerify} isLoading={loading} />
+              <ClaimInput onVerify={handleVerify} isLoading={loading} initialClaim={currentClaim} />
 
               {/* Loading State Spinner */}
               {loading && (
@@ -212,10 +224,10 @@ export default function App() {
                   </div>
                   <div>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
-                      Executing Scientific Evidence Pipeline
+                      Evaluating Claim Against Scientific Literature
                     </h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                      Querying BM25 lexical index → Ranking candidate abstract passages → Computing cross-encoder entailment logits...
+                      Retrieving candidate abstracts via BM25 → Ranking sentence evidence → Computing NLI entailment probabilities...
                     </p>
                   </div>
                 </div>
@@ -236,7 +248,7 @@ export default function App() {
                 }}>
                   <AlertCircle size={22} style={{ flexShrink: 0, marginTop: '2px' }} />
                   <div>
-                    <strong style={{ fontSize: '0.95rem' }}>Pipeline Execution Error</strong>
+                    <strong style={{ fontSize: '0.95rem' }}>Verification Error</strong>
                     <p style={{ fontSize: '0.85rem', marginTop: '0.25rem', color: '#fecdd3' }}>{error}</p>
                   </div>
                 </div>
@@ -306,12 +318,11 @@ export default function App() {
           gap: '1rem'
         }}>
           <div>
-            <strong style={{ color: 'var(--text-secondary)' }}>ResearchMap</strong> — Scientific Claim Verification Explorer
-            <span style={{ marginLeft: '0.5rem', color: 'var(--text-muted)' }}>• Phase 3 Web Application</span>
+            <strong style={{ color: 'var(--text-secondary)' }}>ResearchMap</strong> — Scientific Claim Verification
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
             <ShieldCheck size={14} style={{ color: '#10b981' }} />
-            <span>Strict zero-leakage protocol • SciFact Development Evaluation</span>
+            <span>Evaluated on SciFact benchmark • BM25 + DeBERTa-v3 NLI</span>
           </div>
         </div>
       </footer>

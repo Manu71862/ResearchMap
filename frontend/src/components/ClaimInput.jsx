@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sparkles, SlidersHorizontal, Loader2, ArrowRight } from 'lucide-react';
+import { Search, BookOpen, SlidersHorizontal, Loader2, ArrowRight } from 'lucide-react';
 
 export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, initialClaim }) {
   const [claim, setClaim] = useState(initialClaim || '');
@@ -7,6 +7,12 @@ export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, in
   const [showConfig, setShowConfig] = useState(false);
   const [topKDocs, setTopKDocs] = useState(5);
   const [topKSentences, setTopKSentences] = useState(3);
+
+  useEffect(() => {
+    if (initialClaim) {
+      setClaim(initialClaim);
+    }
+  }, [initialClaim]);
 
   const isBusy = loading || isLoading;
 
@@ -62,7 +68,7 @@ export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, in
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
           <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
             <Search size={16} color="var(--accent-cyan)" />
-            Scientific Claim Input
+            Scientific Claim
           </label>
           <button
             type="button"
@@ -87,7 +93,7 @@ export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, in
           <textarea
             value={claim}
             onChange={(e) => setClaim(e.target.value)}
-            placeholder="Enter a scientific claim to verify (e.g. '40mg/day dosage of folic acid and 2mg/day dosage of vitamin B12 does not affect CKD progression')..."
+            placeholder="Enter a scientific claim to verify (e.g. 'Smoking increases the risk of developing lung cancer.')..."
             rows={3}
             style={{
               width: '100%',
@@ -154,7 +160,7 @@ export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, in
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            BM25 Retrieval + SciFact NLI Checkpoint Inference
+            BM25 Lexical Retrieval + DeBERTa-v3 NLI Inference
           </div>
 
           <button
@@ -179,11 +185,11 @@ export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, in
             {isBusy ? (
               <>
                 <Loader2 size={16} className="animate-spin" />
-                <span>Verifying Claim...</span>
+                <span>Verifying...</span>
               </>
             ) : (
               <>
-                <span>Analyze Claim</span>
+                <span>Verify Claim</span>
                 <ArrowRight size={16} />
               </>
             )}
@@ -195,8 +201,8 @@ export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, in
       {samples.length > 0 && (
         <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid var(--border-subtle)' }}>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-            <Sparkles size={12} color="var(--accent-cyan)" />
-            <span>Sample SciFact Claims (Click to analyze):</span>
+            <BookOpen size={13} color="var(--accent-cyan)" />
+            <span>Sample SciFact Claims (click to evaluate):</span>
           </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>

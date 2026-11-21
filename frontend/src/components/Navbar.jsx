@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Network, Activity, BarChart3, BookOpen, ShieldCheck } from 'lucide-react';
+import { Activity, BarChart3 } from 'lucide-react';
+import ResearchMapLogo from './ResearchMapLogo';
 
 export default function Navbar({ activeTab, setActiveTab }) {
   const [health, setHealth] = useState({ loaded: false, status: 'connecting', papers: 0 });
@@ -41,9 +42,9 @@ export default function Navbar({ activeTab, setActiveTab }) {
   }, []);
 
   const getStatusLabel = () => {
-    if (health.loaded) return 'Fine-Tuned Model Active';
+    if (health.loaded) return 'NLI Model Online';
     if (health.status === 'offline') return 'Backend Offline';
-    if (health.status === 'degraded') return 'Model Loading...';
+    if (health.status === 'degraded') return 'Loading Model...';
     return 'Connecting...';
   };
 
@@ -57,16 +58,16 @@ export default function Navbar({ activeTab, setActiveTab }) {
     <header className="navbar">
       <div className="container navbar-inner">
         <div className="brand-group">
-          <div className="brand-icon">
-            <Network size={20} />
+          <div className="brand-logo-container">
+            <ResearchMapLogo size={32} />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span className="brand-title">ResearchMap</span>
-              <span className="brand-tag">v1.0 Capstone</span>
+              <span className="brand-tag">v1.0</span>
             </div>
             <p style={{ fontSize: '0.725rem', color: 'var(--text-muted)', margin: 0 }}>
-              Evidence Mapping & Scientific Claim Verification
+              Scientific Claim Verification & Evidence Mapping
             </p>
           </div>
         </div>
@@ -84,10 +85,10 @@ export default function Navbar({ activeTab, setActiveTab }) {
             onClick={() => setActiveTab('benchmarks')}
           >
             <BarChart3 size={16} />
-            <span>Benchmark Reports</span>
+            <span>Benchmark Evaluation</span>
           </button>
 
-          <div className="system-status" title={`Corpus: ${health.papers.toLocaleString()} scientific papers indexed`}>
+          <div className="system-status" title={`Corpus: ${health.papers.toLocaleString()} papers indexed`}>
             <span
               className="status-dot"
               style={{

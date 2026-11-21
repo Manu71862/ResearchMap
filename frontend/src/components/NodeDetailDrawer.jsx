@@ -7,9 +7,7 @@ import {
   XCircle,
   HelpCircle,
   ExternalLink,
-  BarChart2,
-  Layers,
-  Search
+  Info
 } from 'lucide-react';
 
 export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper }) {
@@ -26,7 +24,9 @@ export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper })
     confidence,
     probabilities = {},
     abstract_preview,
-    predicted_label
+    predicted_label,
+    veto_masked,
+    reversibility_rationale
   } = selectedNode;
 
   const isSupp = entailment_label === 'SUPPORTS';
@@ -106,7 +106,7 @@ export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper })
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.4rem', fontFamily: 'var(--font-mono)' }}>
-                VERIFIED SCIENTIFIC CLAIM
+                SCIENTIFIC CLAIM
               </div>
               <p style={{ fontSize: '1rem', color: '#f8fafc', lineHeight: '1.5', fontWeight: 500 }}>
                 {text}
@@ -208,7 +208,7 @@ export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper })
                 }}
               >
                 <ExternalLink size={16} />
-                <span>View Full Paper Abstract</span>
+                <span>View Full Abstract</span>
               </button>
             )}
           </div>
@@ -272,6 +272,27 @@ export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper })
               </p>
             </div>
 
+            {/* Reversibility Notice if Veto Masked */}
+            {veto_masked && (
+              <div style={{
+                background: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                borderRadius: '8px',
+                padding: '0.85rem 1rem',
+                fontSize: '0.8rem',
+                color: '#93c5fd',
+                lineHeight: '1.5'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#bfdbfe', fontWeight: 600, marginBottom: '0.25rem' }}>
+                  <Info size={14} style={{ color: '#60a5fa' }} />
+                  <span>Hill's Reversibility Criterion Applied</span>
+                </div>
+                <p style={{ margin: 0 }}>
+                  {reversibility_rationale || "Evidence showing that cessation of exposure reduces adverse outcome corroborates rather than refutes causal risk."}
+                </p>
+              </div>
+            )}
+
             {/* Model Entailment Verdict Card */}
             <div style={{
               background: 'rgba(15, 23, 42, 0.6)',
@@ -281,7 +302,7 @@ export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper })
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-                  FINE-TUNED NLI VERDICT
+                  NLI ENTAILMENT PREDICTION
                 </span>
                 <span style={{
                   fontFamily: 'var(--font-mono)',
@@ -318,7 +339,7 @@ export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper })
             {probabilities && (
               <div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginBottom: '0.5rem' }}>
-                  CLASS LOGITS BREAKDOWN
+                  CLASS PROBABILITIES
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {Object.entries(probabilities).map(([lbl, p]) => {
@@ -366,7 +387,7 @@ export default function NodeDetailDrawer({ selectedNode, onClose, onViewPaper })
                 }}
               >
                 <ExternalLink size={15} />
-                <span>View Full Abstract in Modal</span>
+                <span>View Full Abstract</span>
               </button>
             )}
           </div>
