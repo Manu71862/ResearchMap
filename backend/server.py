@@ -183,6 +183,8 @@ class EvidenceDetail(BaseModel):
     entailment_label: str
     confidence: float
     probabilities: Dict[str, float]
+    veto_masked: Optional[bool] = False
+    reversibility_rationale: Optional[str] = None
 
 class RetrievedPaper(BaseModel):
     doc_id: int
@@ -206,6 +208,7 @@ class VerifyResponse(BaseModel):
     disclaimer: str
     gold_label: Optional[str] = None
     label_matches_gold: Optional[bool] = None
+    reversibility_detected: Optional[bool] = False
 
 class PaperResponse(BaseModel):
     doc_id: int
@@ -388,6 +391,7 @@ def verify_scientific_claim(request: VerifyRequest):
         ),
         "gold_label": gold_label,
         "label_matches_gold": label_matches_gold,
+        "reversibility_detected": raw_result.get("reversibility_detected", False),
     }
 
 @app.get("/api/papers/{paper_id}", response_model=PaperResponse)
