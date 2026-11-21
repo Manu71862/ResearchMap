@@ -35,13 +35,17 @@ export default function ClaimInput({ onVerify, onAnalyze, loading, isLoading, in
         }
       })
       .catch(() => {
-        // Fallback real SciFact claims with verified gold ground truth
+        // Fallback real SciFact claims with verified gold ground truth across all 3 classes
         setSamples([
           { id: 49, claim: 'ADAR1 binds to Dicer to cleave pre-miRNA.', gold_label: 'SUPPORTS' },
-          { id: 50, claim: 'ALDH1 expression is an independent predictor of poor survival in breast cancer.', gold_label: 'SUPPORTS' },
-          { id: 51, claim: 'AMP-activated protein kinase (AMPK) activation induces tenocyte differentiation.', gold_label: 'CONTRADICTS' },
+          { id: 50, claim: 'AIRE is expressed in some skin tumors.', gold_label: 'SUPPORTS' },
+          { id: 124, claim: 'Antiretroviral therapy reduces rates of tuberculosis across a broad range of CD4 strata.', gold_label: 'SUPPORTS' },
+          { id: 51, claim: 'ALDH1 expression is associated with better breast cancer outcomes.', gold_label: 'CONTRADICTS' },
+          { id: 42, claim: 'A high microerythrocyte count raises vulnerability to severe anemia in homozygous alpha (+)- thalassemia trait subjects.', gold_label: 'CONTRADICTS' },
+          { id: 338, claim: 'Dexamethasone decreases risk of postoperative bleeding.', gold_label: 'CONTRADICTS' },
           { id: 1, claim: '0-dimensional biomaterials show inductive properties.', gold_label: 'NOT ENOUGH INFORMATION' },
-          { id: 5, claim: '1/2000 in UK have abnormal PrP positivity.', gold_label: 'SUPPORTS' },
+          { id: 13, claim: '5% of perinatal mortality is due to low birth weight.', gold_label: 'NOT ENOUGH INFORMATION' },
+          { id: 36, claim: 'A deficiency of vitamin B12 increases blood levels of homocysteine.', gold_label: 'NOT ENOUGH INFORMATION' },
         ]);
       });
   }, []);
